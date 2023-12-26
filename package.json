@@ -6,9 +6,11 @@
     "start": "next start"
   },
   "dependencies": {
-    "@prisma/client": "^5.7.1",
+    "@supabase/auth-helpers-nextjs": "^0.8.7",
+    "@supabase/auth-ui-react": "^0.4.6",
+    "@supabase/auth-ui-shared": "^0.1.8",
     "@supabase/ssr": "latest",
-    "@supabase/supabase-js": "latest",
+    "@supabase/supabase-js": "^2.39.1",
     "autoprefixer": "10.4.15",
     "geist": "^1.0.0",
     "next": "latest",
@@ -22,7 +24,6 @@
     "@types/node": "20.3.1",
     "@types/react": "18.2.8",
     "@types/react-dom": "18.2.5",
-    "encoding": "^0.1.13",
-    "prisma": "^5.7.1"
+    "encoding": "^0.1.13"
   }
 }
