@@ -1,23 +1,21 @@
 "use client";
 import { createBrowserClient } from "@supabase/ssr";
+
 import { useUser } from "@/Context/userContext";
+import { Button } from "./ui/button";
+import Link from "next/link";
 export const LogoutButton = () => {
   const { user, handleSignOut, checkUser } = useUser();
 
   return (
     <div className="flex gap-2">
-      <button
-        onClick={handleSignOut}
-        className="p-2 bg-foreground/10 text-foreground text-center"
-      >
+      <Button onClick={handleSignOut} variant="outline">
         Logout
-      </button>
-      <button
-        onClick={checkUser}
-        className="p-2 bg-foreground/10 text-foreground text-center"
-      >
+      </Button>
+      <Button onClick={checkUser} variant="outline">
         Check User
-      </button>
+      </Button>
+      <Link href={"/login"}>Login Page</Link>
     </div>
   );
 };

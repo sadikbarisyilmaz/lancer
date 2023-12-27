@@ -2,7 +2,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { User } from "@supabase/auth-helpers-nextjs";
 import { createBrowserClient } from "@supabase/ssr";
-// import { useRouter } from "next/navigation";
+import { UserDetails } from "@/lib/types";
 
 type UserContextType = {
   user: User | null;
@@ -19,23 +19,22 @@ export interface Props {
 }
 
 export const UserContextProvider = async (props: Props) => {
+  // const [userDetails, setUserDetails] = useState<UserDetails | null>(null);
   const supabase = createBrowserClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
   );
-  const {
+  // useEffect(() => {}, []);
+
+  let {
     data: { user },
   } = await supabase.auth.getUser();
-  // const router = useRouter();
 
   const handleSignOut = async () => {
-    if (user) {
-      const { error } = await supabase.auth.signOut();
-      // router.push("/login");
-      console.log(error);
-    }
+    const { error } = await supabase.auth.signOut();
+    console.log("signout");
+    user = null;
   };
-
   const checkUser = () => {
     console.log(user);
   };
