@@ -31,10 +31,15 @@ export const UserContextProvider = async (props: Props) => {
   } = await supabase.auth.getUser();
 
   const handleSignOut = async () => {
-    const { error } = await supabase.auth.signOut();
-    console.log("signout");
-    user = null;
+    if (user) {
+      const { error } = await supabase.auth.signOut();
+      console.log("signout");
+      user = null;
+    } else {
+      console.log("No user");
+    }
   };
+
   const checkUser = () => {
     console.log(user);
   };

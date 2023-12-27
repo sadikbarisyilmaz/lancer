@@ -1,10 +1,7 @@
-import { Button } from "@/components/ui/button";
-
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { useUser } from "@/Context/userContext";
 import { LogoutButton } from "./LogoutButton";
 import { Separator } from "@radix-ui/react-separator";
-
 export const UserCard = () => {
   const { user } = useUser();
   return (
