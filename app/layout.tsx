@@ -1,6 +1,15 @@
 import { GeistSans } from "geist/font/sans";
+import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
 import { Nav } from "@/components/Nav";
+import { UserContextProvider } from "@/Context/userContext";
+import { cn } from "@/lib/utils";
+import { ThemeProvider } from "@/providers/themeProvider";
+
+export const fontSans = FontSans({
+  subsets: ["latin"],
+  variable: "--font-sans",
+});
 
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
@@ -18,11 +27,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={GeistSans.className}>
+    <html
+      suppressHydrationWarning
+      lang="en"
+      // className={cn(
+      //   "min-h-screen bg-background font-sans antialiased",
+      //   fontSans.variable
+      // )}
+    >
       <body className="bg-background text-foreground">
-        <main className="min-h-screen flex flex-col items-center">
-          <Nav />
-          {children}
+        <main className="min-h-screen flex items-center">
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <UserContextProvider>
+              <Nav />
+              {children}
+            </UserContextProvider>
+          </ThemeProvider>
         </main>
       </body>
     </html>
