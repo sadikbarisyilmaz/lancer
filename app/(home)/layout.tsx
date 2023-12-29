@@ -1,4 +1,4 @@
-import { Nav } from "@/components/Nav";
+import { Navbar } from "@/components/Navbar";
 
 export default function RootLayout({
   children,
@@ -7,7 +7,7 @@ export default function RootLayout({
 }) {
   return (
     <>
-      <Nav />
+      <Navbar />
       {children}
     </>
   );
