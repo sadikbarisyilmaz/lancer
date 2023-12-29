@@ -1,8 +1,6 @@
 import { GeistSans } from "geist/font/sans";
 import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
-import { Nav } from "@/components/Nav";
-import { UserContextProvider } from "@/Context/userContext";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/providers/themeProvider";
 
@@ -43,10 +41,7 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            <UserContextProvider>
-              <Nav />
-              {children}
-            </UserContextProvider>
+            {children}
           </ThemeProvider>
         </main>
       </body>
