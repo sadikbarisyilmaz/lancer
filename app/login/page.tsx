@@ -2,30 +2,17 @@
 import { createBrowserClient } from "@supabase/ssr";
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
-import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 import { Card } from "@/components/ui/card";
-import DeployButton from "@/components/DeployButton";
 
 export default function Page() {
-  useEffect(() => {
-    checkUser();
-  }, []);
+  const defaultUrl = process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : "http://localhost:3000";
 
   const supabase = createBrowserClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
   );
-
-  const router = useRouter();
-  const checkUser = async () => {
-    const {
-      data: { session },
-    } = await supabase.auth.getSession();
-    if (session?.user) {
-      router.push("/");
-    }
-  };
 
   return (
     <div className="h-screen w-full flex items-center justify-center">
@@ -35,10 +22,10 @@ export default function Page() {
             Welcome to Lancer
           </h1>
           <p className="leading-7 [&:not(:first-child)]:mt-6">Please Login</p>
-          <DeployButton />
         </div>
         <div className="p-4">
           <Auth
+            redirectTo={`${defaultUrl}/auth/callback`}
             supabaseClient={supabase}
             view="magic_link"
             appearance={{ theme: ThemeSupa }}

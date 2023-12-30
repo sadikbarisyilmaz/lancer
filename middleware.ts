@@ -55,6 +55,7 @@ export async function middleware(request: NextRequest) {
   );
 
   await supabase.auth.getSession();
+  // console.log(await supabase.auth.getSession());
 
   return response;
 }

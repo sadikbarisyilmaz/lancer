@@ -4,9 +4,8 @@ import { useRouter } from "next/navigation";
 import { createBrowserClient } from "@supabase/ssr";
 import { useEffect, useState } from "react";
 import { Separator } from "./ui/separator";
-
 export const UserCard = () => {
-  const [user, setUser] = useState<any>();
+  const [user, setUser] = useState<any>(null);
   const router = useRouter();
   const getUser = async () => {
     const {
@@ -14,8 +13,6 @@ export const UserCard = () => {
     } = await supabase.auth.getSession();
     if (session) {
       setUser(session.user);
-    } else {
-      router.push("/login");
     }
   };
 
@@ -27,6 +24,7 @@ export const UserCard = () => {
   const handleSignOut = async () => {
     await supabase.auth.signOut();
     router.push("/login");
+    setUser(null);
   };
 
   useEffect(() => {
