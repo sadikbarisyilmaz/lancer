@@ -3,18 +3,19 @@ import { createBrowserClient } from "@supabase/ssr";
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { Card } from "@/components/ui/card";
+import { useEffect, useState } from "react";
 
 export default function Page() {
-  const defaultUrl =
-    process.env.NODE_ENV === "production"
-      ? `https://lancer-app.vercel.app`
-      : "http://localhost:3000";
+  const [url, setUrl] = useState<string>();
+  useEffect(() => {
+    setUrl(window.location.origin);
+  }, []);
 
   const supabase = createBrowserClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
   );
-
+  // console.log(window.location.origin);
   return (
     <div className="h-screen w-full flex items-center justify-center">
       <Card className="grid grid-cols-3 gap-2 p-4 shadow-md shadow-foreground/10">
@@ -26,7 +27,7 @@ export default function Page() {
         </div>
         <div className="p-4">
           <Auth
-            redirectTo={`${defaultUrl}/auth/callback`}
+            redirectTo={`${url}/auth/callback`}
             supabaseClient={supabase}
             view="magic_link"
             appearance={{ theme: ThemeSupa }}
