@@ -13,7 +13,6 @@ export default function Page() {
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
   );
-  console.log(defaultUrl);
 
   return (
     <div className="h-screen w-full flex items-center justify-center">
@@ -26,7 +25,7 @@ export default function Page() {
         </div>
         <div className="p-4">
           <Auth
-            redirectTo={`${defaultUrl}/auth/callback`}
+            redirectTo={`${location.origin}/auth/callback`}
             supabaseClient={supabase}
             view="magic_link"
             appearance={{ theme: ThemeSupa }}
