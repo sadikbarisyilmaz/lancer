@@ -5,9 +5,10 @@ import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { Card } from "@/components/ui/card";
 
 export default function Page() {
-  const defaultUrl = process.env.VERCEL_URL
-    ? `https://${process.env.VERCEL_URL}`
-    : "http://localhost:3000";
+  const defaultUrl =
+    process.env.NODE_ENV === "production"
+      ? `https://lancer-app.vercel.app`
+      : "http://localhost:3000";
 
   const supabase = createBrowserClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -25,7 +26,7 @@ export default function Page() {
         </div>
         <div className="p-4">
           <Auth
-            redirectTo={`${location.origin}/auth/callback`}
+            redirectTo={`${defaultUrl}/auth/callback`}
             supabaseClient={supabase}
             view="magic_link"
             appearance={{ theme: ThemeSupa }}
