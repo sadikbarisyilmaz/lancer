@@ -5,6 +5,7 @@ import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { Card } from "@/components/ui/card";
+import DeployButton from "@/components/DeployButton";
 
 export default function Page() {
   useEffect(() => {
@@ -34,6 +35,7 @@ export default function Page() {
             Welcome to Lancer
           </h1>
           <p className="leading-7 [&:not(:first-child)]:mt-6">Please Login</p>
+          <DeployButton />
         </div>
         <div className="p-4">
           <Auth
