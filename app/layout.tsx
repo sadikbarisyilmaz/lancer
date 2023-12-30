@@ -4,11 +4,6 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { ThemeProvider } from "@/providers/themeProvider";
 
-export const fontSans = FontSans({
-  subsets: ["latin"],
-  variable: "--font-sans",
-});
-
 const defaultUrl = process.env.VERCEL_URL
   ? `https://${process.env.VERCEL_URL}`
   : "http://localhost:3000";
@@ -25,14 +20,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html
-      // suppressHydrationWarning
-      lang="en"
-      // className={cn(
-      //   "min-h-screen bg-background font-sans antialiased",
-      //   fontSans.variable
-      // )}
-    >
+    <html suppressHydrationWarning lang="en">
       <body className="bg-background text-foreground">
         <main className="min-h-screen flex items-center">
           <ThemeProvider
