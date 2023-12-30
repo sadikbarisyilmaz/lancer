@@ -9,6 +9,7 @@ export default function Page() {
   const [url, setUrl] = useState<string>();
   useEffect(() => {
     setUrl(window.location.origin);
+    console.log(window.location.origin);
   }, []);
 
   const supabase = createBrowserClient(
