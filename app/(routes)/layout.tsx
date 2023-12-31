@@ -27,7 +27,7 @@ export default async function Layout({
     <>
       <>
         <Navbar />
-        {`${session}`}
+        {/* {`${session}`} */}
         {children}
       </>
       {/* {session?.user ? (
