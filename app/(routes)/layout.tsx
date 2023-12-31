@@ -12,7 +12,7 @@ export default async function Layout({
 
   if (!session) {
     return (
-      <main className="flex justify-center items-center w-full h-screen p-4">
+      <main className="flex flex-col justify-center items-center w-full h-screen p-4">
         <p>
           You are not logged in. Please{" "}
           <Link className="font-bold" href="/login">
@@ -20,6 +20,7 @@ export default async function Layout({
           </Link>{" "}
           to continue.
         </p>
+        {` ${session}`}
       </main>
     );
   }
