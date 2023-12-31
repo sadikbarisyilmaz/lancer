@@ -36,7 +36,7 @@ export default async function Layout({
             You are not logged in. Please{" "}
             <Link className="font-bold" href="/login">
               Log In
-            </Link>
+            </Link>{" "}
             to continue.
           </p>
         </main>
