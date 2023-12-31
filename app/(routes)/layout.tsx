@@ -10,19 +10,19 @@ export default async function Layout({
     data: { session },
   } = await readUserSession();
 
-  // if (!session) {
-  //   return (
-  //     <main className="flex flex-col justify-center items-center w-full h-screen p-4">
-  //       <p>
-  //         You are not logged in. Please{" "}
-  //         <Link className="font-bold" href="/login">
-  //           Log In
-  //         </Link>{" "}
-  //         to continue.
-  //       </p>
-  //     </main>
-  //   );
-  // }
+  if (!session) {
+    return (
+      <main className="flex flex-col justify-center items-center w-full h-screen p-4">
+        <p>
+          You are not logged in. Please{" "}
+          <Link className="font-bold" href="/login">
+            Log In
+          </Link>{" "}
+          to continue.
+        </p>
+      </main>
+    );
+  }
   return (
     <>
       <Navbar />
