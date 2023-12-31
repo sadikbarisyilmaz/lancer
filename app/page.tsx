@@ -5,9 +5,11 @@ import { Card } from "@/components/ui/card";
 import { useEffect, useState } from "react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
+import { Loader } from "@/components/Loader";
 
 export default function Page() {
   const [url, setUrl] = useState<string>();
+  const [loading, setloading] = useState(true);
   useEffect(() => {
     setUrl(window.location.origin);
     checkUser();
@@ -18,11 +20,19 @@ export default function Page() {
       data: { session },
     } = await supabase.auth.getSession();
     if (session) {
-      router.push("/");
+      router.push("/home");
+    } else {
+      setloading(false);
     }
   };
   const supabase = createSupabaseBrowserClient();
-
+  if (loading) {
+    return (
+      <div className="h-screen w-full flex items-center justify-center">
+        <Loader />
+      </div>
+    );
+  }
   return (
     <div className="h-screen w-full flex items-center justify-center">
       <Card className="grid grid-cols-3 gap-2 p-4 shadow-md shadow-foreground/10">

@@ -28,7 +28,7 @@ export const UserCard = () => {
 
   const handleSignOut = async () => {
     await supabase.auth.signOut();
-    router.push("/login");
+    router.push("/");
     setUser(null);
   };
 

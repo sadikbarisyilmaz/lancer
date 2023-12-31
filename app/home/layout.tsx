@@ -6,11 +6,9 @@ export default async function Layout({
 }: {
   children: React.ReactNode;
 }) {
-  const {
-    data: { session },
-  } = await readUserSession();
+  const { data } = await readUserSession();
 
-  if (!session?.user) {
+  if (!data.session) {
     return (
       <main className="flex flex-col justify-center items-center w-full h-screen p-4">
         <p>
