@@ -4,9 +4,11 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Separator } from "./ui/separator";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
+import { UserCardSkeleton } from "./UserCardSkeleton";
 
 export const UserCard = () => {
   const [user, setUser] = useState<any>(null);
+  const [loading, setloading] = useState<any>(true);
 
   useEffect(() => {
     getUser();
@@ -20,8 +22,8 @@ export const UserCard = () => {
     } = await supabase.auth.getSession();
     if (session) {
       setUser(session.user);
+      setloading(false);
     }
-    //  else router.push("/login");
   };
 
   const supabase = createSupabaseBrowserClient();
@@ -32,8 +34,16 @@ export const UserCard = () => {
     setUser(null);
   };
 
+  if (loading) {
+    return (
+      <div className="py-2 flex flex-col gap-6">
+        <UserCardSkeleton />
+        <Separator />
+      </div>
+    );
+  }
   return (
-    <div className="flex  flex-col gap-4">
+    <div className="flex flex-col gap-4">
       <div className="flex gap-2 py-2">
         <Avatar className="w-11 h-11">
           <AvatarImage
