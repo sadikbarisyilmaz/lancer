@@ -13,7 +13,7 @@ export default async function Layout({
       <main className="flex flex-col justify-center items-center w-full h-screen p-4">
         <p>
           You are not logged in. Please{" "}
-          <Link className="font-bold" href="/login">
+          <Link className="font-bold" href="/">
             Log In
           </Link>{" "}
           to continue.
