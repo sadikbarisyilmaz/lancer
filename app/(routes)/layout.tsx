@@ -25,7 +25,12 @@ export default async function Layout({
   // }
   return (
     <>
-      {session?.user ? (
+      <>
+        <Navbar />
+        {`${session}`}
+        {children}
+      </>
+      {/* {session?.user ? (
         <>
           <Navbar />
           {children}
@@ -40,7 +45,7 @@ export default async function Layout({
             to continue.
           </p>
         </main>
-      )}
+      )} */}
     </>
   );
 }
