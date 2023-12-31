@@ -29,6 +29,7 @@ export const UserCard = () => {
   const supabase = createSupabaseBrowserClient();
 
   const handleSignOut = async () => {
+    setloading(true);
     await supabase.auth.signOut();
     router.push("/");
     setUser(null);
