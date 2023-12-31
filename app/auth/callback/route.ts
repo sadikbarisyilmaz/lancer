@@ -1,6 +1,7 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import { type CookieOptions, createServerClient } from "@supabase/ssr";
+import { redirect } from "next/navigation";
 
 export async function GET(request: Request) {
   const requestUrl = new URL(request.url);
@@ -31,8 +32,10 @@ export async function GET(request: Request) {
     );
     const { error } = await supabase.auth.exchangeCodeForSession(code);
     if (!error) {
-      return NextResponse.redirect(origin);
-    } else return NextResponse.redirect(`${origin}/auth/auth-code-error`);
+      // return NextResponse.redirect(origin);
+      return redirect(origin);
+    }
+    // else return NextResponse.redirect(`${origin}/auth/auth-code-error`);
   }
 
   // return the user to an error page with instructions
