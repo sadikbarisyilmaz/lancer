@@ -1,6 +1,6 @@
+import { Banner } from "@/components/Banner";
 // import Link from "next/link";
 // import readUserSession from "../actions";
-import { redirect } from "next/navigation";
 
 export default async function Page() {
   // const {
@@ -18,5 +18,10 @@ export default async function Page() {
   //   );
   // }
 
-  return <div className="">Home</div>;
+  return (
+    <>
+      <Banner title="Upcoming" />
+      <div className=" p-10 flex justify-center items-center">tasks</div>
+    </>
+  );
 }

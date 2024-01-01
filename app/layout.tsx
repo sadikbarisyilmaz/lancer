@@ -26,7 +26,7 @@ export default function RootLayout({
   return (
     <html suppressHydrationWarning lang="en">
       <body className="bg-background text-foreground">
-        <main className="min-h-screen flex items-center">
+        <main className="min-h-screen flex ">
           <ThemeProvider
             attribute="class"
             defaultTheme="system"

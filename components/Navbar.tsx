@@ -1,3 +1,4 @@
+import { Footer } from "./Footer";
 import { NavMenu } from "./NavMenu";
 import { UserCard } from "./UserCard";
 
@@ -9,6 +10,9 @@ export const Navbar = async () => {
       </div>
       <div>
         <NavMenu />
+      </div>
+      <div className="h-full grid items-end">
+        <Footer />
       </div>
     </nav>
   );
