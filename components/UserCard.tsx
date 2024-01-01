@@ -45,7 +45,7 @@ export const UserCard = () => {
   }
   return (
     <div className="flex flex-col gap-4">
-      <div className="flex gap-2 py-2">
+      <div className="flex gap-3 py-2">
         <Avatar className="w-11 h-11">
           <AvatarImage
             src={user?.user_metadata.picture}
@@ -54,7 +54,7 @@ export const UserCard = () => {
           <AvatarFallback>P</AvatarFallback>
         </Avatar>
         <div>
-          <small className="text-sm font-medium leading-none">
+          <small className="text-sm break-words font-medium leading-none">
             {user?.user_metadata.full_name}
           </small>
           <p

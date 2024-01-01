@@ -24,7 +24,7 @@ export default async function Layout({
   return (
     <>
       <Navbar />
-      {children}
+      <div className="w-full flex flex-col gap-20 items-center">{children}</div>
     </>
   );
 }
