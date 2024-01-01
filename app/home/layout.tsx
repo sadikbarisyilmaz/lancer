@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/Navbar";
 import Link from "next/link";
 import readUserSession from "../actions";
+import { MobileNavbar } from "@/components/MobileNavbar";
 export default async function Layout({
   children,
 }: {
@@ -23,8 +24,11 @@ export default async function Layout({
   }
   return (
     <>
+      <MobileNavbar />
       <Navbar />
-      <div className="w-full flex flex-col gap-4 h-screen">{children}</div>
+      <div className=" pt-16 md:pt-0 w-full flex flex-col gap-4 h-screen">
+        {children}
+      </div>
     </>
   );
 }

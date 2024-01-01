@@ -25,7 +25,7 @@ const links = [
 export const NavMenu = () => {
   return (
     <NavigationMenu>
-      <NavigationMenuList className="flex-col gap-2">
+      <NavigationMenuList className="grid items-center justify-center gap-2">
         {links.map((link, i) => {
           return (
             <NavigationMenuItem key={i}>
@@ -33,7 +33,9 @@ export const NavMenu = () => {
                 <NavigationMenuLink
                   className={`${navigationMenuTriggerStyle()}`}
                 >
-                  <p className="w-28">{link.title}</p>
+                  <p className="text-center md:text-left w-60 md:w-28">
+                    {link.title}
+                  </p>
                 </NavigationMenuLink>
               </Link>
             </NavigationMenuItem>
