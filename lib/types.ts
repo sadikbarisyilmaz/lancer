@@ -16,3 +16,10 @@ export interface Client {
   email: string;
   phone: number;
 }
+export interface ClientFormData {
+  name: string;
+  type: string;
+  email: string;
+  desc: string;
+  phone: string;
+}
