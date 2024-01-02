@@ -29,7 +29,7 @@ export function MobileNavDrawer() {
           <div className="w-full max-w-4xl h-fit flex flex-col justify-between text-sm">
             <UserCard />
           </div>
-          <div className="flex justify-center w-full">
+          <div className="justify-center w-full">
             <NavMenu />
           </div>
           <div className="h-full w-full flex justify-center md:grid  md:items-end">

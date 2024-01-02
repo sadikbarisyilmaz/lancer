@@ -17,6 +17,10 @@ module.exports = {
       },
     },
     extend: {
+      // backgroundImage: {
+      //   'dark': "url('/lib')",
+      //   'light': "url('/lib')",
+      // },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

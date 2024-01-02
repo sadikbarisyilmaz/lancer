@@ -7,6 +7,7 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu";
 import Link from "next/link";
+import { Button } from "./ui/button";
 const links = [
   {
     title: "Upcoming",
@@ -24,24 +25,18 @@ const links = [
 
 export const NavMenu = () => {
   return (
-    <NavigationMenu>
-      <NavigationMenuList className="grid items-center justify-center gap-2">
-        {links.map((link, i) => {
-          return (
-            <NavigationMenuItem key={i}>
-              <Link href={link.href} legacyBehavior passHref>
-                <NavigationMenuLink
-                  className={`${navigationMenuTriggerStyle()}`}
-                >
-                  <p className="text-center md:text-left w-60 md:w-28">
-                    {link.title}
-                  </p>
-                </NavigationMenuLink>
-              </Link>
-            </NavigationMenuItem>
-          );
-        })}
-      </NavigationMenuList>
-    </NavigationMenu>
+    <div className="grid  gap-2">
+      {links.map((link, i) => {
+        return (
+          <Button
+            key={i}
+            variant="outline"
+            className="text-center md:text-left w-full"
+          >
+            <Link href={link.href}>{link.title}</Link>
+          </Button>
+        );
+      })}
+    </div>
   );
 };

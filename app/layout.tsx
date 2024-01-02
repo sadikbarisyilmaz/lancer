@@ -25,7 +25,7 @@ export default function RootLayout({
 }) {
   return (
     <html suppressHydrationWarning lang="en">
-      <body className="bg-background text-foreground">
+      <body className="dark:bg-[url('../lib/assets/bg.svg')] bg-[url('../lib/assets/bg-light.svg')] text-foreground">
         <main className="min-h-screen md:flex-row flex-col flex">
           <ThemeProvider
             attribute="class"
