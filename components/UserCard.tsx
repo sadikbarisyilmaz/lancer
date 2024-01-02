@@ -65,7 +65,7 @@ export const UserCard = () => {
           </p>
         </div>
       </div>
-      <Separator />
+      <Separator className="bg-foreground/10" />
     </div>
   );
 };
