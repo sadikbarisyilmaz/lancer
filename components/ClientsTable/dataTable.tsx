@@ -34,7 +34,7 @@ export function DataTable<TData, TValue>({
   return (
     <div className="rounded-md border md:max-w-7xl max-h-[400px] overflow-auto">
       <Table className="">
-        <TableHeader>
+        <TableHeader className="sticky">
           {table.getHeaderGroups().map((headerGroup) => (
             <TableRow key={headerGroup.id}>
               {headerGroup.headers.map((header) => {

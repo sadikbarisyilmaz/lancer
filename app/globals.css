@@ -57,3 +57,11 @@
     @apply bg-background text-foreground;
   }
 }
+.loader {
+  background: rgb(82, 99, 185);
+  background: radial-gradient(
+    circle,
+    rgba(82, 99, 185, 1) 0%,
+    rgba(13, 55, 85, 1) 100%
+  );
+}
