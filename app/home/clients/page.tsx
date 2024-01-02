@@ -9,8 +9,8 @@ export default async function Page() {
   return (
     <>
       <Banner title="Clients" />
-      <div className="p-4 py-10  justify-center md:w-full  ">
-        <div className=" md:max-w-7xl">
+      <div className="p-4 py-10 justify-center md:w-full  ">
+        <div className=" ">
           <DataTable columns={columns} data={clients} />
         </div>
       </div>
