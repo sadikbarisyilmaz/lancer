@@ -82,17 +82,17 @@ export const columns: ColumnDef<Client>[] = [
       );
     },
   },
-  {
-    accessorKey: "desc",
-    header: () => <div className="text-left">Description</div>,
-    cell: ({ row }) => {
-      return (
-        <div className="text-left font-medium max-w-xs">
-          {row.getValue("desc")}
-        </div>
-      );
-    },
-  },
+  // {
+  //   accessorKey: "desc",
+  //   header: () => <div className="text-left">Description</div>,
+  //   cell: ({ row }) => {
+  //     return (
+  //       <div className="text-left font-medium max-w-xs">
+  //         {row.getValue("desc")}
+  //       </div>
+  //     );
+  //   },
+  // },
   {
     accessorKey: "email",
     header: () => <div className="text-left">Email</div>,
@@ -100,7 +100,7 @@ export const columns: ColumnDef<Client>[] = [
   },
   {
     accessorKey: "phone",
-    header: () => <div className="text-left">Phone Number</div>,
+    header: () => <div className="text-left">Phone</div>,
     cell: ({ row }) => {
       return (
         <div className="text-left font-medium">{row.getValue("phone")}</div>

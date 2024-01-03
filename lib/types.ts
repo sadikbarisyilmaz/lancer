@@ -20,6 +20,6 @@ export interface ClientFormData {
   name: string;
   type: string;
   email: string;
-  desc: string;
+  // desc: string;
   phone: string;
 }

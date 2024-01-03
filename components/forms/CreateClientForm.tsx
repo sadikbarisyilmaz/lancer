@@ -27,7 +27,7 @@ const formSchema = z.object({
   name: z.string().min(2).max(30),
   type: z.string().min(2).max(30),
   email: z.string().email().min(5),
-  desc: z.string().min(2).max(30),
+  // desc: z.string().min(2).max(30),
   phone: z.string().regex(/^(\+\d{1,3}[- ]?)?\d{10}$/),
 });
 export const CreateClientForm = () => {
@@ -40,7 +40,7 @@ export const CreateClientForm = () => {
       name: "",
       type: "",
       email: "",
-      desc: "",
+      // desc: "",
       phone: "",
     },
   });
@@ -114,7 +114,7 @@ export const CreateClientForm = () => {
                     </FormItem>
                   )}
                 />
-                <FormField
+                {/* <FormField
                   control={form.control}
                   name="desc"
                   render={({ field }) => (
@@ -126,7 +126,7 @@ export const CreateClientForm = () => {
                       <FormMessage />
                     </FormItem>
                   )}
-                />
+                /> */}
                 <FormField
                   control={form.control}
                   name="phone"
