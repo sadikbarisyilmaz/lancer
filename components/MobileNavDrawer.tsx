@@ -1,3 +1,5 @@
+"use client";
+
 import * as React from "react";
 import { Button } from "@/components/ui/button";
 import {
@@ -17,8 +19,10 @@ import { NavMenu } from "./NavMenu";
 import { Footer } from "./Footer";
 
 export function MobileNavDrawer() {
+  const [open, setOpen] = React.useState(false);
+
   return (
-    <Drawer>
+    <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
         <Button variant="outline">
           <HamburgerMenuIcon />
@@ -30,7 +34,7 @@ export function MobileNavDrawer() {
             <UserCard />
           </div>
           <div className="justify-center w-full">
-            <NavMenu />
+            <NavMenu setOpen={setOpen} />
           </div>
           <div className="h-full w-full flex justify-center md:grid  md:items-end">
             <Footer />

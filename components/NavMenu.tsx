@@ -1,11 +1,4 @@
 "use client";
-import {
-  NavigationMenu,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
 import Link from "next/link";
 import { Button } from "./ui/button";
 const links = [
@@ -22,15 +15,17 @@ const links = [
     href: "/home/tasks",
   },
 ];
-
-export const NavMenu = () => {
+interface Props {
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+}
+export const NavMenu = ({ setOpen }: Props) => {
   return (
-    <div className="grid  gap-2">
+    <div className="grid gap-2">
       {links.map((link, i) => {
         return (
-          <Link href={link.href} passHref>
+          <Link key={i} href={link.href} passHref>
             <Button
-              key={i}
+              onClick={() => setOpen(false)}
               variant="ghost"
               className="text-center md:text-left w-full"
             >
