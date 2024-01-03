@@ -1,12 +1,22 @@
 "use server";
 import createSupabaseServerClient from "@/lib/supabase/server";
 import { Client, ClientFormData } from "@/lib/types";
+import { revalidatePath } from "next/cache";
 
 export const getClients = async () => {
-  "use server";
   const supabase = await createSupabaseServerClient();
-  let { data: clientsList, error } = await supabase.from("clients").select();
+  let { data: clientsList, error } = await supabase
+    .from("clients")
+    .select()
+    .order("id", { ascending: false });
+
   let clients = <Client[]>clientsList;
+
+  if (error) {
+    console.log(error);
+  } else {
+    console.log("get client successful");
+  }
   return { clients };
 };
 
@@ -24,5 +34,11 @@ export const createNewClient = async (formData: ClientFormData) => {
     phone: formData.phone,
     user_id: user?.id,
   });
-  console.log(data, error);
+
+  if (error) {
+    console.log(error);
+  } else {
+    console.log("delete client successful");
+    revalidatePath("/home");
+  }
 };

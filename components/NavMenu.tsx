@@ -28,13 +28,15 @@ export const NavMenu = () => {
     <div className="grid  gap-2">
       {links.map((link, i) => {
         return (
-          <Button
-            key={i}
-            variant="outline"
-            className="text-center md:text-left w-full"
-          >
-            <Link href={link.href}>{link.title}</Link>
-          </Button>
+          <Link href={link.href} passHref>
+            <Button
+              key={i}
+              variant="ghost"
+              className="text-center md:text-left w-full"
+            >
+              {link.title}
+            </Button>
+          </Link>
         );
       })}
     </div>
