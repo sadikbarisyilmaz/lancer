@@ -16,7 +16,7 @@ const links = [
   },
 ];
 interface Props {
-  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>> | undefined;
 }
 export const NavMenu = ({ setOpen }: Props) => {
   const mobileCheck = () => {
