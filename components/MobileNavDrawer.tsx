@@ -17,10 +17,15 @@ import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { UserCard } from "./UserCard";
 import { NavMenu } from "./NavMenu";
 import { Footer } from "./Footer";
+import { MobileNavMenu } from "./MobileNavMenu";
 
 export function MobileNavDrawer() {
   const [open, setOpen] = React.useState(false);
-
+  const mobileCheck = () => {
+    if (setOpen !== undefined) {
+      setOpen(false);
+    }
+  };
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
@@ -34,7 +39,7 @@ export function MobileNavDrawer() {
             <UserCard />
           </div>
           <div className="justify-center w-full">
-            <NavMenu setOpen={setOpen} />
+            <MobileNavMenu setOpen={setOpen} />
           </div>
           <div className="h-full w-full flex justify-center md:grid  md:items-end">
             <Footer />

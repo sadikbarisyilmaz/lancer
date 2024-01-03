@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import { Button } from "./ui/button";
 const links = [
@@ -14,14 +15,25 @@ const links = [
     href: "/home/tasks",
   },
 ];
-
-export const NavMenu = () => {
+interface Props {
+  setOpen: React.Dispatch<React.SetStateAction<boolean>> | undefined;
+}
+export const MobileNavMenu = ({ setOpen }: Props) => {
+  const mobileCheck = () => {
+    if (setOpen !== undefined) {
+      setOpen(false);
+    }
+  };
   return (
     <div className="grid gap-2">
       {links.map((link, i) => {
         return (
           <Link key={i} href={link.href} passHref>
-            <Button variant="ghost" className="text-center md:text-left w-full">
+            <Button
+              onClick={mobileCheck}
+              variant="ghost"
+              className="text-center md:text-left w-full"
+            >
               {link.title}
             </Button>
           </Link>
