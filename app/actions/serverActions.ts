@@ -30,7 +30,7 @@ export const createNewClient = async (formData: ClientFormData) => {
     name: formData.name,
     type: formData.type,
     email: formData.email,
-    desc: formData.desc,
+    // desc: formData.desc,
     phone: formData.phone,
     user_id: user?.id,
   });
