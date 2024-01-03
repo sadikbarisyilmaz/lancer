@@ -21,7 +21,7 @@ export const NavMenu = () => {
       {links.map((link, i) => {
         return (
           <Link key={i} href={link.href} passHref>
-            <Button variant="ghost" className="text-center md:text-left w-full">
+            <Button variant="ghost" className="justify-start w-full">
               {link.title}
             </Button>
           </Link>
