@@ -19,13 +19,18 @@ interface Props {
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 export const NavMenu = ({ setOpen }: Props) => {
+  const mobileCheck = () => {
+    if (setOpen !== undefined) {
+      setOpen(false);
+    }
+  };
   return (
     <div className="grid gap-2">
       {links.map((link, i) => {
         return (
           <Link key={i} href={link.href} passHref>
             <Button
-              onClick={() => setOpen(false)}
+              onClick={mobileCheck}
               variant="ghost"
               className="text-center md:text-left w-full"
             >
