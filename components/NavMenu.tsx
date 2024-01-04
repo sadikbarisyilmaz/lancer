@@ -21,7 +21,10 @@ export const NavMenu = () => {
       {links.map((link, i) => {
         return (
           <Link key={i} href={link.href} passHref>
-            <Button variant="ghost" className="justify-start w-full">
+            <Button
+              variant="ghost"
+              className="justify-start w-full  hover:bg-slate-500"
+            >
               {link.title}
             </Button>
           </Link>

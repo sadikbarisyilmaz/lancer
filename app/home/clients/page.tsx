@@ -1,4 +1,4 @@
-import { getClients } from "@/app/actions/serverActions";
+import { getClients } from "@/app/actions";
 import { Banner } from "@/components/Banner";
 import { columns } from "@/components/ClientsTable/columns";
 import { DataTable } from "@/components/ClientsTable/dataTable";

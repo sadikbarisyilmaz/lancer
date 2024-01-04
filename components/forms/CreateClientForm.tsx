@@ -1,5 +1,5 @@
 "use client";
-import { createNewClient } from "@/app/actions/serverActions";
+import { createNewClient } from "@/app/actions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -68,7 +68,7 @@ export const CreateClientForm = () => {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>Create New Client</DialogTitle>
+          {/* <DialogTitle className="text-2xl">Create New Client</DialogTitle> */}
           <div className="max-w-md overflow-auto p-6">
             <Form {...form}>
               <form
@@ -140,7 +140,9 @@ export const CreateClientForm = () => {
                     </FormItem>
                   )}
                 />
-                <Button type="submit">Submit</Button>
+                <Button variant="outline" type="submit">
+                  Submit
+                </Button>
               </form>
             </Form>
           </div>
