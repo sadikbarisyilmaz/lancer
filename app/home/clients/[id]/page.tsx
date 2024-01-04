@@ -1,14 +1,14 @@
 import { Banner } from "@/components/Banner";
+import { ClientCard } from "@/components/ClientCard";
+import { ClientDetails } from "@/components/ClientDetails";
 
-export const page = () => {
+export default async function Page() {
   return (
-    <div>
-      <Banner title={"title"} />
-      <div>
-        {/* client card */}
-        {/* client notes */}
-        {/* client tasks */}
+    <>
+      <Banner title={"Client Details"} />
+      <div className="p-6 flex justify-center w-full">
+        <ClientDetails />
       </div>
-    </div>
+    </>
   );
-};
+}

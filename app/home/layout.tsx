@@ -26,7 +26,7 @@ export default async function Layout({
     <>
       <MobileNavbar />
       <Navbar />
-      <div className=" pt-16 md:pt-0 w-full flex flex-col gap-4 h-screen">
+      <div className=" pt-[70px] md:pt-0 w-full flex flex-col gap-4 h-screen">
         {children}
       </div>
     </>

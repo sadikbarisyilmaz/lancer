@@ -10,7 +10,7 @@ export default async function Page() {
   return (
     <>
       <Banner title="Clients" />
-      <div className="p-6  justify-center md:w-full flex flex-col gap-2 ">
+      <div className="p-6 justify-center md:w-full flex flex-col gap-2 ">
         <div className="md:max-w-7xl">
           <DataTable columns={columns} data={clients} />
           {/* filter */}

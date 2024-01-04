@@ -12,9 +12,19 @@ export interface Client {
   user_id: string;
   name: string;
   type: string;
-  desc: string;
+  // desc: string;
   email: string;
   phone: number;
+}
+export interface ClientNote {
+  id: number;
+  created_at: Date;
+  user_id: number;
+  content: string;
+  // type: string;
+  // desc: string;
+  // email: string;
+  // phone: number;
 }
 export interface ClientFormData {
   name: string;

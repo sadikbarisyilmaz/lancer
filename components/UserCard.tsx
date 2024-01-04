@@ -11,20 +11,19 @@ export const UserCard = () => {
   const [loading, setloading] = useState<any>(true);
 
   useEffect(() => {
+    const getUser = async () => {
+      const {
+        data: { session },
+      } = await supabase.auth.getSession();
+      if (session) {
+        setUser(session.user);
+        setloading(false);
+      }
+    };
     getUser();
   }, []);
 
   const router = useRouter();
-
-  const getUser = async () => {
-    const {
-      data: { session },
-    } = await supabase.auth.getSession();
-    if (session) {
-      setUser(session.user);
-      setloading(false);
-    }
-  };
 
   const supabase = createSupabaseBrowserClient();
 

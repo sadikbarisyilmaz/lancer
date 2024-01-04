@@ -13,7 +13,12 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 
-import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
+import {
+  ArrowUpDown,
+  ChevronDown,
+  FileText,
+  MoreHorizontal,
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -35,6 +40,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import Link from "next/link";
 export const columns: ColumnDef<Client>[] = [
   //   {
   //     id: "select",
@@ -58,6 +64,26 @@ export const columns: ColumnDef<Client>[] = [
   //     enableSorting: false,
   //     enableHiding: false,
   //   },
+  // {
+  //   accessorKey: "id",
+  //   header: () => <div className="text-left"></div>,
+  //   cell: ({ row }) => {
+  //     return <div className="text-left font-medium">{row.getValue("id")}</div>;
+  //   },
+  // },
+  {
+    id: "actions",
+    header: () => <div className="text-left">Details</div>,
+    cell: ({ row }) => {
+      const client = row.original;
+
+      return (
+        <Link className="" href={`/home/clients/${client.id}`}>
+          <FileText strokeWidth={1} size={24} />
+        </Link>
+      );
+    },
+  },
   {
     accessorKey: "name",
     header: ({ column }) => {
