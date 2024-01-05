@@ -23,7 +23,7 @@ export const NavMenu = () => {
           <Link key={i} href={link.href} passHref>
             <Button
               variant="ghost"
-              className="justify-start w-full  hover:bg-slate-500"
+              className="justify-start w-full dark:hover:bg-slate-500 hover:bg-white"
             >
               {link.title}
             </Button>
