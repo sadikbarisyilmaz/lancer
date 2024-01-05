@@ -48,7 +48,6 @@ export const CreateClientForm = () => {
   function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       createNewClient(values);
-      console.log("onSubmit");
       toast({
         title: `Client "${values.name}" created successfully !`,
       });

@@ -1,5 +1,4 @@
 import { Banner } from "@/components/Banner";
-import { ClientCard } from "@/components/ClientCard";
 import { ClientDetails } from "@/components/ClientDetails";
 
 export default async function Page() {

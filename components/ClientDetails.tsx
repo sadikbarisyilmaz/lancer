@@ -3,9 +3,11 @@ import { useParams, usePathname } from "next/navigation";
 import { ClientCard } from "./ClientCard";
 import { useEffect, useState } from "react";
 import { getClient } from "@/app/actions";
-import { Client } from "@/lib/types";
+import { Client, Task } from "@/lib/types";
 import { Loader } from "./Loader";
 import { ClientNotes } from "./ClientNotes";
+import { DataTable } from "./tasks-table/dataTable";
+import { columns } from "./tasks-table/columns";
 
 export const ClientDetails = () => {
   const [client, setClient] = useState<Client>();
@@ -29,7 +31,9 @@ export const ClientDetails = () => {
         <ClientCard client={client} />
         <ClientNotes id={client.id} />
       </div>
-      <div className="w-full col-span-2 bg-black bg-opacity-30"></div>
+      <div className="w-full h-4/6 col-span-2">
+        <DataTable columns={columns} data={client.tasks} />
+      </div>
     </div>
   );
 };

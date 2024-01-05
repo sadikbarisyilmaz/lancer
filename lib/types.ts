@@ -12,9 +12,21 @@ export interface Client {
   user_id: string;
   name: string;
   type: string;
-  // desc: string;
+  tasks: Task[];
   email: string;
   phone: number;
+}
+export interface Task {
+  id: number;
+  created_at: Date;
+  set_date: Date;
+  user_id: string;
+  client_id: string;
+  title: string;
+  about: string;
+  fee: number;
+  paid_amount: number;
+  clients: Client;
 }
 export interface ClientNote {
   id: number;

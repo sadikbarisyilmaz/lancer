@@ -1,7 +1,7 @@
 "use server";
 import createSupabaseServerClient from "@/lib/supabase/server";
 import { unstable_noStore as noStore } from "next/cache";
-import { Client, ClientFormData, ClientNote } from "@/lib/types";
+import { Client, ClientFormData, ClientNote, Task } from "@/lib/types";
 import { revalidatePath } from "next/cache";
 
 export const readUserSession = async () => {
@@ -21,6 +21,7 @@ export const getClients = async () => {
     console.log(error);
   } else {
     console.log("get client successful");
+    console.log("clients");
   }
   return { clients };
 };
@@ -49,7 +50,7 @@ export const getClient = async (clientId: string | string[]) => {
   const supabase = await createSupabaseServerClient();
   let { data: clientsList, error } = await supabase
     .from("clients")
-    .select()
+    .select("*, tasks(*)")
     .eq("id", clientId);
 
   let client = <Client[]>clientsList;
@@ -71,13 +72,11 @@ export const deleteClient = async (clientId: string | string[]) => {
 };
 export const getClientNotes = async (clientId: number | number[]) => {
   const supabase = await createSupabaseServerClient();
-  console.log(clientId);
 
   let { data: notesList, error } = await supabase
     .from("client-notes")
     .select()
     .eq("client_id", clientId);
-
   let notes = <ClientNote[]>notesList;
   if (error) {
     console.log(error);
@@ -117,4 +116,20 @@ export const deleteClientNote = async (clientNoteId: number | number[]) => {
   if (error) {
     console.log("error", error);
   }
+};
+export const getTasks = async () => {
+  const supabase = await createSupabaseServerClient();
+  let { data: tasksList, error } = await supabase
+    .from("tasks")
+    .select("*,  clients(name)")
+    .order("set_date", { ascending: false });
+
+  let tasks = <Task[]>tasksList;
+
+  if (error) {
+    console.log(error);
+  } else {
+    console.log("get task successful");
+  }
+  return { tasks };
 };

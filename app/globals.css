@@ -56,10 +56,19 @@
   body {
     @apply bg-background text-foreground;
   }
-  button:focus {
-    outline: none;
-  }
 }
+button {
+  outline: none;
+}
+.glass {
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
 .loader {
   background: rgb(82, 99, 185);
   background: radial-gradient(
