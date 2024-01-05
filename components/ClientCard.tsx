@@ -5,18 +5,10 @@ import { Card, CardFooter, CardTitle } from "@/components/ui/card";
 import { Client } from "@/lib/types";
 import { deleteClient } from "@/app/actions";
 import { useRouter } from "next/navigation";
-import {
-  AlertDialog,
-  AlertDialogCancel,
-  AlertDialogContent,
-  AlertDialogDescription,
-  AlertDialogFooter,
-  AlertDialogHeader,
-  AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
 import { useToast } from "./ui/use-toast";
-
 import { useState } from "react";
+import { DeleteAlert } from "./DeleteAlert";
+
 export function ClientCard({ client }: { client: Client }) {
   const { toast } = useToast();
   const [open, setOpen] = useState(false);
@@ -49,25 +41,7 @@ export function ClientCard({ client }: { client: Client }) {
           Delete Client
         </Button>
       </CardFooter>
-      <AlertDialog open={open} onOpenChange={setOpen}>
-        <AlertDialogContent>
-          <AlertDialogHeader>
-            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
-            <AlertDialogDescription>
-              This action cannot be undone. This will permanently delete the
-              data from our servers.
-            </AlertDialogDescription>
-          </AlertDialogHeader>
-          <AlertDialogFooter>
-            <AlertDialogCancel onClick={() => setOpen(false)}>
-              Cancel
-            </AlertDialogCancel>
-            <Button variant="destructive" onClick={handleDelete}>
-              Continue
-            </Button>
-          </AlertDialogFooter>
-        </AlertDialogContent>
-      </AlertDialog>
+      <DeleteAlert open={open} setOpen={setOpen} handleDelete={handleDelete} />
     </Card>
   );
 }

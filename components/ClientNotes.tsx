@@ -1,5 +1,9 @@
 "use client";
-import { createNewClient, createNewClientNote } from "@/app/actions";
+import {
+  createNewClient,
+  createNewClientNote,
+  deleteClientNote,
+} from "@/app/actions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -9,16 +13,9 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
+
 import { Input } from "@/components/ui/input";
 import { useToast } from "./ui/use-toast";
 import { getClientNotes } from "@/app/actions";
@@ -26,6 +23,7 @@ import { ClientNote } from "@/lib/types";
 import { useEffect, useState } from "react";
 import { Card } from "./ui/card";
 import { TrashIcon } from "lucide-react";
+import { DeleteAlert } from "./DeleteAlert";
 
 const formSchema = z.object({
   note: z.string().min(2).max(30),
@@ -33,17 +31,19 @@ const formSchema = z.object({
 
 export const ClientNotes = ({ id }: { id: number }) => {
   const [clientNotes, setClientNotes] = useState<ClientNote[]>([]);
+  const [open, setOpen] = useState(false);
+
   const { toast } = useToast();
+  const getNotes = async () => {
+    try {
+      const notes = await getClientNotes(id);
+      setClientNotes(notes);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
-    const getNotes = async () => {
-      try {
-        const notes = await getClientNotes(id);
-        setClientNotes(notes);
-      } catch (error) {
-        console.log(error);
-      }
-    };
     getNotes();
   }, []);
 
@@ -53,6 +53,14 @@ export const ClientNotes = ({ id }: { id: number }) => {
       note: "",
     },
   });
+
+  const handleDelete = (noteId: number) => {
+    deleteClientNote(noteId);
+    toast({
+      title: `Note deleted successfully !`,
+    });
+    getNotes();
+  };
 
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
@@ -77,9 +85,13 @@ export const ClientNotes = ({ id }: { id: number }) => {
         <ul className="overflow-y-scroll border p-4 rounded-md border-foreground/10 max-h-[300px]">
           {clientNotes?.map((note, i) => {
             return (
-              <li className="py-1 flex justify-between" key={i}>
+              <li className="py-1 flex justify-between items-center" key={i}>
                 - {note.content}
-                {/* <TrashIcon /> */}
+                <TrashIcon
+                  size={20}
+                  className="cursor-pointer hover:text-red-700 transition-colors "
+                  onClick={() => handleDelete(note.id)}
+                />
               </li>
             );
           })}
@@ -109,6 +121,7 @@ export const ClientNotes = ({ id }: { id: number }) => {
           </Form>
         </div>
       </Card>
+      <DeleteAlert open={open} setOpen={setOpen} handleDelete={handleDelete} />
     </div>
   );
 };

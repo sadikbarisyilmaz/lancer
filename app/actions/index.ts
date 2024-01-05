@@ -107,3 +107,14 @@ export const createNewClientNote = async (
     return note;
   }
 };
+export const deleteClientNote = async (clientNoteId: number | number[]) => {
+  const supabase = await createSupabaseServerClient();
+  let { error } = await supabase
+    .from("client-notes")
+    .delete()
+    .eq("id", clientNoteId);
+
+  if (error) {
+    console.log("error", error);
+  }
+};
