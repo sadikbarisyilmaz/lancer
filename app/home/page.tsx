@@ -19,7 +19,7 @@ export default async function Page() {
   // }
 
   return (
-    <div>
+    <div className="h-screen">
       <Banner title="Upcoming" />
       <div className="p-10 flex justify-center items-center">tasks</div>
     </div>

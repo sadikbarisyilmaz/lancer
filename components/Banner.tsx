@@ -7,8 +7,8 @@ interface BannerProps {
 
 export const Banner = ({ title }: BannerProps) => {
   return (
-    <div className="w-full text-4xl md:text-6xl py-4 px-6 md:min-h-[120px] flex flex-col border-b border-b-foreground/10 justify-end md:justify-between">
-      <div className="h-full hidden md:flex justify-between">
+    <div className="w-full text-4xl md:text-6xl py-4 px-6 flex flex-col border-b border-b-foreground/10 justify-end md:justify-between">
+      <div className="h-full hidden md:flex justify-between md:min-h-[100px]">
         <h1 className="self-end">{title}</h1>
         <div className="h-full hidden md:flex justify-between">
           <ModeToggle />
