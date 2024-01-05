@@ -6,7 +6,7 @@ import { MobileNavDrawer } from "./MobileNavDrawer";
 
 export const MobileNavbar = () => {
   return (
-    <div className="w-full flex items-center border-b border-b-foreground/10 fixed justify-between p-4 md:hidden">
+    <div className="w-full bg-white bg-opacity-10 dark:bg-black dark:bg-opacity-10 flex items-center border-b border-b-foreground/10 fixed justify-between p-4 md:hidden">
       <div className="font-bold border border-foreground/10 py-2 px-3 rounded-md">
         Lancer
       </div>
