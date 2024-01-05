@@ -24,12 +24,12 @@ export const ClientDetails = () => {
   }
 
   return (
-    <div className="w-full justify-center flex max-w-4xl">
-      <div className="grid grid-cols-1 justify-center md:grid-cols-2 w-full">
+    <div className="w-full h-full justify-center md:gap-2 grid grid-cols-1 md:grid-cols-3">
+      <div className="grid grid-cols-1 col-span-1 justify-center gap-2 w-full">
         <ClientCard client={client} />
         <ClientNotes id={client.id} />
       </div>
-      {/* client tasks */}
+      <div className="w-full col-span-2 bg-black bg-opacity-30"></div>
     </div>
   );
 };

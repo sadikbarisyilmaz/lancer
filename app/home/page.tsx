@@ -19,9 +19,9 @@ export default async function Page() {
   // }
 
   return (
-    <>
+    <div>
       <Banner title="Upcoming" />
-      <div className=" p-10 flex justify-center items-center">tasks</div>
-    </>
+      <div className="p-10 flex justify-center items-center">tasks</div>
+    </div>
   );
 }

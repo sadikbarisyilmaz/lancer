@@ -81,8 +81,8 @@ export const ClientNotes = ({ id }: { id: number }) => {
 
   return (
     <div>
-      <Card className="flex flex-col  dark:bg-black bg-white dark:bg-opacity-40 bg-opacity-40 items-between gap-4 p-4">
-        <ul className="overflow-y-scroll border p-4 rounded-md border-foreground/10 max-h-[300px]">
+      <Card className="flex flex-col h-full dark:bg-black bg-white dark:bg-opacity-40 bg-opacity-40 justify-between items-between gap-4 p-4">
+        <ul className="overflow-y-scroll border h-full p-4 rounded-md border-foreground/10">
           {clientNotes?.map((note, i) => {
             return (
               <li className="py-1 flex justify-between items-center" key={i}>
@@ -115,7 +115,7 @@ export const ClientNotes = ({ id }: { id: number }) => {
                 )}
               />
               <Button variant="outline" type="submit">
-                Submit Note
+                Submit
               </Button>
             </form>
           </Form>

@@ -26,7 +26,7 @@ export default function RootLayout({
 }) {
   return (
     <html suppressHydrationWarning lang="en">
-      <body className="md:dark:bg-[url('../lib/assets/bg.svg')] md:bg-[url('../lib/assets/bg-light.svg')] dark:bg-[url('../lib/assets/bg-mobile.svg')] bg-[url('../lib/assets/bg-light-mobile.svg')] text-foreground bg-cover ">
+      <body className="md:dark:bg-[url('../lib/assets/bg.svg')] md:bg-[url('../lib/assets/bg-light.svg')] dark:bg-[url('../lib/assets/bg-mobile.svg')] bg-[url('../lib/assets/bg-light-mobile.svg')] text-foreground bg-cover h-screen">
         <main className="min-h-screen md:flex-row flex-col flex">
           <ThemeProvider
             attribute="class"

@@ -7,11 +7,16 @@ interface BannerProps {
 
 export const Banner = ({ title }: BannerProps) => {
   return (
-    <div className="w-full text-4xl md:text-6xl p-6  flex flex-col border-b border-b-foreground/10 justify-end md:justify-between">
-      <div className=" hidden md:flex justify-end">
-        <ModeToggle />
+    <div className="w-full text-4xl md:text-6xl py-4 px-6 md:h-[140px] flex flex-col border-b border-b-foreground/10 justify-end md:justify-between">
+      <div className="h-full hidden md:flex justify-between">
+        <h1 className="self-end">{title}</h1>
+        <div className="h-full hidden md:flex justify-between">
+          <ModeToggle />
+        </div>
       </div>
-      {title}
+      <div className="h-full md:hidden flex">
+        <h1 className="self-center">{title}</h1>
+      </div>
     </div>
   );
 };

@@ -6,7 +6,7 @@ export default async function Page() {
   return (
     <>
       <Banner title={"Client Details"} />
-      <div className="p-6 flex justify-center w-full">
+      <div className="md:p-6 p-4 h-full w-full">
         <ClientDetails />
       </div>
     </>

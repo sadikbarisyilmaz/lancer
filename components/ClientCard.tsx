@@ -1,5 +1,5 @@
 "use client";
-import { CircleUser } from "lucide-react";
+import { CircleUser, TrashIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardFooter, CardTitle } from "@/components/ui/card";
 import { Client } from "@/lib/types";
@@ -22,25 +22,30 @@ export function ClientCard({ client }: { client: Client }) {
   };
 
   return (
-    <Card className="max-w-[360px] dark:bg-black bg-white dark:bg-opacity-40 bg-opacity-40 grid gap-4 p-4">
-      <div className="flex items-center py-4 gap-2">
-        <CircleUser size={48} strokeWidth={1} />
-        <CardTitle>{client.name}</CardTitle>
-      </div>
-      <div className="grid p-2 gap-2 w-full">
-        <p>Type: {client.type}</p>
-        <p>Phone: {client.phone}</p>
-        <p>Email: {client.email}</p>
-      </div>
-      <CardFooter>
-        <Button
+    <Card className=" dark:bg-black bg-white dark:bg-opacity-40 bg-opacity-40 flex justify-between flex-col gap-2 p-6">
+      <div className="flex flex-col h-full">
+        <div className="flex items-center gap-2">
+          <CircleUser size={48} strokeWidth={1} />
+          <CardTitle>{client.name}</CardTitle>
+          {/* <TrashIcon
+          size={20}
+          className="cursor-pointer hover:text-red-700 transition-colors "
           onClick={() => setOpen(true)}
-          variant="destructive"
-          className="w-full"
-        >
-          Delete Client
-        </Button>
-      </CardFooter>
+        /> */}
+        </div>
+        <div className="p-2 flex flex-col gap-2 justify-center h-full w-full">
+          <p>Type: {client.type}</p>
+          <p>Phone: {client.phone}</p>
+          <p>Email: {client.email}</p>
+        </div>
+      </div>
+      <Button
+        onClick={() => setOpen(true)}
+        variant="destructive"
+        className="w-full"
+      >
+        Delete Client
+      </Button>
       <DeleteAlert open={open} setOpen={setOpen} handleDelete={handleDelete} />
     </Card>
   );
