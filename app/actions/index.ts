@@ -1,7 +1,13 @@
 "use server";
 import createSupabaseServerClient from "@/lib/supabase/server";
 import { unstable_noStore as noStore } from "next/cache";
-import { Client, ClientFormData, ClientNote, Task } from "@/lib/types";
+import {
+  Client,
+  ClientFormData,
+  ClientNote,
+  Task,
+  TaskFormData,
+} from "@/lib/types";
 import { revalidatePath } from "next/cache";
 
 export const readUserSession = async () => {
@@ -20,8 +26,7 @@ export const getClients = async () => {
   if (error) {
     console.log(error);
   } else {
-    console.log("get client successful");
-    console.log("clients");
+    console.log("get clients successful");
   }
   return { clients };
 };
@@ -132,4 +137,39 @@ export const getTasks = async () => {
     console.log("get task successful");
   }
   return { tasks };
+};
+export const createNewTask = async (formData: TaskFormData) => {
+  const supabase = await createSupabaseServerClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  const { data, error } = await supabase
+    .from("tasks")
+    .insert({
+      set_date: formData.set_date,
+      title: formData.title,
+      about: formData.about,
+      fee: Number(formData.fee),
+      client_id: Number(formData.client_id),
+      user_id: user?.id,
+    })
+    .select();
+
+  let task = <Task[]>data;
+  if (error) {
+    console.log(error);
+  } else {
+    console.log("create task successful");
+    revalidatePath("/home/tasks");
+    // return task;
+  }
+};
+export const deleteTasks = async (TaskId: number | number[]) => {
+  const supabase = await createSupabaseServerClient();
+  let { error } = await supabase.from("tasks").delete().eq("id", TaskId);
+
+  if (error) {
+    console.log("error", error);
+  }
 };

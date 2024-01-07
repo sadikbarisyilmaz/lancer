@@ -28,6 +28,14 @@ export interface Task {
   paid_amount: number;
   clients: Client;
 }
+export interface TaskFormData {
+  set_date: Date;
+  title: string;
+  about: string;
+  fee: string;
+  client_id: string;
+}
+
 export interface ClientNote {
   id: number;
   created_at: Date;
