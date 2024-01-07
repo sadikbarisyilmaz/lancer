@@ -18,7 +18,7 @@ export default async function Page() {
   return (
     <>
       <Banner title="Tasks" />
-      <div className="p-6 md:w-full flex flex-col gap-2 ">
+      <div className="p-6 md:w-full flex flex-col gap-2 md:max-w-7xl">
         <DataTable columns={columns} data={refactoredData} />
         <CreateTaskForm fetchClient={fetchClient} clients={clients} />
       </div>
