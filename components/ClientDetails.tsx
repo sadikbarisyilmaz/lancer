@@ -8,6 +8,7 @@ import { Loader } from "./Loader";
 import { ClientNotes } from "./ClientNotes";
 import { DataTable } from "./tasks-table/dataTable";
 import { columns } from "./tasks-table/columns";
+import { CreateTaskForm } from "./forms/CreateTaskForm";
 
 export const ClientDetails = () => {
   const [client, setClient] = useState<Client>();
@@ -31,8 +32,9 @@ export const ClientDetails = () => {
         <ClientCard client={client} />
         <ClientNotes id={client.id} />
       </div>
-      <div className="w-full h-4/6 col-span-2">
+      <div className="w-full flex flex-col gap-2 h-4/6 col-span-2">
         <DataTable columns={columns} data={client.tasks} />
+        <CreateTaskForm clients={[client]} />
       </div>
     </div>
   );
