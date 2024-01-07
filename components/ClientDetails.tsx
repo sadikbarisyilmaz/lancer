@@ -14,11 +14,11 @@ export const ClientDetails = () => {
   const [client, setClient] = useState<Client>();
   const params = useParams();
 
+  const fetchClient = async () => {
+    const client = await getClient(params.id);
+    setClient(client);
+  };
   useEffect(() => {
-    const fetchClient = async () => {
-      const client = await getClient(params.id);
-      setClient(client);
-    };
     fetchClient();
   }, []);
 
@@ -27,14 +27,14 @@ export const ClientDetails = () => {
   }
 
   return (
-    <div className="w-full h-full justify-center md:gap-2 grid grid-cols-1 md:grid-cols-3">
-      <div className="grid grid-cols-1 col-span-1 justify-center gap-2 w-full">
+    <div className="w-full h-fit justify-center md:gap-2 grid grid-cols-1 md:grid-cols-3">
+      <div className="flex flex-col  gap-2 w-full">
         <ClientCard client={client} />
         <ClientNotes id={client.id} />
       </div>
-      <div className="w-full flex flex-col gap-2 h-4/6 col-span-2">
+      <div className="w-full md:py-0 py-2 flex flex-col gap-2 h-4/6 col-span-2">
         <DataTable columns={columns} data={client.tasks} />
-        <CreateTaskForm clients={[client]} />
+        <CreateTaskForm fetchClient={fetchClient} clients={[client]} />
       </div>
     </div>
   );

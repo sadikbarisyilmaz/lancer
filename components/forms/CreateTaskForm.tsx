@@ -46,9 +46,10 @@ const formSchema = z.object({
 
 interface Props {
   clients: Client[];
+  fetchClient: () => Promise<void>;
 }
 
-export const CreateTaskForm = ({ clients }: Props) => {
+export const CreateTaskForm = ({ clients, fetchClient }: Props) => {
   const [open, setOpen] = useState(false);
 
   const { toast } = useToast();
@@ -70,6 +71,7 @@ export const CreateTaskForm = ({ clients }: Props) => {
       toast({
         title: `Task created successfully !`,
       });
+      fetchClient();
       setOpen(false);
     } catch (error) {
       toast({
@@ -80,7 +82,7 @@ export const CreateTaskForm = ({ clients }: Props) => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="" variant="outline">
+        <Button className="w-full md:w-36" variant="outline">
           Create New Task
         </Button>
       </DialogTrigger>

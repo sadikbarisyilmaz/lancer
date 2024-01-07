@@ -1,4 +1,4 @@
-import { getClients, getTasks } from "@/app/actions";
+import { getClient, getClients, getTasks } from "@/app/actions";
 import { Banner } from "@/components/Banner";
 import { CreateTaskForm } from "@/components/forms/CreateTaskForm";
 import { columns } from "@/components/tasks-table/columns";
@@ -10,13 +10,17 @@ export default async function Page() {
   const refactoredData = tasks.map((task, i) => {
     return { ...task, client_name: task["clients"]["name"] };
   });
-
+  //Ts dummy fix
+  const fetchClient = async () => {
+    "use server";
+    const client = await getClient("234");
+  };
   return (
     <>
       <Banner title="Tasks" />
-      <div className="h-full gap-2 p-10 flex flex-col items-center lg:items-start">
+      <div className="p-6 md:w-full flex flex-col gap-2 ">
         <DataTable columns={columns} data={refactoredData} />
-        <CreateTaskForm clients={clients} />
+        <CreateTaskForm fetchClient={fetchClient} clients={clients} />
       </div>
     </>
   );

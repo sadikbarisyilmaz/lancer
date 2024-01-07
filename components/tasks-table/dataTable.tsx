@@ -45,8 +45,8 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div>
-      <div className="rounded-md border  ">
+    <>
+      <div className="rounded-md border">
         <Table className="">
           <TableHeader className="sticky">
             {table.getHeaderGroups().map((headerGroup) => (
@@ -130,6 +130,6 @@ export function DataTable<TData, TValue>({
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 }
