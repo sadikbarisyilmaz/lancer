@@ -29,8 +29,8 @@ export function MobileNavDrawer() {
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
-        <Button variant="outline">
-          <HamburgerMenuIcon />
+        <Button className="w-10 h-10 p-0" variant="outline">
+          <HamburgerMenuIcon fontSize={22} />
         </Button>
       </DrawerTrigger>
       <DrawerContent>
