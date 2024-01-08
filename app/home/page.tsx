@@ -1,4 +1,5 @@
 import { Banner } from "@/components/Banner";
+import { UpcomingTable } from "@/components/UpcomingTable";
 // import Link from "next/link";
 // import readUserSession from "../actions";
 
@@ -19,9 +20,9 @@ export default async function Page() {
   // }
 
   return (
-    <div className="h-screen">
+    <div className="h-full flex flex-col">
       <Banner title="Upcoming" />
-      <div className="p-10 flex justify-center items-center">tasks</div>
+      <UpcomingTable />
     </div>
   );
 }
