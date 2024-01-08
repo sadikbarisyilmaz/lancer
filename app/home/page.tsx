@@ -20,7 +20,7 @@ export default async function Page() {
   // }
 
   return (
-    <div className="h-full flex flex-col">
+    <div className="h-full flex flex-col  overflow-y-scroll">
       <Banner title="Upcoming" />
       <UpcomingTable />
     </div>
