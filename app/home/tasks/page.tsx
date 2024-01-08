@@ -3,7 +3,6 @@ import { Banner } from "@/components/Banner";
 import { CreateTaskForm } from "@/components/forms/CreateTaskForm";
 import { columns } from "@/components/tasks-table/columns";
 import { DataTable } from "@/components/tasks-table/dataTable";
-import { format } from "date-fns";
 
 export default async function Page() {
   const { tasks } = await getTasks();
@@ -11,6 +10,7 @@ export default async function Page() {
   const refactoredTasks = tasks.map((task, i) => {
     return { ...task, client_name: task["clients"]["name"] };
   });
+
   //Ts dummy fix
   const fetchClient = async () => {
     "use server";
@@ -21,7 +21,9 @@ export default async function Page() {
       <Banner title="Tasks" />
       <div className="p-6 md:w-full flex flex-col gap-2 md:max-w-7xl">
         <DataTable columns={columns} data={refactoredTasks} />
-        <CreateTaskForm fetchClient={fetchClient} clients={clients} />
+        {clients.length > 0 && (
+          <CreateTaskForm fetchClient={fetchClient} clients={clients} />
+        )}
       </div>
     </>
   );

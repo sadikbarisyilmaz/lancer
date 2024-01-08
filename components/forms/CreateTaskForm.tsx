@@ -117,15 +117,6 @@ export const CreateTaskForm = ({ clients, fetchClient }: Props) => {
                               </SelectItem>
                             );
                           })}
-                          {/* <SelectItem value="m@example.com">
-                            m@example.com
-                          </SelectItem>
-                          <SelectItem value="m@google.com">
-                            m@google.com
-                          </SelectItem>
-                          <SelectItem value="m@support.com">
-                            m@support.com
-                          </SelectItem> */}
                         </SelectContent>
                       </Select>
                       <FormMessage />
@@ -183,7 +174,7 @@ export const CreateTaskForm = ({ clients, fetchClient }: Props) => {
                             <Button
                               variant={"outline"}
                               className={cn(
-                                "w-[240px] pl-3 text-left font-normal",
+                                "w-full pl-3 text-left font-normal",
                                 !field.value && "text-muted-foreground"
                               )}
                             >

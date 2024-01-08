@@ -2,6 +2,7 @@
 import { Task } from "@/lib/types";
 import { ColumnDef } from "@tanstack/react-table";
 import { MoreHorizontal } from "lucide-react";
+import { format } from "date-fns";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -58,14 +59,20 @@ export const columns: ColumnDef<Task>[] = [
   {
     accessorKey: "fee",
     header: () => <div className="text-left">Fee</div>,
-    cell: ({ row }) => <div className="lowercase">{row.getValue("fee")}</div>,
+    cell: ({ row }) => (
+      <div className="lowercase">{`$${row.getValue("fee")}`}</div>
+    ),
   },
   {
     accessorKey: "set_date",
     header: () => <div className="text-left">Set Date</div>,
     cell: ({ row }) => {
       return (
-        <div className="text-left font-medium">{row.getValue("set_date")}</div>
+        <div className="text-left font-medium">
+          {format(row.getValue("set_date"), "EEEE")}
+          {" - "}
+          {format(row.getValue("set_date"), "dd/MM/yyyy")}
+        </div>
       );
     },
   },

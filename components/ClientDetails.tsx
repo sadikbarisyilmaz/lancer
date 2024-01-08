@@ -34,7 +34,9 @@ export const ClientDetails = () => {
       </div>
       <div className="w-full md:py-0 py-2 flex flex-col gap-2 h-4/6 col-span-2">
         <DataTable columns={columns} data={client.tasks} />
-        <CreateTaskForm fetchClient={fetchClient} clients={[client]} />
+        {client && (
+          <CreateTaskForm fetchClient={fetchClient} clients={[client]} />
+        )}
       </div>
     </div>
   );
