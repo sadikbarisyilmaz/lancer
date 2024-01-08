@@ -25,7 +25,7 @@ export interface Task {
   title: string;
   about: string;
   fee: number;
-  paid_amount: number;
+  payment_status: string;
   clients: Client;
 }
 export interface TaskFormData {

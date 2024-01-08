@@ -168,8 +168,31 @@ export const createNewTask = async (formData: TaskFormData) => {
 export const deleteTasks = async (TaskId: number | number[]) => {
   const supabase = await createSupabaseServerClient();
   let { error } = await supabase.from("tasks").delete().eq("id", TaskId);
+  console.log(TaskId);
 
   if (error) {
     console.log("error", error);
+  } else {
+    console.log("task deleted successfully");
+    revalidatePath("/home/tasks");
+  }
+};
+export const updatePaymentStatus = async (
+  status: string,
+  TaskId: number | number[]
+) => {
+  const supabase = await createSupabaseServerClient();
+  const updatedStatus = status === "Paid" ? "Not Paid" : "Paid";
+
+  let { error } = await supabase
+    .from("tasks")
+    .update({ payment_status: updatedStatus })
+    .eq("id", TaskId);
+
+  if (error) {
+    console.log("error", error);
+  } else {
+    console.log("payment status updated successfully");
+    revalidatePath("/home/tasks");
   }
 };
