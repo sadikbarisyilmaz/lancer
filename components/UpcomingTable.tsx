@@ -27,7 +27,7 @@ export const UpcomingTable = () => {
           <h4 className="text-center border-b border-foreground/10 pb-4">
             {format(today.setDate(today.getDate() + 2), "EEEE")}
           </h4>
-          <div className="py-2 grid gap-2">No Tasks</div>
+          <div className="py-2 grid gap-2"></div>
         </div>
         <div className="p-2 md:border-r border-foreground/10">
           <h4 className="text-center border-b border-foreground/10 pb-4">
