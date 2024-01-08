@@ -107,7 +107,7 @@ export function DataTable<TData, TValue>({
               onChange={(event) =>
                 table.getColumn("title")?.setFilterValue(event.target.value)
               }
-              className="max-w-sm"
+              className="max-w-sm "
             />
           </div>
           <div className="flex items-center  justify-end space-x-2 py-4">

@@ -1,8 +1,5 @@
 "use client";
-import { useParams, usePathname } from "next/navigation";
 import { ClientCard } from "./ClientCard";
-import { useEffect, useState } from "react";
-import { getClient } from "@/app/actions";
 import { Client, Task } from "@/lib/types";
 import { Loader } from "./Loader";
 import { ClientNotes } from "./ClientNotes";
@@ -10,18 +7,11 @@ import { DataTable } from "./tasks-table/dataTable";
 import { columns } from "./tasks-table/columns";
 import { CreateTaskForm } from "./forms/CreateTaskForm";
 
-export const ClientDetails = () => {
-  const [client, setClient] = useState<Client>();
-  const params = useParams();
+interface Props {
+  client: Client;
+}
 
-  const fetchClient = async () => {
-    const client = await getClient(params.id);
-    setClient(client);
-  };
-  useEffect(() => {
-    fetchClient();
-  }, []);
-
+export const ClientDetails = ({ client }: Props) => {
   if (!client) {
     return <Loader />;
   }
@@ -34,9 +24,7 @@ export const ClientDetails = () => {
       </div>
       <div className="w-full md:py-0 py-2 flex flex-col gap-2 h-4/6 col-span-2">
         <DataTable columns={columns} data={client.tasks} />
-        {client && (
-          <CreateTaskForm fetchClient={fetchClient} clients={[client]} />
-        )}
+        {client && <CreateTaskForm clients={[client]} />}
       </div>
     </div>
   );

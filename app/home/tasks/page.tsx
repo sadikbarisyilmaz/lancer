@@ -11,19 +11,12 @@ export default async function Page() {
     return { ...task, client_name: task["clients"]["name"] };
   });
 
-  //Ts dummy fix
-  const fetchClient = async () => {
-    "use server";
-    const client = await getClient("234");
-  };
   return (
     <>
       <Banner title="Tasks" />
       <div className="p-6 md:w-full flex flex-col gap-2 md:max-w-7xl">
         <DataTable columns={columns} data={refactoredTasks} />
-        {clients.length > 0 && (
-          <CreateTaskForm fetchClient={fetchClient} clients={clients} />
-        )}
+        {clients.length > 0 && <CreateTaskForm clients={clients} />}
       </div>
     </>
   );

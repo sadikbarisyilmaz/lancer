@@ -1,5 +1,5 @@
 "use client";
-import { createNewTask, getClients } from "@/app/actions";
+import { createNewTask } from "@/app/actions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -46,10 +46,9 @@ const formSchema = z.object({
 
 interface Props {
   clients: Client[];
-  fetchClient: () => Promise<void>;
 }
 
-export const CreateTaskForm = ({ clients, fetchClient }: Props) => {
+export const CreateTaskForm = ({ clients }: Props) => {
   const [open, setOpen] = useState(false);
 
   const { toast } = useToast();
@@ -71,7 +70,6 @@ export const CreateTaskForm = ({ clients, fetchClient }: Props) => {
       toast({
         title: `Task created successfully !`,
       });
-      fetchClient();
       setOpen(false);
     } catch (error) {
       toast({
@@ -162,6 +160,7 @@ export const CreateTaskForm = ({ clients, fetchClient }: Props) => {
                     </FormItem>
                   )}
                 />
+
                 <FormField
                   control={form.control}
                   name="set_date"

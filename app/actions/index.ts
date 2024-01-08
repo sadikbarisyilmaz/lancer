@@ -162,7 +162,6 @@ export const createNewTask = async (formData: TaskFormData) => {
   } else {
     console.log("create task successful");
     revalidatePath("/home/tasks");
-    // return task;
   }
 };
 export const deleteTasks = async (TaskId: number | number[]) => {
