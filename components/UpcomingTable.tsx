@@ -7,17 +7,15 @@ interface Props {
   weeklyTasks: Task[];
 }
 export const UpcomingTable = async ({ weeklyTasks }: Props) => {
+  /// Needs to be on client side///
   const today = new Date();
   let noTime = new Date(today.getFullYear(), today.getMonth(), today.getDate());
   const days = [0, 1, 2, 3, 4, 5, 6];
   const weekDays = days.map((day) => addDays(noTime, day));
+  /////////////////////////////////
 
   return (
     <div className="flex justify-center md:p-6 p-4 w-full h-full ">
-      {/* {weeklyTasks.map((task, i) => {
-        return <div>{task.title}-</div>;
-      })} */}
-
       <div className="grid sm:grid-cols-2 md:grid-cols-7 w-full ">
         {weekDays.map((weekDay, i) => {
           return (
@@ -32,10 +30,10 @@ export const UpcomingTable = async ({ weeklyTasks }: Props) => {
               </h4>
               <div className="py-2 grid gap-2">
                 {weeklyTasks.map(
-                  (task, j) =>
+                  (task, i) =>
                     new Date(task.set_date).toString() ===
                       new Date(weekDay).toString() && (
-                      <TaskCard key={j} task={task} />
+                      <TaskCard key={i} task={task} />
                     )
                 )}
               </div>

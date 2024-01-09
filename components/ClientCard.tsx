@@ -22,7 +22,7 @@ export function ClientCard({ client }: { client: Client }) {
   };
 
   return (
-    <Card className=" dark:bg-black bg-white dark:bg-opacity-40 bg-opacity-40 flex justify-between flex-col max-h-64 gap-2 p-6">
+    <Card className=" dark:bg-[#2424247c] bg-[#ffffffcb] flex justify-between flex-col max-h-64 gap-2 p-6">
       <div className="flex flex-col h-max">
         <div className="flex items-center gap-2">
           <CircleUser size={48} strokeWidth={1} />

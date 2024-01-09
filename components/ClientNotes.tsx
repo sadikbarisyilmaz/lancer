@@ -81,7 +81,7 @@ export const ClientNotes = ({ id }: { id: number }) => {
 
   return (
     <div>
-      <Card className="flex flex-col max-h-[220px] dark:bg-black bg-white min-h-[220px] dark:bg-opacity-40 bg-opacity-40 justify-between items-between gap-4 p-4">
+      <Card className="flex flex-col max-h-[220px] dark:bg-[#2424247c] bg-[#ffffffcb] min-h-[220px] dark:bg-opacity-40 bg-opacity-40 justify-between items-between gap-4 p-4">
         <ul className="overflow-y-scroll border h-full p-4 rounded-md border-foreground/10">
           {clientNotes?.map((note, i) => {
             return (
