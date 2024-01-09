@@ -9,6 +9,7 @@ import {
   TaskFormData,
 } from "@/lib/types";
 import { revalidatePath } from "next/cache";
+import { addDays, format } from "date-fns";
 
 export const readUserSession = async () => {
   noStore();
@@ -194,4 +195,34 @@ export const updatePaymentStatus = async (
     console.log("payment status updated successfully");
     revalidatePath("/home/tasks");
   }
+};
+export const getWeeklyTasks = async () => {
+  const supabase = await createSupabaseServerClient();
+  let today = new Date();
+  // let lastDayOfTheWeek = addDays(today, 6);
+
+  const todayUTC = format(
+    new Date(today.toISOString().slice(0, -1)),
+    "yyyy-MM-dd HH:mm:ss"
+  );
+  const lastDayOfTheWeekUTC = format(
+    new Date(addDays(today, 6).toISOString().slice(0, -1)),
+    "yyyy-MM-dd HH:mm:ss"
+  );
+
+  let { data: tasksList, error } = await supabase
+    .from("tasks")
+    .select("*,  clients(name)")
+    .gte("set_date", todayUTC)
+    .lte("set_date", lastDayOfTheWeekUTC)
+    .order("set_date", { ascending: false });
+
+  let tasks = <Task[]>tasksList;
+
+  if (error) {
+    console.log(error);
+  } else {
+    console.log("get task successful");
+  }
+  return { tasks };
 };
