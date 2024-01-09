@@ -1,19 +1,22 @@
-import { getWeeklyTasks } from "@/app/actions";
+"use client";
 import { TaskCard } from "@/components/TaskCard";
+import { Task } from "@/lib/types";
 import { addDays, format } from "date-fns";
-import { Divide } from "lucide-react";
-export const UpcomingTable = async () => {
+
+interface Props {
+  weeklyTasks: Task[];
+}
+export const UpcomingTable = async ({ weeklyTasks }: Props) => {
   const today = new Date();
   let noTime = new Date(today.getFullYear(), today.getMonth(), today.getDate());
   const days = [0, 1, 2, 3, 4, 5, 6];
   const weekDays = days.map((day) => addDays(noTime, day));
-  const weeklyTasks = await getWeeklyTasks();
 
   return (
     <div className="flex justify-center md:p-6 p-4 w-full h-full ">
-      {weeklyTasks.tasks.map((task, i) => {
+      {/* {weeklyTasks.map((task, i) => {
         return <div>{task.title}-</div>;
-      })}
+      })} */}
 
       <div className="grid sm:grid-cols-2 md:grid-cols-7 w-full ">
         {weekDays.map((weekDay, i) => {
@@ -28,7 +31,7 @@ export const UpcomingTable = async () => {
                 {i === 0 ? "Today" : format(addDays(today, i), "EEEE")}
               </h4>
               <div className="py-2 grid gap-2">
-                {weeklyTasks.tasks.map(
+                {weeklyTasks.map(
                   (task, j) =>
                     new Date(task.set_date).toString() ===
                       new Date(weekDay).toString() && (

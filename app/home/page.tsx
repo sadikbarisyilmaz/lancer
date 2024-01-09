@@ -1,5 +1,6 @@
 import { Banner } from "@/components/Banner";
 import { UpcomingTable } from "@/components/UpcomingTable";
+import { getWeeklyTasks } from "../actions";
 // import Link from "next/link";
 // import readUserSession from "../actions";
 
@@ -18,11 +19,11 @@ export default async function Page() {
   //     </main>
   //   );
   // }
-
+  const weeklyTasks = await getWeeklyTasks();
   return (
     <div className="h-full flex flex-col  overflow-y-scroll">
       <Banner title="Upcoming" />
-      <UpcomingTable />
+      <UpcomingTable weeklyTasks={weeklyTasks.tasks} />
     </div>
   );
 }
