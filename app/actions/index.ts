@@ -198,23 +198,24 @@ export const updatePaymentStatus = async (
 };
 export const getWeeklyTasks = async () => {
   const supabase = await createSupabaseServerClient();
-  let today = new Date();
-  // let lastDayOfTheWeek = addDays(today, 6);
+  let today = addDays(new Date(), -1);
+  let lastDayOfTheWeek = addDays(new Date(), 6);
 
   const todayUTC = format(
     new Date(today.toISOString().slice(0, -1)),
-    "yyyy-MM-dd HH:mm:ss"
+    "yyyy-MM-dd"
   );
+
   const lastDayOfTheWeekUTC = format(
-    new Date(addDays(today, 6).toISOString().slice(0, -1)),
-    "yyyy-MM-dd HH:mm:ss"
+    new Date(lastDayOfTheWeek.toISOString().slice(0, -1)),
+    "yyyy-MM-dd"
   );
 
   let { data: tasksList, error } = await supabase
     .from("tasks")
-    .select("*,  clients(name)")
+    .select("*,  clients(name, type)")
     .gte("set_date", todayUTC)
-    .lte("set_date", lastDayOfTheWeekUTC)
+    .lt("set_date", lastDayOfTheWeekUTC)
     .order("set_date", { ascending: false });
 
   let tasks = <Task[]>tasksList;
@@ -222,7 +223,7 @@ export const getWeeklyTasks = async () => {
   if (error) {
     console.log(error);
   } else {
-    console.log("get task successful");
+    console.log("get weekly tasks successful");
   }
   return { tasks };
 };

@@ -65,6 +65,8 @@ export const CreateTaskForm = ({ clients }: Props) => {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
+    console.log(values.set_date);
+
     try {
       createNewTask(values);
       toast({
