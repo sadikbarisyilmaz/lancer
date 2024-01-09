@@ -1,6 +1,7 @@
 import { getWeeklyTasks } from "@/app/actions";
 import { TaskCard } from "@/components/TaskCard";
 import { addDays, format } from "date-fns";
+import { Divide } from "lucide-react";
 export const UpcomingTable = async () => {
   const today = new Date();
   let noTime = new Date(today.getFullYear(), today.getMonth(), today.getDate());
@@ -10,6 +11,10 @@ export const UpcomingTable = async () => {
 
   return (
     <div className="flex justify-center md:p-6 p-4 w-full h-full ">
+      {weeklyTasks.tasks.map((task, i) => {
+        return <div>{task.title}-</div>;
+      })}
+
       <div className="grid sm:grid-cols-2 md:grid-cols-7 w-full ">
         {weekDays.map((weekDay, i) => {
           return (
