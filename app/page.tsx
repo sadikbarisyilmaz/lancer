@@ -20,7 +20,7 @@ export default function Page() {
       data: { session },
     } = await supabase.auth.getSession();
     if (session) {
-      router.push("/home");
+      router.push("/home/upcoming");
     } else {
       setloading(false);
     }

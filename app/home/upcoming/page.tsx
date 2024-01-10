@@ -1,6 +1,6 @@
+import { getWeeklyTasks } from "@/app/actions";
 import { Banner } from "@/components/Banner";
 import { UpcomingTable } from "@/components/UpcomingTable";
-import { getWeeklyTasks } from "../actions";
 // import Link from "next/link";
 // import readUserSession from "../actions";
 
