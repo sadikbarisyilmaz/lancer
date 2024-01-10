@@ -2,6 +2,7 @@
 import { TaskCard } from "@/components/TaskCard";
 import { Task } from "@/lib/types";
 import { addDays, format } from "date-fns";
+import { useEffect } from "react";
 
 interface Props {
   weeklyTasks: Task[];
@@ -31,8 +32,8 @@ export const UpcomingTable = async ({ weeklyTasks }: Props) => {
               <div className="py-3 grid gap-3 px-4 sm:px-10 md:px-0">
                 {weeklyTasks.map(
                   (task, i) =>
-                    new Date(task.set_date).toString() ===
-                      new Date(weekDay).toString() && (
+                    format(task.set_date, "EEE MMM/dd/yy") ===
+                      format(weekDay, "EEE MMM/dd/yy") && (
                       <TaskCard key={i} task={task} />
                     )
                 )}

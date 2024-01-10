@@ -21,6 +21,18 @@ export default async function Page() {
   //   );
   // }
   const weeklyTasks = await getWeeklyTasks();
+  // new Date(
+  //   task.set_date.getFullYear(),
+  //   task.set_date.getMonth(),
+  //   task.set_date.getDate()
+  // )
+  // console.log(weeklyTasks);
+  // const refactoredWeeklytasks = weeklyTasks.tasks.map((task, i) => {
+  //   return {
+  //     ...task,
+  //     set_date: new Date(task.set_date.getMonth(), task.set_date.getDate()),
+  //   };
+  // });
   return (
     <div className="h-full flex flex-col  overflow-y-scroll">
       <Banner title="Upcoming" />

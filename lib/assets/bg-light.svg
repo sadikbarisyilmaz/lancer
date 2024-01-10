@@ -1,4 +1,11 @@
 <svg width="1920" height="1105" viewBox="0 0 1920 1105" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <filter id="my-filter">
+    <feComponentTransfer>
+      <feFuncR type="linear" slope="" />
+      <feFuncG type="linear" slope="" />
+      <feFuncB type="linear" slope="" />
+    </feComponentTransfer>
+  </filter>
 <g clip-path="url(#clip0_2_214)">
 <rect width="1920" height="1105" fill="white"/>
 <ellipse cx="558.931" cy="-27.6919" rx="400.821" ry="932.946" transform="rotate(-47.2932 558.931 -27.6919)" fill="url(#paint0_radial_2_214)"/>
