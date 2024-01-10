@@ -1,6 +1,6 @@
 import React from "react";
 import { Card } from "./ui/card";
-import { Banknote, Bookmark, Check, Clock3, User } from "lucide-react";
+import { Banknote, Bookmark, Check, Clock3, User, X } from "lucide-react";
 import { Separator } from "./ui/separator";
 import { Task } from "@/lib/types";
 
@@ -10,7 +10,7 @@ interface Props {
 
 export const TaskCard = ({ task }: Props) => {
   return (
-    <Card className="px-3 py-4 text-foreground/90 flex flex-col justify-center dark:bg-black bg-white dark:bg-opacity-50 bg-opacity-50 gap-3 text-md">
+    <Card className="px-3 py-4 text-foreground/90 flex flex-col justify-center dark:bg-black bg-white dark:bg-opacity-50 bg-opacity-50 gap-3 text-md min-w-[146px] ">
       <h6 className="flex font-bold items-center gap-1 ">
         <span className=" text-opacity-100 text-orange-300">
           <Bookmark size={24} />
@@ -43,7 +43,11 @@ export const TaskCard = ({ task }: Props) => {
               task.payment_status === "Paid" ? "text-green-400" : "text-red-700"
             }`}
           >
-            <Check size={18} />
+            {task.payment_status === "Paid" ? (
+              <Check size={18} />
+            ) : (
+              <X size={18} />
+            )}
           </span>
           <p>{task.payment_status}</p>
         </div>

@@ -1,4 +1,4 @@
-import { getClient, getClients, getTasks } from "@/app/actions";
+import { getClients, getTasks } from "@/app/actions";
 import { Banner } from "@/components/Banner";
 import { CreateTaskForm } from "@/components/forms/CreateTaskForm";
 import { columns } from "@/components/tasks-table/columns";

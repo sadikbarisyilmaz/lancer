@@ -97,7 +97,7 @@ export function DataTable<TData, TValue>({
         </Table>
       </div>
       <div className="flex justify-between gap-1">
-        <div className="flex items-center py-4">
+        <div className="flex items-center py-2">
           <Input
             placeholder="Filter names..."
             value={(table.getColumn("name")?.getFilterValue() as string) ?? ""}
@@ -107,7 +107,7 @@ export function DataTable<TData, TValue>({
             className="max-w-sm "
           />
         </div>
-        <div className="flex items-center  justify-end space-x-2 py-4">
+        <div className="flex items-center  justify-end space-x-2 py-2">
           <Button
             variant="outline"
             size="sm"
