@@ -139,6 +139,22 @@ export const getTasks = async () => {
   }
   return { tasks };
 };
+export const getTask = async (taskId: number | number[]) => {
+  const supabase = await createSupabaseServerClient();
+  let { data: tasksList, error } = await supabase
+    .from("tasks")
+    .select()
+    .eq("id", taskId);
+
+  let tasks = <Task[]>tasksList;
+
+  if (error) {
+    console.log(error);
+  } else {
+    console.log("get task successful");
+  }
+  return tasks[0];
+};
 export const createNewTask = async (formData: TaskFormData) => {
   const supabase = await createSupabaseServerClient();
   const {

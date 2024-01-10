@@ -21,14 +21,14 @@ export const UpcomingTable = async ({ weeklyTasks }: Props) => {
           return (
             <div
               key={i}
-              className={`p-2 order-1 ${
+              className={`p-3 order-1 ${
                 i !== 6 ? "md:border-r" : ""
               } border-foreground/10`}
             >
               <h4 className="text-center border-b border-foreground/10 pb-4">
                 {i === 0 ? "Today" : format(addDays(today, i), "EEEE")}
               </h4>
-              <div className="py-2 grid gap-2 px-4 sm:px-10 md:px-0">
+              <div className="py-3 grid gap-3 px-4 sm:px-10 md:px-0">
                 {weeklyTasks.map(
                   (task, i) =>
                     new Date(task.set_date).toString() ===

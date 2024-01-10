@@ -94,7 +94,7 @@ export const columns: ColumnDef<Task>[] = [
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-6 w-6 p-0">
+            <Button variant="ghost" className="h-[20px] w-[20px] p-0">
               <span className="sr-only">Open menu</span>
               <MoreHorizontal className="h-4 w-4" />
             </Button>
