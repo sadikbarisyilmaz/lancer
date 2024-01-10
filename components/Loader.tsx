@@ -1,5 +1,4 @@
 import icon from "../lib/assets/lance-png.png";
-console.log();
 
 export const Loader = () => {
   return (

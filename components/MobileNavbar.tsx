@@ -1,21 +1,16 @@
-import React from "react";
-import { Button } from "./ui/button";
-import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { ModeToggle } from "./ui/ModeToggle";
 import { MobileNavDrawer } from "./MobileNavDrawer";
+import icon from "../lib/assets/lance-png.png";
 
 export const MobileNavbar = () => {
   return (
     <div className="w-full backdrop-blur-lg flex items-center border-b border-b-foreground/10 fixed justify-between p-4 md:hidden">
-      <div className="font-bold border border-foreground/10 py-2 px-3 rounded-md">
-        Lancer
+      <div className="font-bold  gap-1 py-2 px-1 flex items-center rounded-md">
+        <img className="w-6 h-6" src={icon.src} /> Lancer
       </div>
       <div className="flex gap-2 items-center">
         <ModeToggle />
         <MobileNavDrawer />
-        {/* <Button variant="outline">
-          <HamburgerMenuIcon />
-        </Button> */}
       </div>
     </div>
   );
