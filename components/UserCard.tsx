@@ -36,9 +36,9 @@ export const UserCard = () => {
 
   if (loading) {
     return (
-      <div className="py-2 flex flex-col items-center md:items-left gap-6">
+      <div className="py-1 h-[77px] flex flex-col items-center md:items-left gap-6">
         <UserCardSkeleton />
-        <Separator />
+        <Separator className="bg-foreground/10" />
       </div>
     );
   }
