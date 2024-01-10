@@ -7,27 +7,27 @@ import { Skeleton } from "@/components/ui/skeleton";
 export default function Loading() {
   // You can add any UI inside Loading, including a Skeleton.
   return (
-    <div className="h-full w-full flex flex-col  ">
+    <div className="h-full w-full flex flex-col">
       <Banner title="Clients" />
       <div className="p-6">
-        <div className="dark:bg-[#2424247c] bg-[#ffffffcb] rounded-sm md:w-full h-fit md:max-w-7xl flex flex-col">
+        <div className="dark:bg-[#2424247c] bg-[#ffffffcb] rounded-md md:w-full h-fit md:max-w-7xl flex flex-col  ">
           <div className="border-b dark:bg-[#2424247c] bg-[#ffffffcb] border-background">
-            <Skeleton className="h-12" />
+            <Skeleton className="h-[48px]" />
           </div>
           <div className="border-b dark:bg-[#2424247c] bg-[#ffffffcb] border-background">
-            <Skeleton className="h-[64px]" />
+            <Skeleton className="h-[56px]" />
           </div>
           <div className="border-b dark:bg-[#2424247c] bg-[#ffffffcb] border-background">
-            <Skeleton className="h-[64px]" />
+            <Skeleton className="h-[56px]" />
           </div>
           <div className="border-b dark:bg-[#2424247c] bg-[#ffffffcb] border-background">
-            <Skeleton className="h-[64px]" />
+            <Skeleton className="h-[56px]" />
           </div>
           <div className="border-b dark:bg-[#2424247c] bg-[#ffffffcb] border-background">
-            <Skeleton className="h-[64px]" />
+            <Skeleton className="h-[56px]" />
           </div>
           <div className="border-b dark:bg-[#2424247c] bg-[#ffffffcb] border-background">
-            <Skeleton className="h-[64px]" />
+            <Skeleton className="h-[56px]" />
           </div>
         </div>
         <div className="flex justify-between gap-1 ">

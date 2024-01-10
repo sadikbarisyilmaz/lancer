@@ -8,7 +8,7 @@ export default async function Page({ params }: { params: { id: string } }) {
   return (
     <div className="overflow-y-scroll md:overflow-hidden h-full">
       <Banner title={"Client Details"} />
-      <div className="md:p-6 p-4 h-full w-full">
+      <div className="md:p-6 p-4 h-full w-full animate-fadeIn">
         <ClientDetails client={client} />
       </div>
     </div>

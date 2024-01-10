@@ -14,7 +14,7 @@ export default async function Page() {
   return (
     <>
       <Banner title="Tasks" />
-      <div className="p-6 md:w-full flex flex-col gap-2 md:max-w-7xl">
+      <div className="p-6 md:w-full flex flex-col gap-1 md:max-w-7xl animate-fadeIn">
         <DataTable columns={columns} data={refactoredTasks} />
         {clients.length > 0 && <CreateTaskForm clients={clients} />}
       </div>

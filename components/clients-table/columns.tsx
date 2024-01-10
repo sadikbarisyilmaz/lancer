@@ -71,32 +71,22 @@ export const columns: ColumnDef<Client>[] = [
   //     return <div className="text-left font-medium">{row.getValue("id")}</div>;
   //   },
   // },
-  {
-    id: "actions",
-    header: () => <div className="text-left">Details</div>,
-    cell: ({ row }) => {
-      const client = row.original;
+  // {
+  //   id: "actions",
+  //   header: () => <div className="text-left">Details</div>,
+  //   cell: ({ row }) => {
+  //     const client = row.original;
 
-      return (
-        <Link className="" href={`/home/clients/${client.id}`}>
-          <FileText strokeWidth={1} size={24} />
-        </Link>
-      );
-    },
-  },
+  //     return (
+  //       <Link className="" href={`/home/clients/${client.id}`}>
+  //         <FileText strokeWidth={1} size={24} />
+  //       </Link>
+  //     );
+  //   },
+  // },
   {
     accessorKey: "name",
-    header: ({ column }) => {
-      return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Name
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </Button>
-      );
-    },
+    header: () => <div className="text-left">Home</div>,
     cell: ({ row }) => <div className="capitalize">{row.getValue("name")}</div>,
   },
   {
