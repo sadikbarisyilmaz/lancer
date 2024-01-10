@@ -40,7 +40,6 @@ export const createNewClient = async (formData: ClientFormData) => {
     name: formData.name,
     type: formData.type,
     email: formData.email,
-    // desc: formData.desc,
     phone: formData.phone,
     user_id: user?.id,
   });
@@ -49,7 +48,7 @@ export const createNewClient = async (formData: ClientFormData) => {
     console.log(error);
   } else {
     console.log("delete client successful");
-    revalidatePath("/home");
+    revalidatePath("/home/clients");
   }
 };
 export const getClient = async (clientId: string | string[]) => {
