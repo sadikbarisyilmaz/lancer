@@ -2,7 +2,6 @@
 import { TaskCard } from "@/components/TaskCard";
 import { Task } from "@/lib/types";
 import { addDays, format } from "date-fns";
-import { useEffect } from "react";
 
 interface Props {
   weeklyTasks: Task[];
