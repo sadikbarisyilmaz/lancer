@@ -35,13 +35,13 @@ export function MobileNavDrawer() {
       </DrawerTrigger>
       <DrawerContent>
         <nav className="w-full h-max flex flex-col items-end border-r-foreground/10 p-4 gap-2">
-          <div className="w-full max-w-4xl h-fit flex flex-col justify-between text-sm">
+          <div className="w-full h-fit flex flex-col justify-between text-sm">
             <UserCard />
           </div>
           <div className="justify-center w-full">
             <MobileNavMenu setOpen={setOpen} />
           </div>
-          <div className="h-full w-full flex justify-center md:grid  md:items-end">
+          <div className="h-full w-full flex justify-center lg:grid  lg:items-end">
             <Footer />
           </div>
         </nav>

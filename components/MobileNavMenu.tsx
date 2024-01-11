@@ -32,7 +32,7 @@ export const MobileNavMenu = ({ setOpen }: Props) => {
             <Button
               onClick={mobileCheck}
               variant="ghost"
-              className="text-center md:text-left w-full"
+              className="text-center lg:text-left w-full"
             >
               {link.title}
             </Button>

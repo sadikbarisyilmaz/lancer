@@ -10,8 +10,8 @@ export default async function Page() {
   return (
     <>
       <Banner title="Clients" />
-      <div className="p-6 md:w-full flex flex-col gap-1 animate-fadeIn">
-        <div className="md:max-w-7xl">
+      <div className="p-6 lg:w-full flex flex-col gap-1 animate-fadeIn">
+        <div className="lg:max-w-7xl">
           <DataTable columns={columns} data={clients} />
         </div>
         <CreateClientForm />

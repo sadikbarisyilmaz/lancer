@@ -36,7 +36,7 @@ export const UserCard = () => {
 
   if (loading) {
     return (
-      <div className="py-1 h-[77px] flex flex-col items-center md:items-left gap-6">
+      <div className="py-1 h-[77px] flex flex-col items-center lg:items-left gap-6">
         <UserCardSkeleton />
         <Separator className="bg-foreground/10" />
       </div>
@@ -44,8 +44,8 @@ export const UserCard = () => {
   }
   return (
     <div className="flex flex-col gap-4">
-      <div className="md:justify-start justify-center gap-3 flex md:flex-row flex-col items-center text-center md:text-left py-2">
-        <Avatar className="md:w-11 w-16 md:h-11 h-16 ">
+      <div className="lg:justify-start justify-center gap-3 flex lg:flex-row flex-col items-center text-center lg:text-left py-2">
+        <Avatar className="lg:w-11 w-16 lg:h-11 h-16 ">
           <AvatarImage
             src={user?.user_metadata.picture}
             alt={user?.user_metadata.full_name}
