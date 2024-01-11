@@ -4,10 +4,10 @@ import { Task } from "@/lib/types";
 import { addDays, format } from "date-fns";
 
 interface Props {
-  tasks: Task[];
+  weeklyTasks: Task[];
 }
 
-export const UpcomingTable = ({ tasks }: Props) => {
+export const UpcomingTable = ({ weeklyTasks }: Props) => {
   /// Needs to be on client side///
   const today = new Date();
   let noTime = new Date(today.getFullYear(), today.getMonth(), today.getDate());
@@ -19,7 +19,7 @@ export const UpcomingTable = ({ tasks }: Props) => {
       <div className="grid h-fit lg:h-full md:grid-cols-2 lg:grid-cols-7 w-full ">
         {weekDays.map((weekDay, i) => {
           if (
-            tasks.some(
+            weeklyTasks.some(
               (task) =>
                 format(task.set_date, "MMM/dd/yy") ===
                 format(weekDay, "MMM/dd/yy")
@@ -36,7 +36,7 @@ export const UpcomingTable = ({ tasks }: Props) => {
                   {i === 0 ? "Today" : format(addDays(today, i), "EEEE")}
                 </h4>
                 <div className="py-3 grid gap-3 px-4 md:px-10 lg:px-0">
-                  {tasks.map((task, j) => {
+                  {weeklyTasks.map((task, j) => {
                     return format(task.set_date, "MMM/dd/yy") ===
                       format(weekDay, "MMM/dd/yy") ? (
                       <TaskCard key={j} task={task} />

@@ -213,8 +213,8 @@ export const updatePaymentStatus = async (
 };
 export const getWeeklyTasks = async () => {
   const supabase = await createSupabaseServerClient();
-  let today = new Date();
-  let lastDayOfTheWeek = addDays(new Date(), 6);
+  let today = addDays(new Date(), -1);
+  let lastDayOfTheWeek = addDays(new Date(), 7);
 
   const todayUTC = format(
     new Date(today.toISOString().slice(0, -1)),
