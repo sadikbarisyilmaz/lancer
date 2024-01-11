@@ -14,7 +14,7 @@ export const Banner = ({ title }: BannerProps) => {
           <ModeToggle />
         </div>
       </div>
-      <div className="h-full lg:hidden flex">
+      <div className="h-full lg:hidden flex md:min-h-[70px]">
         <h1 className="self-center">{title}</h1>
       </div>
     </div>
