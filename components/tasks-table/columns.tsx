@@ -68,11 +68,7 @@ export const columns: ColumnDef<Task>[] = [
     header: () => <div className="text-left">Set Date</div>,
     cell: ({ row }) => {
       return (
-        <div className="text-left font-medium">
-          {format(row.getValue("set_date"), "EEEE")}
-          {" - "}
-          {format(row.getValue("set_date"), "dd/MM/yyyy")}
-        </div>
+        <div className="text-left font-medium">{row.getValue("set_date")}</div>
       );
     },
   },

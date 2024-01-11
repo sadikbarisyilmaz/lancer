@@ -19,7 +19,7 @@ export interface Client {
 export interface Task {
   id: number;
   created_at: Date;
-  set_date: Date;
+  set_date: Date | string;
   user_id: string;
   client_id: string;
   title: string;

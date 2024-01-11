@@ -6,6 +6,7 @@ import { addDays, format } from "date-fns";
 interface Props {
   weeklyTasks: Task[];
 }
+
 export const UpcomingTable = ({ weeklyTasks }: Props) => {
   /// Needs to be on client side///
   const today = new Date();

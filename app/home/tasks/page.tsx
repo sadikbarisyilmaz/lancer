@@ -3,12 +3,17 @@ import { Banner } from "@/components/Banner";
 import { CreateTaskForm } from "@/components/forms/CreateTaskForm";
 import { columns } from "@/components/tasks-table/columns";
 import { DataTable } from "@/components/tasks-table/dataTable";
+import { format } from "date-fns";
 
 export default async function Page() {
   const { tasks } = await getTasks();
   const { clients } = await getClients();
   const refactoredTasks = tasks.map((task, i) => {
-    return { ...task, client_name: task["clients"]["name"] };
+    return {
+      ...task,
+      client_name: task["clients"]["name"],
+      set_date: format(task.set_date, "EEEE - dd/MM/yyyy"),
+    };
   });
 
   return (
