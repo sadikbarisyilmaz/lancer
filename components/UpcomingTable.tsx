@@ -16,7 +16,7 @@ export const UpcomingTable = ({ weeklyTasks }: Props) => {
 
   return (
     <div className="flex justify-center lg:p-6 p-4 w-full h-full animate-fadeIn">
-      <div className="grid md:grid-cols-2 lg:grid-cols-7 w-full ">
+      <div className="grid h-fit lg:h-full md:grid-cols-2 lg:grid-cols-7 w-full ">
         {weekDays.map((weekDay, i) => {
           if (
             weeklyTasks.some(
