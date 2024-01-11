@@ -2,7 +2,6 @@
 import { TaskCard } from "@/components/TaskCard";
 import { Task } from "@/lib/types";
 import { addDays, format } from "date-fns";
-import { useEffect, useRef, useState } from "react";
 
 interface Props {
   weeklyTasks: Task[];
@@ -30,7 +29,6 @@ export const UpcomingTable = ({ weeklyTasks }: Props) => {
                 key={i}
                 className={`p-3 order-1 ${
                   i !== 6 ? "lg:border-r" : ""
-                  //@ts-ignore
                 } border-foreground/10`}
               >
                 <h4 className="text-center border-b border-foreground/10 pb-4">
@@ -40,17 +38,9 @@ export const UpcomingTable = ({ weeklyTasks }: Props) => {
                   {weeklyTasks.map((task, j) => {
                     return format(task.set_date, "MMM/dd/yy") ===
                       format(weekDay, "MMM/dd/yy") ? (
-                      // @ts-ignore
                       <TaskCard key={j} task={task} />
                     ) : null;
                   })}
-                  {/* {weeklyTasks.map((task, j) => {
-                  return format(task.set_date, "MMM/dd/yy") ===
-                    format(weekDay, "MMM/dd/yy") ? (
-                    // @ts-ignore
-                    <TaskCard key={j} task={task} />
-                  ) : null;
-                })} */}
                 </div>
               </div>
             );
@@ -60,7 +50,6 @@ export const UpcomingTable = ({ weeklyTasks }: Props) => {
                 key={i}
                 className={`p-3 order-1 ${
                   i !== 6 ? "lg:border-r" : ""
-                  //@ts-ignore
                 } border-foreground/10 lg:block hidden`}
               >
                 <h4 className="text-center border-b border-foreground/10 pb-4">
