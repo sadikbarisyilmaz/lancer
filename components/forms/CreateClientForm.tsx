@@ -27,8 +27,11 @@ const formSchema = z.object({
   name: z.string().min(2).max(30),
   type: z.string().min(2).max(30),
   email: z.string().email().min(5),
-  // desc: z.string().min(2).max(30),
-  phone: z.string().regex(/^(\+\d{1,3}[- ]?)?\d{10}$/),
+  phone: z
+    .string()
+    .regex(
+      /^(\+90|0)?\s*(\(\d{3}\)[\s-]*\d{3}[\s-]*\d{2}[\s-]*\d{2}|\(\d{3}\)[\s-]*\d{3}[\s-]*\d{4}|\(\d{3}\)[\s-]*\d{7}|\d{3}[\s-]*\d{3}[\s-]*\d{4}|\d{3}[\s-]*\d{3}[\s-]*\d{2}[\s-]*\d{2})$/
+    ),
 });
 export const CreateClientForm = () => {
   const [open, setOpen] = useState(false);
@@ -133,7 +136,7 @@ export const CreateClientForm = () => {
                     <FormItem>
                       <FormLabel>Phone Number</FormLabel>
                       <FormControl>
-                        <Input {...field} />
+                        <Input placeholder="(0512) 345-67-89 " {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>
