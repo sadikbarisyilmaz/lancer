@@ -2,17 +2,32 @@
 import { TaskCard } from "@/components/TaskCard";
 import { Task } from "@/lib/types";
 import { addDays, format } from "date-fns";
+import { useEffect, useState } from "react";
+import Loading from "@/app/home/upcoming/loading-component";
 
 interface Props {
   weeklyTasks: Task[];
 }
 
 export const UpcomingTable = ({ weeklyTasks }: Props) => {
-  /// Needs to be on client side///
-  const today = new Date();
-  let noTime = new Date(today.getFullYear(), today.getMonth(), today.getDate());
-  const days = [0, 1, 2, 3, 4, 5, 6];
-  const weekDays = days.map((day) => addDays(noTime, day));
+  const [today, setToday] = useState<Date>();
+  const [weekDays, setWeekdays] = useState<Date[]>();
+  useEffect(() => {
+    const today = new Date();
+    setToday(today);
+    let noTime = new Date(
+      today.getFullYear(),
+      today.getMonth(),
+      today.getDate()
+    );
+    const days = [0, 1, 2, 3, 4, 5, 6];
+    const weekDays = days.map((day) => addDays(noTime, day));
+    setWeekdays(weekDays);
+  }, []);
+
+  if (!today || !weekDays) {
+    return <Loading />;
+  }
 
   return (
     <div className="flex justify-center lg:p-6 p-4 w-full h-full animate-fadeIn">

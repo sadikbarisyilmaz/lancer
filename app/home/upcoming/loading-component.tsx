@@ -4,7 +4,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 export default function Loading() {
   return (
     <div className="h-full w-full flex flex-col gap-2 ">
-      <Banner title="Upcoming" />
+      {/* <Banner title="Upcoming" /> */}
       <div className="flex justify-center lg:p-6 p-4 w-full h-full ">
         <div className="grid sm:grid-cols-2 lg:grid-cols-7 w-full ">
           <div className="p-2 order-1 lg:border-r border-foreground/10">
