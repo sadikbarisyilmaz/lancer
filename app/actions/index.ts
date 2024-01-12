@@ -164,6 +164,7 @@ export const createNewTask = async (formData: TaskFormData) => {
     .from("tasks")
     .insert({
       set_date: formData.set_date,
+      set_time: formData.set_time,
       title: formData.title,
       about: formData.about,
       fee: Number(formData.fee),

@@ -20,6 +20,7 @@ export interface Task {
   id: number;
   created_at: Date;
   set_date: Date | string;
+  set_time: string;
   user_id: string;
   client_id: string;
   title: string;
@@ -30,6 +31,7 @@ export interface Task {
 }
 export interface TaskFormData {
   set_date: Date;
+  set_time: string;
   title: string;
   about: string;
   fee: string;

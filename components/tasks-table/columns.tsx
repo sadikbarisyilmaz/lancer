@@ -73,6 +73,15 @@ export const columns: ColumnDef<Task>[] = [
     },
   },
   {
+    accessorKey: "set_time",
+    header: () => <div className="text-left">Set Time</div>,
+    cell: ({ row }) => {
+      return (
+        <div className="text-left font-medium">{row.getValue("set_time")}</div>
+      );
+    },
+  },
+  {
     accessorKey: "payment_status",
     header: () => <div className="text-left">Payment</div>,
     cell: ({ row }) => {

@@ -136,7 +136,7 @@ export const CreateClientForm = () => {
                     <FormItem>
                       <FormLabel>Phone Number</FormLabel>
                       <FormControl>
-                        <Input placeholder="(0512) 345-67-89 " {...field} />
+                        <Input placeholder="(0512) 345-67-89" {...field} />
                       </FormControl>
                       <FormMessage />
                     </FormItem>

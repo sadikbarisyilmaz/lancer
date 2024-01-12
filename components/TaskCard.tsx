@@ -36,12 +36,14 @@ export const TaskCard = ({ task }: Props) => {
             </span>
             <p>${task.fee}</p>
           </div>
-          <div className="p-1 text-xs gap-2 flex items-center">
-            <span className=" text-opacity-60 text-sky-600">
-              <Clock3 size={18} />
-            </span>
-            <p>18:00</p>
-          </div>
+          {task.set_time && (
+            <div className="p-1 text-xs gap-2 flex items-center">
+              <span className=" text-opacity-60 text-sky-600">
+                <Clock3 size={18} />
+              </span>
+              <p>{task.set_time}</p>
+            </div>
+          )}
           <div className="p-1 text-xs gap-2 flex items-center">
             <span
               className={`${

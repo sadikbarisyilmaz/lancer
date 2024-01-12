@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { useToast } from "../ui/use-toast";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CalendarIcon } from "lucide-react";
 import { PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Popover } from "../ui/popover";
@@ -42,6 +42,7 @@ const formSchema = z.object({
   fee: z.string().min(1, { message: "Field Required" }),
   set_date: z.date(),
   client_id: z.string().min(1, { message: "Field Required" }),
+  set_time: z.coerce.string(),
 });
 
 interface Props {
@@ -50,8 +51,8 @@ interface Props {
 
 export const CreateTaskForm = ({ clients }: Props) => {
   const [open, setOpen] = useState(false);
-
   const { toast } = useToast();
+  const timePicker = useRef(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -61,11 +62,12 @@ export const CreateTaskForm = ({ clients }: Props) => {
       fee: "",
       set_date: new Date(),
       client_id: "",
+      set_time: "",
     },
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values.set_date);
+    console.log(values);
 
     try {
       createNewTask(values);
@@ -79,6 +81,7 @@ export const CreateTaskForm = ({ clients }: Props) => {
       });
     }
   }
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
@@ -157,6 +160,32 @@ export const CreateTaskForm = ({ clients }: Props) => {
                       <FormLabel>Fee</FormLabel>
                       <FormControl>
                         <Input {...field} />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="set_time"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Time</FormLabel>
+                      <FormControl>
+                        <Button
+                          ref={timePicker}
+                          asChild
+                          variant="outline"
+                          className=""
+                          // @ts-ignore
+                          onClick={() => timePicker.current.showPicker()}
+                        >
+                          <Input
+                            className="cursor-pointer"
+                            type="time"
+                            {...field}
+                          />
+                        </Button>
                       </FormControl>
                       <FormMessage />
                     </FormItem>
