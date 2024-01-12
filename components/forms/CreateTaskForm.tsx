@@ -38,10 +38,10 @@ import { Client } from "@/lib/types";
 
 const formSchema = z.object({
   title: z.string().min(2).max(30),
-  about: z.string().min(2).max(30),
-  fee: z.string(),
+  about: z.string(),
+  fee: z.string().min(1, { message: "Field Required" }),
   set_date: z.date(),
-  client_id: z.string(),
+  client_id: z.string().min(1, { message: "Field Required" }),
 });
 
 interface Props {
