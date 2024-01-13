@@ -78,6 +78,7 @@ export const updateUserImage = async (newImage: string) => {
   return { data };
 };
 export const uploadUserImage = async (image: any) => {
+  const supabase = await createSupabaseServerClient();
   const avatarFile = image;
   const { data, error } = await supabase.storage
     .from("avatars")
@@ -85,6 +86,12 @@ export const uploadUserImage = async (image: any) => {
       cacheControl: "3600",
       upsert: false,
     });
+  if (error) {
+    console.log(error);
+  } else {
+    console.log("upload image successful");
+  }
+  return { data };
 };
 
 export const getClients = async () => {
