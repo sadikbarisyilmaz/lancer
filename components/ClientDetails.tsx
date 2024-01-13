@@ -20,6 +20,7 @@ export const ClientDetails = ({ client }: Props) => {
   const refactoredTasks = client.tasks.map((task, i) => {
     return {
       ...task,
+      client_name: client.name,
       set_date: format(task.set_date, "EEEE - dd/MM/yyyy"),
     };
   });

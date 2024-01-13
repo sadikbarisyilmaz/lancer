@@ -11,7 +11,7 @@ export default async function Page() {
     <div>
       <Banner title="Clients" />
       <div className="p-6 lg:w-full flex flex-col gap-1 animate-fadeIn">
-        <div className="lg:max-w-7xl xl:pt-20 xl:self-center xl:w-[1336px]">
+        <div className="lg:max-w-7xl xl:pt-20 xl:self-center xl:w-[1336px] xl:scale-125">
           <DataTable columns={columns} data={clients} />
           <CreateClientForm />
         </div>

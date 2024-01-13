@@ -19,7 +19,7 @@ module.exports = {
       'lg': '1366px',
       // => @media (min-width: 1024px) { ... }
 
-      'xl': '1920px',
+      'xl': '1900px',
       // // => @media (min-width: 1280px) { ... }
 
       // '2xl': '1536px',
