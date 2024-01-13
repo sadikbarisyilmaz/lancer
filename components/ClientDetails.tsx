@@ -1,6 +1,6 @@
 "use client";
 import { ClientCard } from "./ClientCard";
-import { Client, Task } from "@/lib/types";
+import { Client } from "@/lib/types";
 import { Loader } from "./Loader";
 import { ClientNotes } from "./ClientNotes";
 import { DataTable } from "./tasks-table/dataTable";
@@ -16,6 +16,7 @@ export const ClientDetails = ({ client }: Props) => {
   if (!client) {
     return <Loader />;
   }
+
   const refactoredTasks = client.tasks.map((task, i) => {
     return {
       ...task,

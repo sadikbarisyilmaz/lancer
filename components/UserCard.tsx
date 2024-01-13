@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { Separator } from "./ui/separator";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { UserCardSkeleton } from "./UserCardSkeleton";
+import Link from "next/link";
 
 export const UserCard = () => {
   const [user, setUser] = useState<any>(null);
@@ -45,13 +46,15 @@ export const UserCard = () => {
   return (
     <div className="flex flex-col gap-4">
       <div className="lg:justify-start justify-center gap-3 flex lg:flex-row flex-col items-center text-center lg:text-left py-2">
-        <Avatar className="lg:w-11 w-16 lg:h-11 h-16 ">
-          <AvatarImage
-            src={user?.user_metadata.picture}
-            alt={user?.user_metadata.full_name}
-          />
-          <AvatarFallback>P</AvatarFallback>
-        </Avatar>
+        <Link href="/home/account">
+          <Avatar className="lg:w-11 w-16 lg:h-11 h-16 ">
+            <AvatarImage
+              src={user?.user_metadata.picture}
+              alt={user?.user_metadata.full_name}
+            />
+            <AvatarFallback>P</AvatarFallback>
+          </Avatar>
+        </Link>
         <div className="">
           <small className="text-sm break-words font-medium leading-none">
             {user?.user_metadata.full_name}

@@ -16,6 +16,77 @@ export const readUserSession = async () => {
   const supabase = await createSupabaseServerClient();
   return supabase.auth.getSession();
 };
+export const updateUserEmail = async (newEmail: string) => {
+  const supabase = await createSupabaseServerClient();
+
+  const { data, error } = await supabase.auth.updateUser({
+    email: newEmail,
+  });
+
+  if (error) {
+    console.log(error);
+  } else {
+    console.log("update email successful");
+  }
+  return { data };
+};
+export const updateUserPassword = async (newPassword: string) => {
+  const supabase = await createSupabaseServerClient();
+
+  const { data, error } = await supabase.auth.updateUser({
+    password: newPassword,
+  });
+
+  if (error) {
+    console.log(error);
+  } else {
+    console.log("update password successful");
+  }
+  return { data };
+};
+export const updateUserFullName = async (newFullName: string) => {
+  const supabase = await createSupabaseServerClient();
+
+  const { data, error } = await supabase.auth.updateUser({
+    data: {
+      full_name: newFullName,
+    },
+  });
+
+  if (error) {
+    console.log(error);
+  } else {
+    console.log("update fullname successful");
+  }
+  return { data };
+};
+export const updateUserImage = async (newImage: string) => {
+  const supabase = await createSupabaseServerClient();
+
+  const { data, error } = await supabase.auth.updateUser({
+    data: {
+      avatar_url: newImage,
+      picture: newImage,
+    },
+  });
+
+  if (error) {
+    console.log(error);
+  } else {
+    console.log("update image successful");
+  }
+  return { data };
+};
+export const uploadUserImage = async (image: any) => {
+  const avatarFile = image;
+  const { data, error } = await supabase.storage
+    .from("avatars")
+    .upload("public/avatar1.png", avatarFile, {
+      cacheControl: "3600",
+      upsert: false,
+    });
+};
+
 export const getClients = async () => {
   const supabase = await createSupabaseServerClient();
   let { data: clientsList, error } = await supabase
