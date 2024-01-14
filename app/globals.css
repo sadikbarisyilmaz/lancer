@@ -75,11 +75,11 @@ button {
   border: 1px solid rgba(255, 255, 255, 0.18);
 }
 
-.loader {
-  background: rgb(82, 99, 185);
-  background: radial-gradient(
-    circle,
-    rgba(82, 99, 185, 1) 0%,
-    rgba(13, 55, 85, 1) 100%
-  );
+.bg-dark {
+  /*
+* Created with https://www.css-gradient.com
+* Gradient link: https://www.css-gradient.com/?c1=244c75&c2=4b3165&gt=r&gd=dtl
+*/
+  background: #244c75;
+  background: radial-gradient(at left top, #244c75, #4b3165);
 }

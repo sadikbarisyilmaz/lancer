@@ -1,10 +1,8 @@
 import { readUserSession } from "@/app/actions";
 import { Account } from "@/components/Account";
 import { Banner } from "@/components/Banner";
-import createSupabaseServerClient from "@/lib/supabase/server";
 
 export default async function Page() {
-  const supabase = createSupabaseServerClient();
   const {
     data: { session },
   } = await readUserSession();

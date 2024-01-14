@@ -57,7 +57,9 @@ export const updateUserFullName = async (newFullName: string) => {
     console.log(error);
   } else {
     console.log("update fullname successful");
+    revalidatePath("/home/account");
   }
+
   return { data };
 };
 export const updateUserImage = async (newImage: string) => {
@@ -185,7 +187,6 @@ export const createNewClientNote = async (
     console.log(error);
   } else {
     console.log("delete client successful");
-    // revalidatePath('/home/clients/12')
     return note;
   }
 };

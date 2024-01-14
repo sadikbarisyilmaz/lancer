@@ -43,7 +43,6 @@ export const CreateClientForm = () => {
       name: "",
       type: "",
       email: "",
-      // desc: "",
       phone: "",
     },
   });
