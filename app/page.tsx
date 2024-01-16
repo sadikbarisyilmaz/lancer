@@ -20,7 +20,14 @@ export default function Page() {
     const {
       data: { session },
     } = await supabase.auth.getSession();
-
+    const {
+      data: { subscription },
+    } = supabase.auth.onAuthStateChange((event) => {
+      if (event === "SIGNED_IN") {
+        console.log("SIGNED_IN");
+        router.push("/home/upcoming");
+      }
+    });
     if (session && session.user.user_metadata.full_name === undefined) {
       router.push("/home/account");
     } else if (session) {
@@ -57,7 +64,6 @@ export default function Page() {
           <Auth
             redirectTo={`${url}/auth/callback`}
             supabaseClient={supabase}
-            view="magic_link"
             appearance={{ theme: ThemeSupa }}
             providers={["google"]}
             theme="dark"

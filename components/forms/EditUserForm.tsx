@@ -6,7 +6,13 @@ import { Separator } from "../ui/separator";
 import { Button } from "../ui/button";
 import { User } from "@supabase/supabase-js";
 import { useEffect, useState } from "react";
-import { updateUserEmail, updateUserFullName } from "@/app/actions";
+import {
+  updateUserEmail,
+  updateUserFullName,
+  updateUserPassword,
+} from "@/app/actions";
+import { useToast } from "../ui/use-toast";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
 interface Props {
   user: User;
@@ -19,6 +25,9 @@ export const EditUserForm = ({ user }: Props) => {
   });
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [passwordCheck, setPasswordCheck] = useState("");
+  const { toast } = useToast();
 
   const activateForm = (e: React.SyntheticEvent<HTMLOrSVGElement>) => {
     let value = e.currentTarget.dataset.label;
@@ -58,7 +67,6 @@ export const EditUserForm = ({ user }: Props) => {
         break;
     }
   };
-
   useEffect(() => {
     setName(user.user_metadata.full_name);
     setEmail(user.user_metadata.email);
@@ -67,21 +75,46 @@ export const EditUserForm = ({ user }: Props) => {
   const handleName = (e: React.SyntheticEvent<EventTarget>) => {
     e.preventDefault();
     updateUserFullName(name);
-    console.log(name);
-
-    console.log("update name");
+    setActiveForm({ ...activeForm, name: false });
+    toast({
+      title: `- Name changed successfully !`,
+    });
   };
-  const handleEmail = (e: React.SyntheticEvent<EventTarget>) => {
+  const handlePassword = (e: React.SyntheticEvent<EventTarget>) => {
     e.preventDefault();
-    updateUserEmail(email);
-    console.log("update name");
+    if (password === passwordCheck) {
+      updateUserPassword(password);
+      toast({
+        title: `- Password set successfully !`,
+      });
+    } else {
+      toast({
+        title: `- Passwords does not match !`,
+      });
+    }
   };
+  // const handleEmail = (e: React.SyntheticEvent<EventTarget>) => {
+  //   e.preventDefault();
+  //   updateUserEmail(email);
+  //   console.log("update name");
+  // };
 
   return (
     <div className="bg-background/60 p-6 text-lg gap-5 grid rounded-md">
+      <Avatar className="lg:w-24 w-16 lg:h-24 h-16 flex flex-col ">
+        <AvatarImage
+          src={user.user_metadata.picture}
+          alt={user.user_metadata.full_name}
+          className=""
+        />
+        <AvatarFallback>
+          {user?.user_metadata.full_name.charAt(0).toUpperCase()}
+        </AvatarFallback>
+      </Avatar>
+      <h2 className="text-3xl">{user.user_metadata.full_name}</h2>
       <h3 className="text-2xl">Edit User Info</h3>
       <Separator className=" bg-foreground/10" />
-      <div className="flex gap-4 w-96 items-center">
+      <div className="flex gap-4 min-w-96 md:w-96 items-center">
         <Label htmlFor="name">Name:</Label>
         <span className="flex items-center justify-between w-full">
           {!activeForm.name ? (
@@ -109,7 +142,34 @@ export const EditUserForm = ({ user }: Props) => {
           </Button>
         </span>
       </div>
-
+      <Separator className=" bg-foreground/10" />
+      <div className="flex flex-col gap-4 min-w-96 md:w-96 ">
+        <h2>Change Password</h2>
+        <Label htmlFor="name">Password</Label>
+        <span className="flex items-center justify-between w-full">
+          <form
+            onSubmit={handlePassword}
+            className="flex flex-col gap-2 w-full animate-fadeIn "
+          >
+            <Input
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+              type="password"
+              required
+            />
+            <Label htmlFor="name">Rewrite Password</Label>
+            <Input
+              onChange={(e) => setPasswordCheck(e.target.value)}
+              value={passwordCheck}
+              type="password"
+              required
+            />
+            <Button type="submit" variant="ghost">
+              Save
+            </Button>
+          </form>
+        </span>
+      </div>
       {/* <div className="flex gap-4  items-center">
         <Label htmlFor="email">Email:</Label>
         <span className="flex justify-between w-full">
