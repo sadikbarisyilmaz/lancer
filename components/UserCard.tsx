@@ -52,7 +52,9 @@ export const UserCard = () => {
               src={user?.user_metadata.picture}
               alt={user?.user_metadata.full_name}
             />
-            <AvatarFallback>P</AvatarFallback>
+            <AvatarFallback>
+              {user?.user_metadata.full_name.charAt(0).toUpperCase()}
+            </AvatarFallback>
           </Avatar>
         </Link>
         <div className="">

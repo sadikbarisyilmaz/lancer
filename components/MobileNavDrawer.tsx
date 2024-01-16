@@ -35,7 +35,10 @@ export function MobileNavDrawer() {
       </DrawerTrigger>
       <DrawerContent>
         <nav className="w-full h-max flex flex-col items-end border-r-foreground/10 p-4 gap-2">
-          <div className="w-full h-fit flex flex-col justify-between text-sm">
+          <div
+            onClick={mobileCheck}
+            className="w-full h-fit flex flex-col justify-between text-sm"
+          >
             <UserCard />
           </div>
           <div className="justify-center w-full">

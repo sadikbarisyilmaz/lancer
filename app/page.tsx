@@ -15,17 +15,23 @@ export default function Page() {
     checkUser();
   }, []);
   const router = useRouter();
+
   const checkUser = async () => {
     const {
       data: { session },
     } = await supabase.auth.getSession();
-    if (session) {
+
+    if (session && session.user.user_metadata.full_name === undefined) {
+      router.push("/home/account");
+    } else if (session) {
       router.push("/home/upcoming");
     } else {
       setloading(false);
     }
   };
+
   const supabase = createSupabaseBrowserClient();
+
   if (loading) {
     return (
       <div className="h-screen w-full flex items-center justify-center">
