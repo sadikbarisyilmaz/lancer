@@ -47,15 +47,15 @@ export const columns: ColumnDef<Task>[] = [
       );
     },
   },
-  {
-    accessorKey: "about",
-    header: () => <div className="text-left">About</div>,
-    cell: ({ row }) => {
-      return (
-        <div className="text-left font-medium">{row.getValue("about")}</div>
-      );
-    },
-  },
+  // {
+  //   accessorKey: "about",
+  //   header: () => <div className="text-left">About</div>,
+  //   cell: ({ row }) => {
+  //     return (
+  //       <div className="text-left font-medium">{row.getValue("about")}</div>
+  //     );
+  //   },
+  // },
   {
     accessorKey: "fee",
     header: () => <div className="text-left">Fee</div>,
@@ -92,40 +92,40 @@ export const columns: ColumnDef<Task>[] = [
       );
     },
   },
-  {
-    id: "actions",
-    cell: ({ row }) => {
-      const payment = row.original;
-      return (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="ghost" className="h-[20px] w-[20px] p-0">
-              <span className="sr-only">Open menu</span>
-              <MoreHorizontal className="h-4 w-4" />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent align="end">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem
-              onClick={() =>
-                updatePaymentStatus(
-                  row.original.payment_status,
-                  row.original.id
-                )
-              }
-            >
-              Mark as{" "}
-              {`${
-                row.original.payment_status === "Paid" ? "Not Paid" : "Paid"
-              }`}
-            </DropdownMenuItem>
-            <DropdownMenuItem onClick={() => deleteTasks(row.original.id)}>
-              Delete Task
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      );
-    },
-  },
+  // {
+  //   id: "actions",
+  //   cell: ({ row }) => {
+  //     const payment = row.original;
+  //     return (
+  //       <DropdownMenu>
+  //         <DropdownMenuTrigger asChild>
+  //           <Button variant="ghost" className="h-[20px] w-[20px] p-0">
+  //             <span className="sr-only">Open menu</span>
+  //             <MoreHorizontal className="h-4 w-4" />
+  //           </Button>
+  //         </DropdownMenuTrigger>
+  //         <DropdownMenuContent align="end">
+  //           <DropdownMenuLabel>Actions</DropdownMenuLabel>
+  //           <DropdownMenuSeparator />
+  //           <DropdownMenuItem
+  //             onClick={() =>
+  //               updatePaymentStatus(
+  //                 row.original.payment_status,
+  //                 row.original.id
+  //               )
+  //             }
+  //           >
+  //             Mark as{" "}
+  //             {`${
+  //               row.original.payment_status === "Paid" ? "Not Paid" : "Paid"
+  //             }`}
+  //           </DropdownMenuItem>
+  //           <DropdownMenuItem onClick={() => deleteTasks(row.original.id)}>
+  //             Delete Task
+  //           </DropdownMenuItem>
+  //         </DropdownMenuContent>
+  //       </DropdownMenu>
+  //     );
+  //   },
+  // },
 ];
