@@ -10,7 +10,7 @@ interface Props {
 
 export const Account = ({ user }: Props) => {
   return (
-    <div className="flex flex-col items-center w-full">
+    <div className="flex flex-col items-center h-full w-full">
       <EditUserForm user={user} />
     </div>
   );

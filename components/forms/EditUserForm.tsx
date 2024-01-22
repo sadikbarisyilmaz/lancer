@@ -10,6 +10,7 @@ import {
   updateUserEmail,
   updateUserFullName,
   updateUserPassword,
+  uploadUserImage,
 } from "@/app/actions";
 import { useToast } from "../ui/use-toast";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
@@ -24,7 +25,8 @@ export const EditUserForm = ({ user }: Props) => {
     password: false,
   });
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
+  const [picture, setPicture] = useState("");
+  const [file, setFile] = useState<any>(undefined);
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
   const { toast } = useToast();
@@ -69,7 +71,8 @@ export const EditUserForm = ({ user }: Props) => {
   };
   useEffect(() => {
     setName(user.user_metadata.full_name);
-    setEmail(user.user_metadata.email);
+    // setEmail(user.user_metadata.email);
+    console.log(user);
   }, []);
 
   const handleName = (e: React.SyntheticEvent<EventTarget>) => {
@@ -93,6 +96,13 @@ export const EditUserForm = ({ user }: Props) => {
       });
     }
   };
+  const handlePicture = (e: React.SyntheticEvent<EventTarget>) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("img", file[0]);
+    uploadUserImage(formData);
+  };
+
   // const handleEmail = (e: React.SyntheticEvent<EventTarget>) => {
   //   e.preventDefault();
   //   updateUserEmail(email);
@@ -100,18 +110,22 @@ export const EditUserForm = ({ user }: Props) => {
   // };
 
   return (
-    <div className="bg-background/60 p-6 text-lg gap-5 grid rounded-md">
-      <Avatar className="lg:w-24 w-16 lg:h-24 h-16 flex flex-col ">
-        <AvatarImage
-          src={user.user_metadata.picture}
-          alt={user.user_metadata.full_name}
-          className=""
-        />
-        <AvatarFallback>
-          {user?.user_metadata.full_name.charAt(0).toUpperCase()}
-        </AvatarFallback>
-      </Avatar>
-      <h2 className="text-3xl">{user.user_metadata.full_name}</h2>
+    <div className="bg-background/60 p-6 text-lg gap-2 grid h-full w-full md:w-fit rounded-md">
+      <div className="grid justify-center">
+        <div className="flex w-full justify-center">
+          <Avatar className="lg:w-24 w-16 lg:h-24 h-16 flex flex-col self-center">
+            <AvatarImage
+              src={user.user_metadata.avatar_url}
+              alt={user.user_metadata.full_name}
+              className="flex justify-center w-full"
+            />
+            <AvatarFallback>
+              {user?.user_metadata.full_name.charAt(0).toUpperCase()}
+            </AvatarFallback>
+          </Avatar>
+        </div>
+        <h2 className="text-3xl">{user.user_metadata.full_name}</h2>
+      </div>
       <h3 className="text-2xl">Edit User Info</h3>
       <Separator className=" bg-foreground/10" />
       <div className="flex gap-4 min-w-96 md:w-96 items-center">
@@ -170,6 +184,35 @@ export const EditUserForm = ({ user }: Props) => {
           </form>
         </span>
       </div>
+      {user.app_metadata.providers[0] !== "google" && (
+        <>
+          <Separator className=" bg-foreground/10" />
+          <div className="flex flex-col gap-4 min-w-96 md:w-96 ">
+            <h2>Change Profile Picture</h2>
+            <span className="flex items-center justify-between w-full">
+              <form
+                onSubmit={handlePicture}
+                className="flex flex-col gap-2 w-full animate-fadeIn "
+              >
+                <Input
+                  onChange={(e) => {
+                    setPicture(e.target.value);
+                    setFile(e.target.files);
+                  }}
+                  value={picture}
+                  required
+                  type="file"
+                />
+
+                <Button type="submit" variant="ghost">
+                  Save
+                </Button>
+              </form>
+            </span>
+          </div>
+        </>
+      )}
+
       {/* <div className="flex gap-4  items-center">
         <Label htmlFor="email">Email:</Label>
         <span className="flex justify-between w-full">
@@ -198,7 +241,6 @@ export const EditUserForm = ({ user }: Props) => {
           </Button>
         </span>
       </div> */}
-
       {/* <div className="flex gap-4  items-center">
         <Label htmlFor="password">Password:</Label>
         <span className="flex justify-between w-full">
@@ -227,7 +269,6 @@ export const EditUserForm = ({ user }: Props) => {
           </Button>
         </span>
       </div> */}
-
       {/* <div className="flex gap-4  items-center">
         <Label htmlFor="picture">Picture: </Label>
         <span className="flex justify-between w-full">

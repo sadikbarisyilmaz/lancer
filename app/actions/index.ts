@@ -64,7 +64,6 @@ export const updateUserFullName = async (newFullName: string) => {
 };
 export const updateUserImage = async (newImage: string) => {
   const supabase = await createSupabaseServerClient();
-
   const { data, error } = await supabase.auth.updateUser({
     data: {
       avatar_url: newImage,
@@ -76,15 +75,18 @@ export const updateUserImage = async (newImage: string) => {
     console.log(error);
   } else {
     console.log("update image successful");
+    console.log("data: ", data);
   }
   return { data };
 };
-export const uploadUserImage = async (image: any) => {
+export const uploadUserImage = async (formData: FormData) => {
   const supabase = await createSupabaseServerClient();
-  const avatarFile = image;
+  const avatarFile = formData.get("img") as File;
+  console.log(avatarFile.name);
+
   const { data, error } = await supabase.storage
     .from("avatars")
-    .upload("public/avatar1.png", avatarFile, {
+    .upload(`public/${avatarFile.name}`, avatarFile, {
       cacheControl: "3600",
       upsert: false,
     });
@@ -92,8 +94,12 @@ export const uploadUserImage = async (image: any) => {
     console.log(error);
   } else {
     console.log("upload image successful");
+    const { data } = supabase.storage
+      .from("avatars")
+      .getPublicUrl(`public/${avatarFile.name}`);
+    updateUserImage(data.publicUrl);
   }
-  return { data };
+  revalidatePath("/home/account");
 };
 
 export const getClients = async () => {

@@ -26,7 +26,7 @@ export const ClientDetails = ({ client }: Props) => {
   });
 
   return (
-    <div className="w-full h-fit justify-center lg:gap-2 grid grid-cols-1 lg:grid-cols-3">
+    <div className="w-full  justify-center lg:gap-2 grid grid-cols-1 lg:grid-cols-3">
       <div className="flex flex-col  gap-2 w-full">
         <ClientCard client={client} />
         <ClientNotes id={client.id} />
