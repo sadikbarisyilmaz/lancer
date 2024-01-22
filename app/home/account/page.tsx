@@ -14,7 +14,7 @@ export default async function Page() {
   return (
     <div className="w-full overflow-y-scroll lg:overflow-hidden h-full flex flex-col">
       <Banner title="My Account" />
-      <div className="p-6 lg:w-full flex flex-col items-center justify-center lg:h-full animate-fadeIn">
+      <div className="p-6 lg:w-full flex flex-col md:items-center md:justify-center lg:h-full animate-fadeIn">
         <EditUserForm user={session.user} />
       </div>
     </div>
