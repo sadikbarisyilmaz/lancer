@@ -101,7 +101,6 @@ export const uploadUserImage = async (formData: FormData) => {
     await supabase.auth.refreshSession();
   }
 };
-
 export const getClients = async () => {
   const supabase = await createSupabaseServerClient();
   let { data: clientsList, error } = await supabase

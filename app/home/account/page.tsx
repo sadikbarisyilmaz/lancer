@@ -1,6 +1,6 @@
 import { readUserSession } from "@/app/actions";
-import { Account } from "@/components/Account";
 import { Banner } from "@/components/Banner";
+import { EditUserForm } from "@/components/forms/EditUserForm";
 
 export default async function Page() {
   const {
@@ -12,10 +12,10 @@ export default async function Page() {
   }
 
   return (
-    <div className="w-full h-full flex flex-col">
+    <div className="w-full overflow-y-scroll lg:overflow-hidden h-full flex flex-col">
       <Banner title="My Account" />
-      <div className="p-6 lg:w-full flex flex-col  items-center h-full gap-1 animate-fadeIn">
-        <Account user={session.user} />
+      <div className="p-6 lg:w-full flex flex-col items-center justify-center lg:h-full animate-fadeIn">
+        <EditUserForm user={session.user} />
       </div>
     </div>
   );

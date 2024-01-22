@@ -14,6 +14,7 @@ import {
 } from "@/app/actions";
 import { useToast } from "../ui/use-toast";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import Loading from "@/app/home/account/loading-component";
 
 interface Props {
   user: User;
@@ -72,7 +73,7 @@ export const EditUserForm = ({ user }: Props) => {
   useEffect(() => {
     setName(user.user_metadata.full_name);
     // setEmail(user.user_metadata.email);
-    console.log(user);
+    console.log(user.app_metadata.iss);
   }, []);
 
   const handleName = (e: React.SyntheticEvent<EventTarget>) => {
@@ -112,9 +113,13 @@ export const EditUserForm = ({ user }: Props) => {
   //   console.log("update name");
   // };
 
+  if (!user) {
+    return <Loading />;
+  }
+
   return (
-    <div className="bg-background/60 p-6 text-lg gap-2 grid h-full w-full md:w-fit rounded-md">
-      <div className="grid justify-center">
+    <div className="bg-background/60 p-6 gap-2 text-lg grid w-full md:w-fit h-fit rounded-md">
+      <div className="grid justify-center pb-2">
         <div className="flex w-full justify-center">
           <Avatar className="lg:w-24 w-16 lg:h-24 h-16 flex flex-col self-center">
             <AvatarImage
@@ -129,7 +134,7 @@ export const EditUserForm = ({ user }: Props) => {
         </div>
         <h2 className="text-3xl">{user.user_metadata.full_name}</h2>
       </div>
-      <h3 className="text-2xl">Edit User Info</h3>
+      <h3 className="sm:text-2xl">Edit User Info</h3>
       <Separator className=" bg-foreground/10" />
       <div className="flex gap-4 min-w-96 md:w-96 items-center">
         <Label htmlFor="name">Name:</Label>
@@ -161,7 +166,7 @@ export const EditUserForm = ({ user }: Props) => {
       </div>
       <Separator className=" bg-foreground/10" />
       <div className="flex flex-col gap-4 min-w-96 md:w-96 ">
-        <h2>Change Password</h2>
+        <h2 className="sm:text-2xl">Change Password</h2>
         <Label htmlFor="name">Password</Label>
         <span className="flex items-center justify-between w-full">
           <form
@@ -187,7 +192,7 @@ export const EditUserForm = ({ user }: Props) => {
           </form>
         </span>
       </div>
-      {user.app_metadata.providers[0] !== "google" && (
+      {user.user_metadata.iss !== "https://accounts.google.com" && (
         <>
           <Separator className=" bg-foreground/10" />
           <div className="flex flex-col gap-4 min-w-96 md:w-96 ">
