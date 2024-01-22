@@ -101,6 +101,9 @@ export const EditUserForm = ({ user }: Props) => {
     const formData = new FormData();
     formData.append("img", file[0]);
     uploadUserImage(formData);
+    toast({
+      title: `- Profile Picture set successfully !`,
+    });
   };
 
   // const handleEmail = (e: React.SyntheticEvent<EventTarget>) => {
@@ -212,7 +215,6 @@ export const EditUserForm = ({ user }: Props) => {
           </div>
         </>
       )}
-
       {/* <div className="flex gap-4  items-center">
         <Label htmlFor="email">Email:</Label>
         <span className="flex justify-between w-full">

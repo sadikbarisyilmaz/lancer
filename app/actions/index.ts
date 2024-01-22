@@ -83,10 +83,10 @@ export const uploadUserImage = async (formData: FormData) => {
   const supabase = await createSupabaseServerClient();
   const avatarFile = formData.get("img") as File;
   console.log(avatarFile.name);
-
+  const fileName = `${Math.random()}`;
   const { data, error } = await supabase.storage
     .from("avatars")
-    .upload(`public/${avatarFile.name}`, avatarFile, {
+    .upload(`public/${fileName}`, avatarFile, {
       cacheControl: "3600",
       upsert: false,
     });
@@ -96,10 +96,10 @@ export const uploadUserImage = async (formData: FormData) => {
     console.log("upload image successful");
     const { data } = supabase.storage
       .from("avatars")
-      .getPublicUrl(`public/${avatarFile.name}`);
+      .getPublicUrl(`public/${fileName}`);
     updateUserImage(data.publicUrl);
+    await supabase.auth.refreshSession();
   }
-  revalidatePath("/home/account");
 };
 
 export const getClients = async () => {
