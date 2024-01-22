@@ -67,6 +67,7 @@ export default function Page() {
             appearance={{ theme: ThemeSupa }}
             providers={["google"]}
             theme="dark"
+            view="magic_link"
           />
         </div>
       </Card>

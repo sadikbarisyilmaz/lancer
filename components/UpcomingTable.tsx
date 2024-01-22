@@ -50,6 +50,13 @@ export const UpcomingTable = ({ weeklyTasks }: Props) => {
 
   return (
     <div className="flex justify-center lg:p-6 p-4 w-full h-full animate-fadeIn">
+      {formattedWeeklyTasks?.length === 0 && (
+        <div className="lg:hidden absolute top-2/4 ">
+          <p className=" font-semibold text-lg text-center px-2">
+            No upcoming tasks set for this week.
+          </p>
+        </div>
+      )}
       <div className="grid h-fit lg:h-full md:grid-cols-2 lg:grid-cols-7 w-full ">
         {weekDays.map((weekDay, i) => {
           if (formattedWeeklyTasks?.some((task) => task.set_date === weekDay)) {
