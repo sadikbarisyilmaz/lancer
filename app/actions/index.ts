@@ -327,3 +327,50 @@ export const getWeeklyTasks = async () => {
   }
   return { tasks };
 };
+
+export const getTaskNotes = async (taskId: number | number[]) => {
+  const supabase = await createSupabaseServerClient();
+
+  let { data: notesList, error } = await supabase
+    .from("task-notes")
+    .select()
+    .eq("task_id", taskId);
+  // let notes = <ClientNote[]>notesList;
+  // if (error) {
+  //   console.log(error);
+  // } else {
+  //   console.log("get client note successful");
+  // }
+  // return notes;
+};
+// export const createNewTaskNote = async (
+//   formData: { note: string },
+//   clientId: number | number[]
+// ) => {
+//   const supabase = await createSupabaseServerClient();
+//   const { data, error } = await supabase
+//     .from("client-notes")
+//     .insert({
+//       content: formData.note,
+//       client_id: clientId,
+//     })
+//     .select();
+//   let note = <ClientNote[]>data;
+//   if (error) {
+//     console.log(error);
+//   } else {
+//     console.log("delete client successful");
+//     return note;
+//   }
+// };
+// export const deleteTaskNote = async (clientNoteId: number | number[]) => {
+//   const supabase = await createSupabaseServerClient();
+//   let { error } = await supabase
+//     .from("client-notes")
+//     .delete()
+//     .eq("id", clientNoteId);
+
+//   if (error) {
+//     console.log("error", error);
+//   }
+// };
