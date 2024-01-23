@@ -29,6 +29,13 @@ export interface Task {
   payment_status: string;
   clients: Client;
 }
+export interface EditTaskFormData {
+  set_date: Date | string;
+  set_time: string;
+  title: string;
+  about: string;
+  fee: string;
+}
 export interface TaskFormData {
   set_date: Date;
   set_time: string;

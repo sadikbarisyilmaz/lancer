@@ -5,6 +5,7 @@ import {
   Client,
   ClientFormData,
   ClientNote,
+  EditTaskFormData,
   Task,
   TaskFormData,
 } from "@/lib/types";
@@ -293,6 +294,29 @@ export const updatePaymentStatus = async (
     console.log("error", error);
   } else {
     console.log("payment status updated successfully");
+    revalidatePath("/home/tasks");
+  }
+};
+export const editTask = async (
+  task: EditTaskFormData,
+  TaskId: number | number[]
+) => {
+  const supabase = await createSupabaseServerClient();
+  let { error } = await supabase
+    .from("tasks")
+    .update({
+      title: task.title,
+      about: "",
+      fee: Number(task.fee),
+      set_date: task.set_date,
+      set_time: task.set_time,
+    })
+    .eq("id", TaskId);
+
+  if (error) {
+    console.log("error", error);
+  } else {
+    console.log("Task updated successfully");
     revalidatePath("/home/tasks");
   }
 };

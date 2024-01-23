@@ -1,5 +1,5 @@
 "use client";
-import { createNewTask } from "@/app/actions";
+import { createNewTask, editTask } from "@/app/actions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -61,9 +61,9 @@ export const EditTaskForm = ({ task }: Props) => {
   function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       console.log(values);
-      //   createNewTask(values);
+      editTask(values, task.id);
       toast({
-        title: `Task created successfully !`,
+        title: `Task edited successfully !`,
       });
       setOpen(false);
     } catch (error) {
