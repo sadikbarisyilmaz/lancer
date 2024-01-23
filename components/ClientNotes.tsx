@@ -78,7 +78,6 @@ export const ClientNotes = ({ id }: { id: number }) => {
       });
     }
   }
-  console.log(clientNotes);
 
   return (
     <div>

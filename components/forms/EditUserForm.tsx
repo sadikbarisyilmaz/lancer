@@ -70,10 +70,10 @@ export const EditUserForm = ({ user }: Props) => {
         break;
     }
   };
+
   useEffect(() => {
     setName(user.user_metadata.full_name);
     // setEmail(user.user_metadata.email);
-    console.log(user.app_metadata.iss);
   }, []);
 
   const handleName = (e: React.SyntheticEvent<EventTarget>) => {
@@ -97,6 +97,7 @@ export const EditUserForm = ({ user }: Props) => {
       });
     }
   };
+
   const handlePicture = (e: React.SyntheticEvent<EventTarget>) => {
     e.preventDefault();
     const formData = new FormData();

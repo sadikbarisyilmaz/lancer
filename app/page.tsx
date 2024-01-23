@@ -24,10 +24,11 @@ export default function Page() {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event) => {
       if (event === "SIGNED_IN") {
-        // console.log("SIGNED_IN");
+        console.log("SIGNED_IN");
         router.push("/home/upcoming");
       }
     });
+
     if (session && session.user.user_metadata.full_name === undefined) {
       router.push("/home/account");
     } else if (session) {

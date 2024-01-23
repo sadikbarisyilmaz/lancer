@@ -226,7 +226,7 @@ export const getTask = async (taskId: number | number[]) => {
   const supabase = await createSupabaseServerClient();
   let { data: tasksList, error } = await supabase
     .from("tasks")
-    .select()
+    .select("*,  clients(name)")
     .eq("id", taskId);
 
   let tasks = <Task[]>tasksList;
