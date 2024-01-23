@@ -29,6 +29,13 @@ import { format } from "date-fns";
 import { Calendar } from "../ui/calendar";
 
 import { Task } from "@/lib/types";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "../ui/select";
 
 const formSchema = z.object({
   title: z.string().min(2).max(30),
@@ -36,6 +43,7 @@ const formSchema = z.object({
   fee: z.string().min(1, { message: "Field Required" }),
   set_date: z.date(),
   set_time: z.coerce.string(),
+  frequency: z.string(),
 });
 
 interface Props {
@@ -55,6 +63,7 @@ export const EditTaskForm = ({ task }: Props) => {
       fee: task.fee.toString(),
       set_date: new Date(task.set_date),
       set_time: task.set_time,
+      frequency: task.frequency,
     },
   });
 
@@ -72,6 +81,7 @@ export const EditTaskForm = ({ task }: Props) => {
       });
     }
   }
+  const frequencyArr = ["Once", "Biweekly", "Weekly"];
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -180,6 +190,32 @@ export const EditTaskForm = ({ task }: Props) => {
                         </PopoverContent>
                       </Popover>
 
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="frequency"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Frequency</FormLabel>
+                      <Select onValueChange={field.onChange}>
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select Frequency" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {frequencyArr?.map((frequency, i) => {
+                            return (
+                              <SelectItem key={i} value={frequency}>
+                                {frequency}
+                              </SelectItem>
+                            );
+                          })}
+                        </SelectContent>
+                      </Select>
                       <FormMessage />
                     </FormItem>
                   )}

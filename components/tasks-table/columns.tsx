@@ -82,6 +82,15 @@ export const columns: ColumnDef<Task>[] = [
     },
   },
   {
+    accessorKey: "frequency",
+    header: () => <div className="text-left">Frequency</div>,
+    cell: ({ row }) => {
+      return (
+        <div className="text-left font-medium">{row.getValue("frequency")}</div>
+      );
+    },
+  },
+  {
     accessorKey: "payment_status",
     header: () => <div className="text-left">Payment</div>,
     cell: ({ row }) => {

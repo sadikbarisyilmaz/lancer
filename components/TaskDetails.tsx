@@ -10,6 +10,7 @@ import {
   Calendar,
   Check,
   Clock3,
+  Repeat2,
   User,
   X,
 } from "lucide-react";
@@ -65,7 +66,7 @@ export const TaskDetails = ({ task }: Props) => {
   }
 
   return (
-    <div className="w-full justify-center lg:gap-2 grid grid-cols-1 lg:grid-cols-3">
+    <div className="w-full  animate-fadeIn justify-center lg:gap-2 grid grid-cols-1 lg:grid-cols-3">
       <Card className="p-6 w-full text-foreground/90 flex flex-col justify-center dark:bg-black bg-white dark:bg-opacity-50 bg-opacity-50 gap-4 text-lg ">
         <h6 className="flex text-xl font-bold items-center gap-3 ">
           <span className=" text-opacity-100 text-orange-300">
@@ -81,7 +82,6 @@ export const TaskDetails = ({ task }: Props) => {
             </span>
             <p>{task.clients.name}</p>
           </div>
-
           <div className="p-1  gap-2 flex items-center">
             <span className=" text-opacity-60 text-green-700">
               <Calendar size={24} />
@@ -96,6 +96,14 @@ export const TaskDetails = ({ task }: Props) => {
               <p>{task.set_time}</p>
             </div>
           )}
+
+          <div className="p-1  gap-2 flex items-center">
+            <span className=" text-opacity-60 text-sky-600">
+              <Repeat2 size={24} />
+            </span>
+            <p>{task.frequency}</p>
+          </div>
+
           <div className="p-1  gap-2 flex items-center">
             <span className=" text-opacity-60 text-green-700">
               <Banknote size={24} />
@@ -103,7 +111,10 @@ export const TaskDetails = ({ task }: Props) => {
             <p>${task.fee}</p>
           </div>
           <div className=" gap-2 flex justify-between items-center">
-            <span className="p-1 gap-2 flex  items-center">
+            <span
+              key={task.payment_status}
+              className="p-1 gap-2 flex animate-fadeIn items-center"
+            >
               <span
                 className={`${
                   task.payment_status === "Paid"

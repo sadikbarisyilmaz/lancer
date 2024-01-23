@@ -28,6 +28,7 @@ export interface Task {
   fee: number;
   payment_status: string;
   clients: Client;
+  frequency: string;
 }
 export interface EditTaskFormData {
   set_date: Date | string;
@@ -35,6 +36,7 @@ export interface EditTaskFormData {
   title: string;
   about: string;
   fee: string;
+  frequency: string;
 }
 export interface TaskFormData {
   set_date: Date;
@@ -43,6 +45,7 @@ export interface TaskFormData {
   about: string;
   fee: string;
   client_id: string;
+  frequency: string;
 }
 
 export interface TaskNote {

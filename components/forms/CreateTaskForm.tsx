@@ -43,6 +43,7 @@ const formSchema = z.object({
   set_date: z.date(),
   client_id: z.string().min(1, { message: "Field Required" }),
   set_time: z.coerce.string(),
+  frequency: z.string(),
 });
 
 interface Props {
@@ -63,9 +64,10 @@ export const CreateTaskForm = ({ clients }: Props) => {
       set_date: new Date(),
       client_id: "",
       set_time: "",
+      frequency: "",
     },
   });
-
+  const frequencyArr = ["Once", "Biweekly", "Weekly"];
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
 
@@ -230,6 +232,32 @@ export const CreateTaskForm = ({ clients }: Props) => {
                         </PopoverContent>
                       </Popover>
 
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="frequency"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Frequency</FormLabel>
+                      <Select onValueChange={field.onChange}>
+                        <FormControl>
+                          <SelectTrigger>
+                            <SelectValue placeholder="Select Frequency" />
+                          </SelectTrigger>
+                        </FormControl>
+                        <SelectContent>
+                          {frequencyArr?.map((frequency, i) => {
+                            return (
+                              <SelectItem key={i} value={frequency}>
+                                {frequency}
+                              </SelectItem>
+                            );
+                          })}
+                        </SelectContent>
+                      </Select>
                       <FormMessage />
                     </FormItem>
                   )}

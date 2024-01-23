@@ -224,6 +224,37 @@ export const getTasks = async () => {
   }
   return { tasks };
 };
+// export const getTasksOfTwoWeeks = async () => {
+//   const supabase = await createSupabaseServerClient();
+//   let today = addDays(new Date(), -1);
+//   let twoWeeksLater = addDays(new Date(), 14);
+
+//   const todayUTC = format(
+//     new Date(today.toISOString().slice(0, -1)),
+//     "yyyy-MM-dd"
+//   );
+
+//   const twoWeeksLaterUTC = format(
+//     new Date(twoWeeksLater.toISOString().slice(0, -1)),
+//     "yyyy-MM-dd"
+//   );
+
+//   let { data: tasksList, error } = await supabase
+//     .from("tasks")
+//     .select("*,  clients(name, type)")
+//     .gte("set_date", todayUTC)
+//     .lt("set_date", twoWeeksLaterUTC)
+//     .order("set_date", { ascending: false });
+
+//   let tasks = <Task[]>tasksList;
+
+//   if (error) {
+//     console.log(error);
+//   } else {
+//     console.log("get weekly tasks successful");
+//   }
+//   return { tasks };
+// };
 export const getTask = async (taskId: number | number[]) => {
   const supabase = await createSupabaseServerClient();
   let { data: tasksList, error } = await supabase
@@ -256,10 +287,39 @@ export const createNewTask = async (formData: TaskFormData) => {
       fee: Number(formData.fee),
       client_id: Number(formData.client_id),
       user_id: user?.id,
+      frequency: formData.frequency,
     })
     .select();
 
   let task = <Task[]>data;
+  if (error) {
+    console.log(error);
+  } else {
+    console.log("create task successful");
+    revalidatePath("/home/tasks");
+  }
+};
+export const createRecurringTask = async (task: Task) => {
+  const supabase = await createSupabaseServerClient();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
+
+  const { data, error } = await supabase
+    .from("tasks")
+    .insert({
+      set_date: task.set_date,
+      set_time: task.set_time,
+      title: task.title,
+      about: task.about,
+      fee: Number(task.fee),
+      client_id: Number(task.client_id),
+      user_id: user?.id,
+      frequency: task.frequency,
+    })
+    .select();
+
+  // let task = <Task[]>data;
   if (error) {
     console.log(error);
   } else {
@@ -311,6 +371,7 @@ export const editTask = async (
       fee: Number(task.fee),
       set_date: task.set_date,
       set_time: task.set_time,
+      frequency: task.frequency,
     })
     .eq("id", TaskId);
 
@@ -324,15 +385,15 @@ export const editTask = async (
 export const getWeeklyTasks = async () => {
   const supabase = await createSupabaseServerClient();
   let today = addDays(new Date(), -1);
-  let lastDayOfTheWeek = addDays(new Date(), 7);
+  let threeWeeksLater = addDays(new Date(), 21);
 
   const todayUTC = format(
     new Date(today.toISOString().slice(0, -1)),
     "yyyy-MM-dd"
   );
 
-  const lastDayOfTheWeekUTC = format(
-    new Date(lastDayOfTheWeek.toISOString().slice(0, -1)),
+  const threeWeeksLaterUTC = format(
+    new Date(threeWeeksLater.toISOString().slice(0, -1)),
     "yyyy-MM-dd"
   );
 
@@ -340,7 +401,7 @@ export const getWeeklyTasks = async () => {
     .from("tasks")
     .select("*,  clients(name, type)")
     .gte("set_date", todayUTC)
-    .lt("set_date", lastDayOfTheWeekUTC)
+    .lt("set_date", threeWeeksLaterUTC)
     .order("set_date", { ascending: false });
 
   let tasks = <Task[]>tasksList;
@@ -367,7 +428,6 @@ export const getTaskNotes = async (taskId: number | number[]) => {
   }
   return notes;
 };
-
 export const deleteTaskNote = async (taskNoteId: number | number[]) => {
   const supabase = await createSupabaseServerClient();
   let { error } = await supabase

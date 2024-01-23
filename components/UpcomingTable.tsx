@@ -4,6 +4,7 @@ import { Task } from "@/lib/types";
 import { addDays, format } from "date-fns";
 import { useEffect, useState } from "react";
 import Loading from "@/app/home/upcoming/loading-component";
+import { createRecurringTask } from "@/app/actions";
 
 interface Props {
   weeklyTasks: Task[];
@@ -14,6 +15,64 @@ export const UpcomingTable = ({ weeklyTasks }: Props) => {
   const [days, setDays] = useState<string[]>();
   const [weekDays, setWeekdays] = useState<string[]>();
   const [formattedWeeklyTasks, setFormattedWeeklyTasks] = useState<Task[]>();
+  const [isRecurringChecked, setIsRecurringChecked] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (!isRecurringChecked) {
+      const recurringTasks = formattedWeeklyTasks
+        ?.filter((task) => task.frequency !== "Once")
+        .filter(
+          (task) => task.set_date < format(addDays(new Date(), 7), "MMM/dd/yy")
+        );
+      recurringTasks?.forEach((recurringTask) => {
+        if (recurringTask.frequency === "Weekly") {
+          const isCreated = formattedWeeklyTasks
+            ?.filter((task) => task.frequency !== "Once")
+            .filter(
+              (task) =>
+                task.set_date < format(addDays(new Date(), 7), "MMM/dd/yy")
+            )
+            .some(
+              (nextWeekTask) =>
+                format(addDays(nextWeekTask.set_date, 7), "MMM/dd/yy") ===
+                format(addDays(recurringTask.set_date, 7), "MMM/dd/yy")
+            );
+          if (!isCreated) {
+            console.log(recurringTask);
+            const newTask = {
+              ...recurringTask,
+              set_date: format(addDays(recurringTask.set_date, 7), "MMM/dd/yy"),
+            };
+            createRecurringTask(newTask);
+          }
+        } else if (recurringTask.frequency === "Biweekly") {
+          const isCreated = formattedWeeklyTasks
+            ?.filter((task) => task.frequency !== "Once")
+            .filter(
+              (task) =>
+                task.set_date < format(addDays(new Date(), 7), "MMM/dd/yy")
+            )
+            .some(
+              (nextWeekTask) =>
+                format(addDays(nextWeekTask.set_date, 14), "MMM/dd/yy") ===
+                format(addDays(recurringTask.set_date, 14), "MMM/dd/yy")
+            );
+          if (!isCreated) {
+            console.log(recurringTask);
+            const newTask = {
+              ...recurringTask,
+              set_date: format(
+                addDays(recurringTask.set_date, 14),
+                "MMM/dd/yy"
+              ),
+            };
+            createRecurringTask(newTask);
+          }
+        }
+      });
+    }
+    setIsRecurringChecked(true);
+  }, [formattedWeeklyTasks]);
 
   useEffect(() => {
     //Converts server time to local time
@@ -42,6 +101,7 @@ export const UpcomingTable = ({ weeklyTasks }: Props) => {
     setWeekdays(weekDays);
     setFormattedWeeklyTasks(refactoredTasks);
     //Converts server time to local time
+    // checkRecurringTasks();
   }, []);
 
   if (!weekDays || !today) {
