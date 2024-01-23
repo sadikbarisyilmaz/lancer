@@ -46,6 +46,14 @@ export const TaskDetails = ({ task }: Props) => {
 
     setRefactoredTask({ ...refactoredTask, ...newTask });
   }, []);
+  useEffect(() => {
+    const newTask = {
+      ...task,
+      set_date: format(task.set_date, "EEEE - dd/MM/yyyy"),
+    };
+
+    setRefactoredTask({ ...refactoredTask, ...newTask });
+  }, [task]);
 
   if (!task || !refactoredTask) {
     return (
