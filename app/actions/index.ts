@@ -8,6 +8,7 @@ import {
   EditTaskFormData,
   Task,
   TaskFormData,
+  TaskNote,
 } from "@/lib/types";
 import { revalidatePath } from "next/cache";
 import { addDays, format } from "date-fns";
@@ -351,7 +352,6 @@ export const getWeeklyTasks = async () => {
   }
   return { tasks };
 };
-
 export const getTaskNotes = async (taskId: number | number[]) => {
   const supabase = await createSupabaseServerClient();
 
@@ -359,42 +359,43 @@ export const getTaskNotes = async (taskId: number | number[]) => {
     .from("task-notes")
     .select()
     .eq("task_id", taskId);
-  // let notes = <ClientNote[]>notesList;
-  // if (error) {
-  //   console.log(error);
-  // } else {
-  //   console.log("get client note successful");
-  // }
-  // return notes;
+  let notes = <TaskNote[]>notesList;
+  if (error) {
+    console.log(error);
+  } else {
+    console.log("get client note successful");
+  }
+  return notes;
 };
-// export const createNewTaskNote = async (
-//   formData: { note: string },
-//   clientId: number | number[]
-// ) => {
-//   const supabase = await createSupabaseServerClient();
-//   const { data, error } = await supabase
-//     .from("client-notes")
-//     .insert({
-//       content: formData.note,
-//       client_id: clientId,
-//     })
-//     .select();
-//   let note = <ClientNote[]>data;
-//   if (error) {
-//     console.log(error);
-//   } else {
-//     console.log("delete client successful");
-//     return note;
-//   }
-// };
-// export const deleteTaskNote = async (clientNoteId: number | number[]) => {
-//   const supabase = await createSupabaseServerClient();
-//   let { error } = await supabase
-//     .from("client-notes")
-//     .delete()
-//     .eq("id", clientNoteId);
 
-//   if (error) {
-//     console.log("error", error);
-//   }
-// };
+export const deleteTaskNote = async (taskNoteId: number | number[]) => {
+  const supabase = await createSupabaseServerClient();
+  let { error } = await supabase
+    .from("task-notes")
+    .delete()
+    .eq("id", taskNoteId);
+
+  if (error) {
+    console.log("error", error);
+  }
+};
+export const createNewTaskNote = async (
+  formData: { note: string },
+  taskId: number | number[]
+) => {
+  const supabase = await createSupabaseServerClient();
+  const { data, error } = await supabase
+    .from("task-notes")
+    .insert({
+      content: formData.note,
+      task_id: taskId,
+    })
+    .select();
+  let note = <TaskNote[]>data;
+  if (error) {
+    console.log(error);
+  } else {
+    console.log("Create task note successful");
+    return note;
+  }
+};

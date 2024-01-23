@@ -45,6 +45,16 @@ export interface TaskFormData {
   client_id: string;
 }
 
+export interface TaskNote {
+  id: number;
+  created_at: Date;
+  task_id: number;
+  content: string;
+  // type: string;
+  // desc: string;
+  // email: string;
+  // phone: number;
+}
 export interface ClientNote {
   id: number;
   created_at: Date;

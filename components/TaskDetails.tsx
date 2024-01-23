@@ -20,6 +20,7 @@ import { DeleteAlert } from "./DeleteAlert";
 import { useToast } from "./ui/use-toast";
 import { useRouter } from "next/navigation";
 import { deleteTasks, updatePaymentStatus } from "@/app/actions";
+import { TaskNotes } from "./TaskNotes";
 
 interface Props {
   task: Task;
@@ -144,6 +145,7 @@ export const TaskDetails = ({ task }: Props) => {
           handleDelete={handleDelete}
         />
       </Card>
+      <TaskNotes id={task.id} />
     </div>
   );
 };
