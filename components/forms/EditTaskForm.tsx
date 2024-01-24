@@ -220,7 +220,7 @@ export const EditTaskForm = ({ task }: Props) => {
                     </FormItem>
                   )}
                 />
-                <Button variant="outline" type="submit">
+                <Button variant="outline" type="submit" className="w-full">
                   Submit
                 </Button>
               </form>

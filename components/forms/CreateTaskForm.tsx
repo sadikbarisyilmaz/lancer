@@ -141,7 +141,7 @@ export const CreateTaskForm = ({ clients }: Props) => {
                     </FormItem>
                   )}
                 />
-                <FormField
+                {/* <FormField
                   control={form.control}
                   name="about"
                   render={({ field }) => (
@@ -153,7 +153,7 @@ export const CreateTaskForm = ({ clients }: Props) => {
                       <FormMessage />
                     </FormItem>
                   )}
-                />
+                /> */}
                 <FormField
                   control={form.control}
                   name="fee"
@@ -262,7 +262,7 @@ export const CreateTaskForm = ({ clients }: Props) => {
                     </FormItem>
                   )}
                 />
-                <Button variant="outline" type="submit">
+                <Button variant="outline" type="submit" className="w-full">
                   Submit
                 </Button>
               </form>
