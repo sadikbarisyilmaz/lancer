@@ -224,6 +224,37 @@ export const getTasks = async () => {
   }
   return { tasks };
 };
+// export const getTasksOfTwoWeeks = async () => {
+//   const supabase = await createSupabaseServerClient();
+//   let today = addDays(new Date(), -1);
+//   let twoWeeksLater = addDays(new Date(), 14);
+
+//   const todayUTC = format(
+//     new Date(today.toISOString().slice(0, -1)),
+//     "yyyy-MM-dd"
+//   );
+
+//   const twoWeeksLaterUTC = format(
+//     new Date(twoWeeksLater.toISOString().slice(0, -1)),
+//     "yyyy-MM-dd"
+//   );
+
+//   let { data: tasksList, error } = await supabase
+//     .from("tasks")
+//     .select("*,  clients(name, type)")
+//     .gte("set_date", todayUTC)
+//     .lt("set_date", twoWeeksLaterUTC)
+//     .order("set_date", { ascending: false });
+
+//   let tasks = <Task[]>tasksList;
+
+//   if (error) {
+//     console.log(error);
+//   } else {
+//     console.log("get weekly tasks successful");
+//   }
+//   return { tasks };
+// };
 export const getTask = async (taskId: number | number[]) => {
   const supabase = await createSupabaseServerClient();
   let { data: tasksList, error } = await supabase
@@ -351,7 +382,7 @@ export const editTask = async (
     revalidatePath("/home/tasks");
   }
 };
-export const getTasksOfThreeWeeks = async () => {
+export const getWeeklyTasks = async () => {
   const supabase = await createSupabaseServerClient();
   let today = addDays(new Date(), -1);
   let threeWeeksLater = addDays(new Date(), 21);
