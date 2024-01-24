@@ -10,18 +10,18 @@ export const setToLocalTime = (tasks: Task[]) =>
     };
   });
 
-export const createRecurringTasks = (formattedTasksOfThreeWeeks: Task[]) => {
-  const recurringTasksThisWeek = formattedTasksOfThreeWeeks
+export const createRecurringTasks = (tasksOfThreeWeeks: Task[]) => {
+  const recurringTasksThisWeek = tasksOfThreeWeeks
     ?.filter((task) => task.frequency !== "Once")
     .filter((task) => new Date(task.set_date) < addDays(new Date(), 7));
-  const nextWeekTasks = formattedTasksOfThreeWeeks
+  const nextWeekTasks = tasksOfThreeWeeks
     ?.filter((task) => task.frequency !== "Once")
     .filter(
       (task) =>
         new Date(task.set_date) > addDays(new Date(), 7) &&
         new Date(task.set_date) < addDays(new Date(), 14)
     );
-  const twoWeeksLaterTasks = formattedTasksOfThreeWeeks
+  const twoWeeksLaterTasks = tasksOfThreeWeeks
     ?.filter((task) => task.frequency !== "Once")
     .filter(
       (task) =>
