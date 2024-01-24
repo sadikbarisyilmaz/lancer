@@ -5,79 +5,26 @@ import { addDays, format } from "date-fns";
 import { useEffect, useState } from "react";
 import Loading from "@/app/home/upcoming/loading-component";
 import { createRecurringTask } from "@/app/actions";
+import { createRecurringTasks } from "@/lib/helpers";
 
 interface Props {
-  tasksOfThreeWeeks: Task[];
+  weeklyTasks: Task[];
 }
 
-export const UpcomingTable = ({ tasksOfThreeWeeks }: Props) => {
+export const UpcomingTable = ({ weeklyTasks }: Props) => {
   const [today, setToday] = useState<Date>();
-  const [dayNames, setDayNames] = useState<string[]>();
+  const [days, setDays] = useState<string[]>();
   const [weekDays, setWeekdays] = useState<string[]>();
   const [formattedWeeklyTasks, setFormattedWeeklyTasks] = useState<Task[]>();
-  const [isRecurringChecked, setIsRecurringChecked] = useState<boolean>(false);
 
   useEffect(() => {
-    if (!isRecurringChecked) {
-      const recurringTasks = formattedWeeklyTasks
-        ?.filter((task) => task.frequency !== "Once")
-        .filter(
-          (task) => task.set_date < format(addDays(new Date(), 7), "MMM/dd/yy")
-        );
-      recurringTasks?.forEach((recurringTask) => {
-        if (recurringTask.frequency === "Weekly") {
-          const isCreated = formattedWeeklyTasks
-            ?.filter((task) => task.frequency !== "Once")
-            .filter(
-              (task) =>
-                task.set_date < format(addDays(new Date(), 7), "MMM/dd/yy")
-            )
-            .some(
-              (nextWeekTask) =>
-                format(addDays(nextWeekTask.set_date, 7), "MMM/dd/yy") ===
-                format(addDays(recurringTask.set_date, 7), "MMM/dd/yy")
-            );
-          if (!isCreated) {
-            console.log(recurringTask);
-            const newTask = {
-              ...recurringTask,
-              set_date: format(addDays(recurringTask.set_date, 7), "MMM/dd/yy"),
-            };
-            createRecurringTask(newTask);
-          }
-        } else if (recurringTask.frequency === "Biweekly") {
-          const isCreated = formattedWeeklyTasks
-            ?.filter((task) => task.frequency !== "Once")
-            .filter(
-              (task) =>
-                task.set_date < format(addDays(new Date(), 7), "MMM/dd/yy")
-            )
-            .some(
-              (nextWeekTask) =>
-                format(addDays(nextWeekTask.set_date, 14), "MMM/dd/yy") ===
-                format(addDays(recurringTask.set_date, 14), "MMM/dd/yy")
-            );
-          if (!isCreated) {
-            console.log(recurringTask);
-            const newTask = {
-              ...recurringTask,
-              set_date: format(
-                addDays(recurringTask.set_date, 14),
-                "MMM/dd/yy"
-              ),
-            };
-            createRecurringTask(newTask);
-          }
-        }
-      });
-    }
-    setIsRecurringChecked(true);
+    if (formattedWeeklyTasks) createRecurringTasks(formattedWeeklyTasks);
   }, [formattedWeeklyTasks]);
 
   useEffect(() => {
     //Converts server time to local time
     const today = new Date();
-    let todayTimeRemoved = new Date(
+    let noTime = new Date(
       today.getFullYear(),
       today.getMonth(),
       today.getDate()
@@ -87,12 +34,19 @@ export const UpcomingTable = ({ tasksOfThreeWeeks }: Props) => {
       i === 0 ? "Today" : format(addDays(today, i), "EEEE")
     );
     const weekDays = days.map((day) =>
-      format(addDays(todayTimeRemoved, day), "EEEE - dd/MM/yyyy")
+      format(addDays(noTime, day), "MMM/dd/yy")
     );
 
+    const refactoredTasks = weeklyTasks.map((task, i) => {
+      return {
+        ...task,
+        set_date: format(task.set_date, "MMM/dd/yy"),
+      };
+    });
     setToday(today);
-    setDayNames(dayNames);
+    setDays(dayNames);
     setWeekdays(weekDays);
+    setFormattedWeeklyTasks(refactoredTasks);
     //Converts server time to local time
     // checkRecurringTasksThisWeek();
   }, []);
@@ -121,7 +75,7 @@ export const UpcomingTable = ({ tasksOfThreeWeeks }: Props) => {
                 } border-foreground/10`}
               >
                 <h4 className="text-center border-b border-foreground/10 pb-4">
-                  {dayNames && dayNames[i]}
+                  {days && days[i]}
                 </h4>
                 <div className="py-3 grid gap-3 px-4 md:px-10 lg:px-0">
                   {formattedWeeklyTasks.map((task, j) => {
@@ -141,7 +95,7 @@ export const UpcomingTable = ({ tasksOfThreeWeeks }: Props) => {
                 } border-foreground/10 lg:block hidden`}
               >
                 <h4 className="text-center border-b border-foreground/10 pb-4">
-                  {dayNames && dayNames[i]}
+                  {days && days[i]}
                 </h4>
                 <div className="py-3 grid text-center text-foreground/70 gap-3 px-4 md:px-10 lg:px-0 ">
                   <p>No Tasks Set</p>
