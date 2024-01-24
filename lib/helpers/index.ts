@@ -22,16 +22,16 @@ export const createRecurringTasks = (formattedWeeklyTasks: Task[]) => {
         new Date(task.set_date) < addDays(new Date(), 21)
     );
   recurringTasksThisWeek?.forEach((recurringTask) => {
-    console.log("runs");
+    // console.log("runs");
     if (recurringTask.frequency === "Weekly") {
       const isCreated = nextWeekTasks?.some(
         (nextWeekTask) =>
           format(nextWeekTask.set_date, "MMM/dd/yy") ===
           format(addDays(recurringTask.set_date, 7), "MMM/dd/yy")
       );
-      console.log("nextweekcreated: ", isCreated);
+      // console.log("nextweekcreated: ", isCreated);
       if (!isCreated) {
-        console.log(recurringTask);
+        // console.log(recurringTask);
         const newTask = {
           ...recurringTask,
           set_date: format(addDays(recurringTask.set_date, 7), "MMM/dd/yy"),
@@ -44,7 +44,7 @@ export const createRecurringTasks = (formattedWeeklyTasks: Task[]) => {
           format(twoWeeksLaterTask.set_date, "MMM/dd/yy") ===
           format(addDays(recurringTask.set_date, 14), "MMM/dd/yy")
       );
-      console.log("twoweekslatercreated: ", isCreated);
+      // console.log("twoweekslatercreated: ", isCreated);
       if (!isCreated) {
         const newTask = {
           ...recurringTask,
