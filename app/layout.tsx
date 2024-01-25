@@ -30,7 +30,7 @@ export default function RootLayout({
         <main className="h-screen lg:flex-row flex-col flex">
           <ThemeProvider
             attribute="class"
-            defaultTheme="system"
+            defaultTheme="dark"
             enableSystem
             disableTransitionOnChange
           >
