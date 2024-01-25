@@ -16,7 +16,6 @@ import {
   Dialog,
   DialogContent,
   DialogHeader,
-  DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
@@ -37,7 +36,6 @@ const formSchema = z.object({
 export const CreateClientForm = () => {
   const [open, setOpen] = useState(false);
   const { toast } = useToast();
-
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -55,6 +53,7 @@ export const CreateClientForm = () => {
         title: `Client "${values.name}" created successfully !`,
       });
       setOpen(false);
+      form.reset();
     } catch (error) {
       toast({
         title: `${error}`,
@@ -70,7 +69,6 @@ export const CreateClientForm = () => {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          {/* <DialogTitle className="text-2xl">Create New Client</DialogTitle> */}
           <div className="max-w-md overflow-auto p-6">
             <Form {...form}>
               <form

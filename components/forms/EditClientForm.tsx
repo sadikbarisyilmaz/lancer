@@ -61,6 +61,7 @@ export const EditClientForm = ({ client }: Props) => {
         title: `Client edited successfully !`,
       });
       setOpen(false);
+      form.reset();
     } catch (error) {
       toast({
         title: `${error}`,

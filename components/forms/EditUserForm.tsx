@@ -119,7 +119,7 @@ export const EditUserForm = ({ user }: Props) => {
   }
 
   return (
-    <div className="bg-background/60 p-10 gap-2 text-lg grid lg:grid-cols-2 w-full md:w-fit h-fit rounded-md">
+    <div className="bg-background/60 p-10 gap-2 text-lg grid lg:grid-cols-2 w-full md:w-fit h-fit rounded-lg">
       <div className="flex flex-col h-full text-center gap-6 justify-center pb-2">
         <div className="flex w-full justify-center">
           <Avatar className="lg:w-24 w-16 lg:h-24 h-16 flex flex-col self-center">
@@ -166,34 +166,7 @@ export const EditUserForm = ({ user }: Props) => {
             </Button>
           </span>
         </div>
-        <Separator className=" bg-foreground/10" />
-        <div className="flex flex-col gap-4 min-w-96 md:w-96 ">
-          <h2 className="sm:text-2xl">Change Password</h2>
-          <Label htmlFor="name">Password</Label>
-          <span className="flex items-center justify-between w-full">
-            <form
-              onSubmit={handlePassword}
-              className="flex flex-col gap-2 w-full animate-fadeIn "
-            >
-              <Input
-                onChange={(e) => setPassword(e.target.value)}
-                value={password}
-                type="password"
-                required
-              />
-              <Label htmlFor="name">Rewrite Password</Label>
-              <Input
-                onChange={(e) => setPasswordCheck(e.target.value)}
-                value={passwordCheck}
-                type="password"
-                required
-              />
-              <Button type="submit" variant="ghost">
-                Save
-              </Button>
-            </form>
-          </span>
-        </div>
+
         {user.user_metadata.iss !== "https://accounts.google.com" && (
           <>
             <Separator className=" bg-foreground/10" />
@@ -214,6 +187,34 @@ export const EditUserForm = ({ user }: Props) => {
                     type="file"
                   />
 
+                  <Button type="submit" variant="ghost">
+                    Save
+                  </Button>
+                </form>
+              </span>
+            </div>
+            <Separator className=" bg-foreground/10" />
+            <div className="flex flex-col gap-4 min-w-96 md:w-96 ">
+              <h2 className="sm:text-2xl">Change Password</h2>
+              <Label htmlFor="name">Password</Label>
+              <span className="flex items-center justify-between w-full">
+                <form
+                  onSubmit={handlePassword}
+                  className="flex flex-col gap-2 w-full animate-fadeIn "
+                >
+                  <Input
+                    onChange={(e) => setPassword(e.target.value)}
+                    value={password}
+                    type="password"
+                    required
+                  />
+                  <Label htmlFor="name">Rewrite Password</Label>
+                  <Input
+                    onChange={(e) => setPasswordCheck(e.target.value)}
+                    value={passwordCheck}
+                    type="password"
+                    required
+                  />
                   <Button type="submit" variant="ghost">
                     Save
                   </Button>

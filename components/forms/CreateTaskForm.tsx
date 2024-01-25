@@ -69,14 +69,13 @@ export const CreateTaskForm = ({ clients }: Props) => {
   });
   const frequencyArr = ["Once", "Biweekly", "Weekly"];
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-
     try {
       createNewTask(values);
       toast({
         title: `Task created successfully !`,
       });
       setOpen(false);
+      form.reset();
     } catch (error) {
       toast({
         title: `${error}`,

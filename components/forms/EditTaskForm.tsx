@@ -75,6 +75,7 @@ export const EditTaskForm = ({ task }: Props) => {
         title: `Task edited successfully !`,
       });
       setOpen(false);
+      form.reset();
     } catch (error) {
       toast({
         title: `${error}`,
