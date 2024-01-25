@@ -24,6 +24,7 @@ import { useEffect, useState } from "react";
 import { Card } from "./ui/card";
 import { TrashIcon } from "lucide-react";
 import { DeleteAlert } from "./DeleteAlert";
+import { Skeleton } from "./ui/skeleton";
 
 const formSchema = z.object({
   note: z.string().min(2),
@@ -32,12 +33,14 @@ const formSchema = z.object({
 export const ClientNotes = ({ id }: { id: number }) => {
   const [clientNotes, setClientNotes] = useState<ClientNote[]>([]);
   const [open, setOpen] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const { toast } = useToast();
   const getNotes = async () => {
     try {
       const notes = await getClientNotes(id);
       setClientNotes(notes);
+      setLoading(false);
     } catch (error) {
       console.log(error);
     }
@@ -78,7 +81,11 @@ export const ClientNotes = ({ id }: { id: number }) => {
       });
     }
   }
-
+  if (loading) {
+    return (
+      <Skeleton className="h-[414px] p-6 w-full text-foreground/90 flex flex-col justify-center dark:bg-[#2424247c] bg-[#ffffffcb] rounded-lg dark:bg-opacity-50 bg-opacity-50 gap-4 text-lg "></Skeleton>
+    );
+  }
   return (
     <div>
       <Card className="flex flex-col max-h-[316px] dark:bg-[#2424247c] bg-[#ffffffcb] min-h-[220px] dark:bg-opacity-40 bg-opacity-40 justify-between items-between gap-4 p-4">

@@ -7,8 +7,8 @@ export default function Loading() {
     <div>
       <Banner title="Tasks" />
       <div className="p-6 lg:w-full flex flex-col gap-1 animate-fadeIn">
-        <div className="lg:max-w-7xl xl:pt-20 lg:pt-16 flex flex-col md:self-center md:w-full  xl:scale-125">
-          <div className="dark:bg-[#2424247c] bg-[#ffffffcb] rounded-md lg:w-full h-fit  flex flex-col  ">
+        <div className="xl:max-w-7xl xl:pt-20 flex flex-col md:self-center md:w-full xl:scale-125">
+          <div className="dark:bg-[#2424247c] bg-[#ffffffcb] rounded-md lg:w-full h-fit flex flex-col">
             <div className="border-b dark:bg-[#2424247c] bg-[#ffffffcb] border-background">
               <Skeleton className="h-[48px]" />
             </div>

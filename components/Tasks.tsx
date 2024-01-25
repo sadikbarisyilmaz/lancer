@@ -25,7 +25,9 @@ export const Tasks = ({ tasks, clients }: Props) => {
     <>
       <DataTable columns={columns} data={refactoredTasks} />
       {clients.length > 0 ? (
-        <CreateTaskForm clients={clients} />
+        <span className="pt-2">
+          <CreateTaskForm clients={clients} />
+        </span>
       ) : (
         <div className="flex items-center py-3 gap-2">
           <AlertCircle />

@@ -1,14 +1,7 @@
 "use client";
-import {
-  CircleUser,
-  FileText,
-  Mail,
-  Phone,
-  TrashIcon,
-  User,
-} from "lucide-react";
+import { FileText, Mail, Phone, User } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Card, CardFooter, CardTitle } from "@/components/ui/card";
+import { Card, CardTitle } from "@/components/ui/card";
 import { Client } from "@/lib/types";
 import { deleteClient } from "@/app/actions";
 import { useRouter } from "next/navigation";
