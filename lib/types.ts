@@ -39,6 +39,12 @@ export interface EditTaskFormData {
   fee: string;
   frequency: string;
 }
+export interface EditClientFormData {
+  name: string;
+  type: string;
+  email: string;
+  phone: string;
+}
 export interface TaskFormData {
   set_date: Date;
   set_time: string;

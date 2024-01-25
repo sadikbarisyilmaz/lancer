@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { useToast } from "./ui/use-toast";
 import { useState } from "react";
 import { DeleteAlert } from "./DeleteAlert";
+import { EditClientForm } from "./forms/EditClientForm";
 
 export function ClientCard({ client }: { client: Client }) {
   const { toast } = useToast();
@@ -39,13 +40,16 @@ export function ClientCard({ client }: { client: Client }) {
           <p>Email: {client.email}</p>
         </div>
       </div>
-      <Button
-        onClick={() => setOpen(true)}
-        variant="destructive"
-        className="w-full"
-      >
-        Delete Client
-      </Button>
+      <div className="flex gap-2 mt-4">
+        <EditClientForm client={client} />
+        <Button
+          onClick={() => setOpen(true)}
+          variant="destructive"
+          className="w-full"
+        >
+          Delete Client
+        </Button>
+      </div>
       <DeleteAlert open={open} setOpen={setOpen} handleDelete={handleDelete} />
     </Card>
   );

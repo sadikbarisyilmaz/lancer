@@ -5,6 +5,7 @@ import {
   Client,
   ClientFormData,
   ClientNote,
+  EditClientFormData,
   EditTaskFormData,
   Task,
   TaskFormData,
@@ -197,6 +198,28 @@ export const createNewClientNote = async (
     return note;
   }
 };
+export const editClient = async (
+  client: EditClientFormData,
+  ClientId: number | number[]
+) => {
+  const supabase = await createSupabaseServerClient();
+  let { error } = await supabase
+    .from("clients")
+    .update({
+      name: client.name,
+      type: client.type,
+      email: client.email,
+      phone: Number(client.phone),
+    })
+    .eq("id", ClientId);
+
+  if (error) {
+    console.log("error", error);
+  } else {
+    console.log("Client updated successfully");
+    revalidatePath("/home/clients");
+  }
+};
 export const deleteClientNote = async (clientNoteId: number | number[]) => {
   const supabase = await createSupabaseServerClient();
   let { error } = await supabase
@@ -224,37 +247,6 @@ export const getTasks = async () => {
   }
   return { tasks };
 };
-// export const getTasksOfTwoWeeks = async () => {
-//   const supabase = await createSupabaseServerClient();
-//   let today = addDays(new Date(), -1);
-//   let twoWeeksLater = addDays(new Date(), 14);
-
-//   const todayUTC = format(
-//     new Date(today.toISOString().slice(0, -1)),
-//     "yyyy-MM-dd"
-//   );
-
-//   const twoWeeksLaterUTC = format(
-//     new Date(twoWeeksLater.toISOString().slice(0, -1)),
-//     "yyyy-MM-dd"
-//   );
-
-//   let { data: tasksList, error } = await supabase
-//     .from("tasks")
-//     .select("*,  clients(name, type)")
-//     .gte("set_date", todayUTC)
-//     .lt("set_date", twoWeeksLaterUTC)
-//     .order("set_date", { ascending: false });
-
-//   let tasks = <Task[]>tasksList;
-
-//   if (error) {
-//     console.log(error);
-//   } else {
-//     console.log("get weekly tasks successful");
-//   }
-//   return { tasks };
-// };
 export const getTask = async (taskId: number | number[]) => {
   const supabase = await createSupabaseServerClient();
   let { data: tasksList, error } = await supabase
@@ -358,6 +350,7 @@ export const updatePaymentStatus = async (
     revalidatePath("/home/tasks");
   }
 };
+
 export const editTask = async (
   task: EditTaskFormData,
   TaskId: number | number[]
