@@ -16,6 +16,7 @@ export const ClientDetails = ({ client }: Props) => {
   if (!client) {
     return <Loader />;
   }
+  console.log(client);
 
   const refactoredTasks = client.tasks.map((task, i) => {
     return {

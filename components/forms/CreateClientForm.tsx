@@ -26,12 +26,13 @@ import { useState } from "react";
 const formSchema = z.object({
   name: z.string().min(2).max(30),
   type: z.string().min(2).max(30),
-  email: z.string().email().min(5),
+  email: z.string().email().or(z.literal("")),
   phone: z
     .string()
     .regex(
       /^(\+90|0)?\s*(\(\d{3}\)[\s-]*\d{3}[\s-]*\d{2}[\s-]*\d{2}|\(\d{3}\)[\s-]*\d{3}[\s-]*\d{4}|\(\d{3}\)[\s-]*\d{7}|\d{3}[\s-]*\d{3}[\s-]*\d{4}|\d{3}[\s-]*\d{3}[\s-]*\d{2}[\s-]*\d{2})$/
-    ),
+    )
+    .or(z.literal("")),
 });
 export const CreateClientForm = () => {
   const [open, setOpen] = useState(false);
