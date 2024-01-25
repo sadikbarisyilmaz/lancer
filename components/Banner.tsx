@@ -10,7 +10,7 @@ export const Banner = ({ title }: BannerProps) => {
     <div className="w-full text-4xl lg:text-6xl py-4 px-6 flex flex-col border-b border-b-foreground/10 justify-end lg:justify-between">
       <div className="h-full hidden lg:flex justify-between lg:min-h-[100px]">
         <h1 className="self-end">{title}</h1>
-        <div className="h-full hidden lg:flex justify-between">
+        <div className="h-full pt-2 hidden lg:flex justify-between">
           <ModeToggle />
         </div>
       </div>

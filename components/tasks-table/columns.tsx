@@ -114,7 +114,7 @@ export const columns: ColumnDef<Task>[] = [
         <span className="text-opacity-60 text-sky-300">
           <Clock3 size={18} />
         </span>
-        <p>Date</p>
+        <p>Time</p>
       </div>
     ),
     cell: ({ row }) => {
@@ -130,7 +130,7 @@ export const columns: ColumnDef<Task>[] = [
         <span className="text-opacity-60 text-sky-700">
           <Repeat2 size={18} />
         </span>
-        <p>Time</p>
+        <p>Frequency</p>
       </div>
     ),
     cell: ({ row }) => {
