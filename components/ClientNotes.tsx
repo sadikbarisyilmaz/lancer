@@ -26,7 +26,7 @@ import { TrashIcon } from "lucide-react";
 import { DeleteAlert } from "./DeleteAlert";
 
 const formSchema = z.object({
-  note: z.string().min(2).max(30),
+  note: z.string().min(2),
 });
 
 export const ClientNotes = ({ id }: { id: number }) => {
