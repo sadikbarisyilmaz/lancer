@@ -90,14 +90,12 @@ export const TaskDetailsCard = ({ task }: Props) => {
             <p>{task.set_time}</p>
           </div>
         )}
-
         <div className="p-1  gap-2 flex items-center">
           <span className=" text-opacity-60 text-sky-600">
             <Repeat2 size={24} />
           </span>
           <p>{task.frequency}</p>
         </div>
-
         <div className="p-1  gap-2 flex items-center">
           <span className=" text-opacity-60 text-green-700">
             <Banknote size={24} />
