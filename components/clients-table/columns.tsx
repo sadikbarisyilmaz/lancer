@@ -1,92 +1,11 @@
 "use client";
 import { Client } from "@/lib/types";
-import {
-  ColumnDef,
-  ColumnFiltersState,
-  SortingState,
-  VisibilityState,
-  flexRender,
-  getCoreRowModel,
-  getFilteredRowModel,
-  getPaginationRowModel,
-  getSortedRowModel,
-  useReactTable,
-} from "@tanstack/react-table";
+import { ColumnDef } from "@tanstack/react-table";
 
-import {
-  ArrowUpDown,
-  ChevronDown,
-  FileText,
-  MoreHorizontal,
-} from "lucide-react";
-
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { Input } from "@/components/ui/input";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import Link from "next/link";
 export const columns: ColumnDef<Client>[] = [
-  //   {
-  //     id: "select",
-  //     header: ({ table }) => (
-  //       <Checkbox
-  //         checked={
-  //           table.getIsAllPageRowsSelected() ||
-  //           (table.getIsSomePageRowsSelected() && "indeterminate")
-  //         }
-  //         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-  //         aria-label="Select all"
-  //       />
-  //     ),
-  //     cell: ({ row }) => (
-  //       <Checkbox
-  //         checked={row.getIsSelected()}
-  //         onCheckedChange={(value) => row.toggleSelected(!!value)}
-  //         aria-label="Select row"
-  //       />
-  //     ),
-  //     enableSorting: false,
-  //     enableHiding: false,
-  //   },
-  // {
-  //   accessorKey: "id",
-  //   header: () => <div className="text-left"></div>,
-  //   cell: ({ row }) => {
-  //     return <div className="text-left font-medium">{row.getValue("id")}</div>;
-  //   },
-  // },
-  // {
-  //   id: "actions",
-  //   header: () => <div className="text-left">Details</div>,
-  //   cell: ({ row }) => {
-  //     const client = row.original;
-
-  //     return (
-  //       <Link className="" href={`/home/clients/${client.id}`}>
-  //         <FileText strokeWidth={1} size={24} />
-  //       </Link>
-  //     );
-  //   },
-  // },
   {
     accessorKey: "name",
-    header: () => <div className="text-left">Home</div>,
+    header: () => <div className="text-left">Name</div>,
     cell: ({ row }) => <div className="capitalize">{row.getValue("name")}</div>,
   },
   {
@@ -98,17 +17,6 @@ export const columns: ColumnDef<Client>[] = [
       );
     },
   },
-  // {
-  //   accessorKey: "desc",
-  //   header: () => <div className="text-left">Description</div>,
-  //   cell: ({ row }) => {
-  //     return (
-  //       <div className="text-left font-medium max-w-xs">
-  //         {row.getValue("desc")}
-  //       </div>
-  //     );
-  //   },
-  // },
   {
     accessorKey: "email",
     header: () => <div className="text-left">Email</div>,

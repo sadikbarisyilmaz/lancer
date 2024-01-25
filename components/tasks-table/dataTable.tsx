@@ -92,7 +92,7 @@ export function DataTable<TData, TValue>({
               <TableRow>
                 <TableCell
                   colSpan={columns.length}
-                  className="h-24  md:text-center"
+                  className="h-24 md:text-center"
                 >
                   No results found.
                 </TableCell>
@@ -101,16 +101,19 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      {data.length > 5 && (
+      {data.length > 8 && (
         <div className="flex justify-between gap-1">
           <div className="flex items-center py-2">
             <Input
-              placeholder="Filter titles..."
+              placeholder="Filter Clients..."
               value={
-                (table.getColumn("title")?.getFilterValue() as string) ?? ""
+                (table.getColumn("client_name")?.getFilterValue() as string) ??
+                ""
               }
               onChange={(event) =>
-                table.getColumn("title")?.setFilterValue(event.target.value)
+                table
+                  .getColumn("client_name")
+                  ?.setFilterValue(event.target.value)
               }
               className="max-w-sm "
             />

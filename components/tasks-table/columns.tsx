@@ -1,41 +1,8 @@
 "use client";
 import { Task } from "@/lib/types";
 import { ColumnDef } from "@tanstack/react-table";
-import { MoreHorizontal } from "lucide-react";
-import { format } from "date-fns";
-
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { deleteTasks, updatePaymentStatus } from "@/app/actions";
 
 export const columns: ColumnDef<Task>[] = [
-  // {
-  //   id: "actions",
-  //   header: () => <div className="text-left">Details</div>,
-  //   cell: ({ row }) => {
-  //     const client = row.original;
-
-  //     return (
-  //       <Link className="" href={`/home/clients/${client.id}`}>
-  //         <FileText strokeWidth={1} size={24} />
-  //       </Link>
-  //     );
-  //   },
-  // },
-  {
-    accessorKey: "title",
-    header: () => <div className="text-left">Title</div>,
-    cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("title")}</div>
-    ),
-  },
   {
     accessorKey: "client_name",
     header: () => <div className="text-left">Client</div>,
@@ -47,21 +14,30 @@ export const columns: ColumnDef<Task>[] = [
       );
     },
   },
-  // {
-  //   accessorKey: "about",
-  //   header: () => <div className="text-left">About</div>,
-  //   cell: ({ row }) => {
-  //     return (
-  //       <div className="text-left font-medium">{row.getValue("about")}</div>
-  //     );
-  //   },
-  // },
+  {
+    accessorKey: "title",
+    header: () => <div className="text-left">Title</div>,
+    cell: ({ row }) => (
+      <div className="capitalize">{row.getValue("title")}</div>
+    ),
+  },
   {
     accessorKey: "fee",
     header: () => <div className="text-left">Fee</div>,
     cell: ({ row }) => (
       <div className="lowercase">{`$${row.getValue("fee")}`}</div>
     ),
+  },
+  {
+    accessorKey: "payment_status",
+    header: () => <div className="text-left">Payment</div>,
+    cell: ({ row }) => {
+      return (
+        <div className="text-left font-medium">
+          {row.getValue("payment_status")}
+        </div>
+      );
+    },
   },
   {
     accessorKey: "set_date",
@@ -90,17 +66,7 @@ export const columns: ColumnDef<Task>[] = [
       );
     },
   },
-  {
-    accessorKey: "payment_status",
-    header: () => <div className="text-left">Payment</div>,
-    cell: ({ row }) => {
-      return (
-        <div className="text-left font-medium">
-          {row.getValue("payment_status")}
-        </div>
-      );
-    },
-  },
+
   // {
   //   id: "actions",
   //   cell: ({ row }) => {
