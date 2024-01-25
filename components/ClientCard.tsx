@@ -1,5 +1,12 @@
 "use client";
-import { CircleUser, TrashIcon } from "lucide-react";
+import {
+  CircleUser,
+  FileText,
+  Mail,
+  Phone,
+  TrashIcon,
+  User,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardFooter, CardTitle } from "@/components/ui/card";
 import { Client } from "@/lib/types";
@@ -23,21 +30,33 @@ export function ClientCard({ client }: { client: Client }) {
   };
 
   return (
-    <Card className=" dark:bg-[#2424247c] bg-[#ffffffcb] flex justify-between flex-col max-h-64 gap-2 p-6">
-      <div className="flex flex-col h-max">
+    <Card className=" dark:bg-[#2424247c] bg-[#ffffffcb] flex justify-between flex-col max-h-fit gap-2 p-6">
+      <div className="flex flex-col h-max gap-6">
         <div className="flex items-center gap-2">
-          <CircleUser size={48} strokeWidth={1} />
+          <span className="text-indigo-500 ">
+            <User size={48} strokeWidth={1} />
+          </span>
           <CardTitle>{client.name}</CardTitle>
-          {/* <TrashIcon
-          size={20}
-          className="cursor-pointer hover:text-red-700 transition-colors "
-          onClick={() => setOpen(true)}
-        /> */}
         </div>
-        <div className="p-2 flex flex-col gap-2 justify-center h-full w-full">
-          <p>Type: {client.type}</p>
-          <p>Phone: {client.phone}</p>
-          <p>Email: {client.email}</p>
+        <div>
+          <div className="p-1 gap-2 flex items-center">
+            <span className=" text-opacity-60 text-green-500">
+              <FileText size={24} />
+            </span>
+            <p> {client.type}</p>
+          </div>
+          <div className="p-1 gap-2 flex items-center">
+            <span className=" text-opacity-60 text-amber-400 ">
+              <Phone size={24} />
+            </span>
+            <p> {client.phone}</p>
+          </div>
+          <div className="p-1 gap-2 flex items-center">
+            <span className=" text-opacity-60 text-red-500">
+              <Mail size={24} />
+            </span>
+            <p> {client.email}</p>
+          </div>
         </div>
       </div>
       <div className="flex gap-2 mt-4">

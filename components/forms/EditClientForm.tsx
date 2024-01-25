@@ -1,5 +1,5 @@
 "use client";
-import { createNewTask, editClient, editTask } from "@/app/actions";
+import { editClient } from "@/app/actions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -20,22 +20,8 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { useToast } from "../ui/use-toast";
-import { useEffect, useRef, useState } from "react";
-import { CalendarIcon } from "lucide-react";
-import { PopoverContent, PopoverTrigger } from "../ui/popover";
-import { Popover } from "../ui/popover";
-import { cn } from "@/lib/utils";
-import { format } from "date-fns";
-import { Calendar } from "../ui/calendar";
-
-import { Client, Task } from "@/lib/types";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../ui/select";
+import { useState } from "react";
+import { Client } from "@/lib/types";
 
 const formSchema = z.object({
   name: z.string().min(2).max(30),
@@ -56,7 +42,6 @@ interface Props {
 export const EditClientForm = ({ client }: Props) => {
   const [open, setOpen] = useState(false);
   const { toast } = useToast();
-  const timePicker = useRef(null);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -138,19 +123,6 @@ export const EditClientForm = ({ client }: Props) => {
                       </FormItem>
                     )}
                   />
-                  {/* <FormField
-                  control={form.control}
-                  name="desc"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Description</FormLabel>
-                      <FormControl>
-                        <Input {...field} />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                /> */}
                   <FormField
                     control={form.control}
                     name="phone"

@@ -1,5 +1,5 @@
 "use client";
-import { createNewTask, editTask } from "@/app/actions";
+import { editTask } from "@/app/actions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { useToast } from "../ui/use-toast";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { CalendarIcon } from "lucide-react";
 import { PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Popover } from "../ui/popover";
@@ -153,7 +153,6 @@ export const EditTaskForm = ({ task }: Props) => {
                     </FormItem>
                   )}
                 />
-
                 <FormField
                   control={form.control}
                   defaultValue={new Date(task.set_date)}
