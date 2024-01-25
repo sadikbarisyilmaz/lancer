@@ -7,10 +7,12 @@ export default async function Page() {
   const { clients } = await getClients();
 
   return (
-    <div className="h-full flex flex-col">
+    <div>
       <Banner title="Tasks" />
-      <div className="p-6 lg:w-full flex flex-col gap-1 lg:pt-20  md:w-full lg:max-w-7xl xl:pt-28 md:self-center xl:w-[1336px] xl:scale-125 animate-fadeIn">
-        <Tasks tasks={tasks} clients={clients} />
+      <div className="p-6 lg:w-full flex flex-col gap-1 animate-fadeIn">
+        <div className="lg:max-w-7xl xl:pt-20 lg:pt-16 flex flex-col md:self-center md:w-full  xl:scale-125">
+          <Tasks tasks={tasks} clients={clients} />
+        </div>
       </div>
     </div>
   );
