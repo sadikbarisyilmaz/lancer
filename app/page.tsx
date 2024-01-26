@@ -11,10 +11,12 @@ import { readUserSession } from "./actions";
 export default function Page() {
   const [url, setUrl] = useState<string>();
   const [loading, setloading] = useState(true);
+
   useEffect(() => {
     setUrl(window.location.origin);
     checkUser();
   }, []);
+
   const router = useRouter();
 
   const checkUser = async () => {

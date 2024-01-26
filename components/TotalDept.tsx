@@ -22,16 +22,17 @@ export const TotalDept = ({ tasks }: Props) => {
         .map((task) => task.fee)
         .reduce((a, b) => a + b);
       setDebt(debt);
-      setLoading(false);
     }
+    setLoading(false);
   }, []);
+
   if (loading) {
     return (
       <Skeleton className="h-[457px] rounded-md p-6 w-full text-foreground/90 flex flex-col justify-center dark:bg-[#2424247c] bg-[#ffffffcb] dark:bg-opacity-50 bg-opacity-50 gap-4 text-lg"></Skeleton>
     );
   }
   return (
-    <div className="dark:bg-[#2424247c] bg-[#ffffffcb] border w-full flex h-[169px] p-4 rounded-md">
+    <div className="dark:bg-[#2424247c] bg-[#ffffffcb] border w-full flex h-[168px] xl:h-[754px] p-4 rounded-md">
       <div className="overflow-y-scroll w-full flex gap-6">
         {debt > 0 ? (
           <>
@@ -50,7 +51,7 @@ export const TotalDept = ({ tasks }: Props) => {
           </>
         ) : (
           <div className="w-full h-full flex items-center justify-center">
-            <p>No current Debt.</p>
+            <p>No current Debt !</p>
           </div>
         )}
       </div>
