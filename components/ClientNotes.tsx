@@ -91,7 +91,7 @@ export const ClientNotes = ({ id }: { id: number }) => {
   }
   if (loading) {
     return (
-      <Skeleton className="h-[414px] max-h-[284px] p-6 w-full text-foreground/90 flex flex-col justify-center dark:bg-[#2424247c] bg-[#ffffffcb] rounded-lg dark:bg-opacity-50 bg-opacity-50 gap-4 text-lg "></Skeleton>
+      <Skeleton className="h-[414px] max-h-[284px] p-6 w-full text-foreground/90 flex flex-col justify-center dark:bg-[#2424247c] bg-[#ffffffcb] rounded-md dark:bg-opacity-50 bg-opacity-50 gap-4 text-lg "></Skeleton>
     );
   }
   return (

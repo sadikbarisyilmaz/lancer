@@ -47,9 +47,6 @@ export const TaskNotes = ({ id }: { id: number }) => {
     }
   };
 
-  // useEffect(() => {
-  //   getNotes();
-  // }, [notes]);
   useEffect(() => {
     getNotes();
   }, []);

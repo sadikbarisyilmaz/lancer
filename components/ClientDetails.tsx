@@ -28,8 +28,10 @@ export const ClientDetails = ({ client }: Props) => {
         <ClientNotes id={client.id} />
       </div>
       <div className="w-full lg:py-0 py-2 flex flex-col gap-2 h-4/6 col-span-2">
-        <DataTable rows={4} columns={columns} data={refactoredTasks} />
-        {client && <CreateTaskForm clients={[client]} />}
+        <div className="dark:bg-[#2424247c] bg-[#ffffffcb] border p-4 rounded-md">
+          <DataTable rows={4} columns={columns} data={refactoredTasks} />
+          {client && <CreateTaskForm clients={[client]} />}
+        </div>
         <TotalDept tasks={refactoredTasks} />
       </div>
     </div>

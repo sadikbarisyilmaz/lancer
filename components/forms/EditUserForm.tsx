@@ -135,7 +135,7 @@ export const EditUserForm = () => {
   }
 
   return (
-    <div className="bg-background/60 p-10 gap-10 text-lg grid lg:grid-cols-2 w-full md:w-fit h-fit rounded-lg">
+    <div className="dark:bg-[#2424247c]/60 p-10 gap-10 text-lg grid lg:grid-cols-2 w-full md:w-fit h-fit rounded-lg">
       <div className="flex flex-col h-full text-center justify-center gap-6  pb-2">
         <div className="flex w-full justify-center">
           <Avatar className="lg:w-36 w-16 lg:h-36 h-16 flex flex-col self-center">
