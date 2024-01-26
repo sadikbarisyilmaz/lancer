@@ -6,6 +6,8 @@ import { Separator } from "./ui/separator";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { UserCardSkeleton } from "./UserCardSkeleton";
 import Link from "next/link";
+import { revalidatePath } from "next/cache";
+import { readUserSession } from "@/app/actions";
 
 export const UserCard = () => {
   const [user, setUser] = useState<any>(null);
@@ -15,7 +17,7 @@ export const UserCard = () => {
     const getUser = async () => {
       const {
         data: { session },
-      } = await supabase.auth.getSession();
+      } = await readUserSession();
       if (session) {
         setUser(session.user);
         setloading(false);

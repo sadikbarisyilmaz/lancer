@@ -47,8 +47,6 @@ export const UpcomingTable = ({ weeklyTasks }: Props) => {
     setDays(dayNames);
     setWeekdays(weekDays);
     setFormattedWeeklyTasks(refactoredTasks);
-    //Converts server time to local time
-    // checkRecurringTasksThisWeek();
   }, []);
 
   if (!weekDays || !today) {
@@ -56,7 +54,7 @@ export const UpcomingTable = ({ weeklyTasks }: Props) => {
   }
 
   return (
-    <div className="flex justify-center lg:p-6 p-4 w-full h-full animate-fadeIn">
+    <div className="flex justify-center lg:py-6 lg:px-4 p-4 w-full h-full animate-fadeIn">
       {formattedWeeklyTasks?.length === 0 && (
         <div className="lg:hidden absolute top-2/4 ">
           <p className=" font-semibold text-lg text-center px-2">

@@ -4,9 +4,9 @@ import { Label } from "../ui/label";
 import { Input } from "../ui/input";
 import { Separator } from "../ui/separator";
 import { Button } from "../ui/button";
-import { User } from "@supabase/supabase-js";
 import { useEffect, useState } from "react";
 import {
+  readUserSession,
   updateUserEmail,
   updateUserFullName,
   updateUserPassword,
@@ -15,21 +15,22 @@ import {
 import { useToast } from "../ui/use-toast";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import Loading from "@/app/home/account/loading-component";
+import { Loader } from "../Loader";
 
-interface Props {
-  user: User;
-}
-export const EditUserForm = ({ user }: Props) => {
+export const EditUserForm = () => {
   const [activeForm, setActiveForm] = useState({
     name: false,
     email: false,
     password: false,
   });
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [picture, setPicture] = useState("");
   const [file, setFile] = useState<any>(undefined);
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
+  const [user, setUser] = useState<any>(null);
+
   const { toast } = useToast();
 
   const activateForm = (e: React.SyntheticEvent<HTMLOrSVGElement>) => {
@@ -72,9 +73,24 @@ export const EditUserForm = ({ user }: Props) => {
   };
 
   useEffect(() => {
-    setName(user.user_metadata.full_name);
-    // setEmail(user.user_metadata.email);
+    const getUser = async () => {
+      const {
+        data: { session },
+      } = await readUserSession();
+      if (session) {
+        setUser(session.user);
+        // setloading(false);
+      }
+    };
+    getUser();
   }, []);
+
+  useEffect(() => {
+    if (user) {
+      setName(user.user_metadata.full_name);
+      setEmail(user.email);
+    }
+  }, [user]);
 
   const handleName = (e: React.SyntheticEvent<EventTarget>) => {
     e.preventDefault();
@@ -97,7 +113,6 @@ export const EditUserForm = ({ user }: Props) => {
       });
     }
   };
-
   const handlePicture = (e: React.SyntheticEvent<EventTarget>) => {
     e.preventDefault();
     const formData = new FormData();
@@ -107,22 +122,23 @@ export const EditUserForm = ({ user }: Props) => {
       title: `- Profile Picture set successfully !`,
     });
   };
+  const handleEmail = (e: React.SyntheticEvent<EventTarget>) => {
+    e.preventDefault();
+    updateUserEmail(email);
+    toast({
+      title: `- A comfirmation mail sent to your current mail adress !`,
+    });
+  };
 
-  // const handleEmail = (e: React.SyntheticEvent<EventTarget>) => {
-  //   e.preventDefault();
-  //   updateUserEmail(email);
-  //   console.log("update name");
-  // };
-
-  if (!user) {
-    return <Loading />;
+  if (user === null) {
+    return <Loader />;
   }
 
   return (
-    <div className="bg-background/60 p-10 gap-2 text-lg grid lg:grid-cols-2 w-full md:w-fit h-fit rounded-lg">
-      <div className="flex flex-col h-full text-center gap-6 justify-center pb-2">
+    <div className="bg-background/60 p-10 gap-10 text-lg grid lg:grid-cols-2 w-full md:w-fit h-fit rounded-lg">
+      <div className="flex flex-col h-full text-center justify-center gap-6  pb-2">
         <div className="flex w-full justify-center">
-          <Avatar className="lg:w-24 w-16 lg:h-24 h-16 flex flex-col self-center">
+          <Avatar className="lg:w-36 w-16 lg:h-36 h-16 flex flex-col self-center">
             <AvatarImage
               src={user.user_metadata.avatar_url}
               alt={user.user_metadata.full_name}
@@ -139,7 +155,9 @@ export const EditUserForm = ({ user }: Props) => {
         <h3 className="sm:text-2xl">Edit User Info</h3>
         <Separator className=" bg-foreground/10" />
         <div className="flex gap-4 min-w-96 md:w-96 items-center">
-          <Label htmlFor="name">Name:</Label>
+          <Label htmlFor="name" className="min-w-[42px]">
+            Name:
+          </Label>
           <span className="flex items-center justify-between w-full">
             {!activeForm.name ? (
               <p className="animate-fadeIn">{user.user_metadata.full_name}</p>
@@ -166,12 +184,41 @@ export const EditUserForm = ({ user }: Props) => {
             </Button>
           </span>
         </div>
-
+        <div className="flex gap-4  items-center">
+          <Label htmlFor="email" className="min-w-[42px]">
+            Email:
+          </Label>
+          <span className="flex items-center justify-between w-full">
+            {!activeForm.email ? (
+              <p className="animate-fadeIn">{user.email}</p>
+            ) : (
+              <form onSubmit={handleEmail} className="flex animate-fadeIn ">
+                <Input
+                  onChange={(e) => setEmail(e.target.value)}
+                  value={email}
+                  type="email"
+                  required
+                />
+                <Button type="submit" variant="ghost">
+                  Save
+                </Button>
+              </form>
+            )}
+            <Button
+              onClick={(e) => activateForm(e)}
+              data-label="email"
+              variant="ghost"
+              size="icon"
+            >
+              <Pencil className="w-full" size={18} />
+            </Button>
+          </span>
+        </div>
         {user.user_metadata.iss !== "https://accounts.google.com" && (
           <>
             <Separator className=" bg-foreground/10" />
             <div className="flex flex-col gap-4 min-w-96 md:w-96 ">
-              <h2>Change Profile Picture</h2>
+              <h2 className="sm:text-2xl">Change Profile Picture</h2>
               <span className="flex items-center justify-between w-full">
                 <form
                   onSubmit={handlePicture}
@@ -223,74 +270,6 @@ export const EditUserForm = ({ user }: Props) => {
             </div>
           </>
         )}
-        {/* <div className="flex gap-4  items-center">
-        <Label htmlFor="email">Email:</Label>
-        <span className="flex justify-between w-full">
-          {!activeForm.email ? (
-            <p className="animate-fadeIn">{user.user_metadata.email}</p>
-          ) : (
-            <form onSubmit={handleEmail} className="flex animate-fadeIn ">
-              <Input
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
-                type="email"
-                required
-              />
-              <Button type="submit" variant="ghost">
-                Save
-              </Button>
-            </form>
-          )}
-          <Button
-            onClick={(e) => activateForm(e)}
-            data-label="email"
-            variant="ghost"
-            size="icon"
-          >
-            <Pencil className="w-full" size={18} />
-          </Button>
-        </span>
-      </div> */}
-        {/* <div className="flex gap-4  items-center">
-        <Label htmlFor="password">Password:</Label>
-        <span className="flex justify-between w-full">
-          {!activeForm.password ? (
-            <p className="">*********</p>
-          ) : (
-            <form onSubmit={handleName} className="flex animate-fadeIn ">
-              <Input
-                onChange={(e) => setName(e.target.value)}
-                value={name}
-                type="text"
-                required
-              />
-              <Button type="submit" variant="ghost">
-                Save
-              </Button>
-            </form>
-          )}
-          <Button
-            onClick={(e) => activateForm(e)}
-            data-label="password"
-            variant="ghost"
-            size="icon"
-          >
-            <Pencil className="w-full" size={18} />
-          </Button>
-        </span>
-      </div> */}
-        {/* <div className="flex gap-4  items-center">
-        <Label htmlFor="picture">Picture: </Label>
-        <span className="flex justify-between w-full">
-          <img
-            src={user.user_metadata.picture}
-            className="w-8 h-8 rounded-full"
-          />
-       
-            <Pencil className="w-full" size={18} />
-        </span>
-        <Input id="picture" type="file" />
-      </div> */}
       </div>
     </div>
   );

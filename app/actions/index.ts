@@ -16,7 +16,7 @@ import { addDays, format } from "date-fns";
 export const readUserSession = async () => {
   noStore();
   const supabase = await createSupabaseServerClient();
-  return supabase.auth.getSession();
+  return await supabase.auth.getSession();
 };
 export const updateUserEmail = async (newEmail: string) => {
   const supabase = await createSupabaseServerClient();
