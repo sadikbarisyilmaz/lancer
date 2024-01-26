@@ -4,7 +4,7 @@ import { columns } from "@/components/tasks-table/columns";
 import { DataTable } from "@/components/tasks-table/dataTable";
 import { Client, Task } from "@/lib/types";
 import { format } from "date-fns";
-import { AlertCircle, Divide } from "lucide-react";
+import { AlertCircle } from "lucide-react";
 import Link from "next/link";
 
 interface Props {

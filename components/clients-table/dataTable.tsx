@@ -20,7 +20,6 @@ import {
 } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -48,7 +47,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <>
-      <div className="rounded-md border  ">
+      <div className="rounded-md border">
         <Table className="">
           <TableHeader className="sticky">
             {table.getHeaderGroups().map((headerGroup) => (

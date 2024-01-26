@@ -5,10 +5,19 @@ export default function Loading() {
   // You can add any UI inside Loading, including a Skeleton.
   return (
     <div>
-      <Banner title="Tasks" />
+      <Banner title="Clients" />
       <div className="p-6 lg:w-full flex flex-col gap-1 animate-fadeIn">
-        <div className="xl:max-w-7xl xl:pt-20 flex flex-col md:self-center md:w-full xl:scale-125">
-          <div className="dark:bg-[#2424247c] bg-[#ffffffcb] rounded-md lg:w-full h-fit flex flex-col">
+        <div className="xl:max-w-7xl xl:pt-24 flex flex-col md:self-center md:w-full xl:scale-125">
+          <div className="dark:bg-[#2424247c] bg-[#ffffffcb] rounded-md lg:w-full h-fit  flex flex-col  ">
+            <div className="border-b dark:bg-[#2424247c] bg-[#ffffffcb] border-background">
+              <Skeleton className="h-[48px]" />
+            </div>
+            <div className="border-b dark:bg-[#2424247c] bg-[#ffffffcb] border-background">
+              <Skeleton className="h-[48px]" />
+            </div>
+            <div className="border-b dark:bg-[#2424247c] bg-[#ffffffcb] border-background">
+              <Skeleton className="h-[48px]" />
+            </div>
             <div className="border-b dark:bg-[#2424247c] bg-[#ffffffcb] border-background">
               <Skeleton className="h-[48px]" />
             </div>
