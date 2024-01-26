@@ -1,12 +1,5 @@
 "use client";
-import {
-  createNewClient,
-  createNewClientNote,
-  createNewTaskNote,
-  deleteClientNote,
-  deleteTaskNote,
-  getTaskNotes,
-} from "@/app/actions";
+import { createNewTaskNote, deleteTaskNote, getTaskNotes } from "@/app/actions";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";

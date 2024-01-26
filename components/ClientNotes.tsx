@@ -25,6 +25,7 @@ import { Card } from "./ui/card";
 import { Calendar, TrashIcon } from "lucide-react";
 import { DeleteAlert } from "./DeleteAlert";
 import { Skeleton } from "./ui/skeleton";
+import { format } from "date-fns";
 
 const formSchema = z.object({
   note: z.string().min(2),
@@ -39,7 +40,13 @@ export const ClientNotes = ({ id }: { id: number }) => {
   const getNotes = async () => {
     try {
       const notes = await getClientNotes(id);
-      setClientNotes(notes);
+      const refactoredclientNotes = notes.map((note, i) => {
+        return {
+          ...note,
+          created_at: format(note.created_at, "EEEE - dd/MM/yyyy"),
+        };
+      });
+      setClientNotes(refactoredclientNotes);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -84,7 +91,7 @@ export const ClientNotes = ({ id }: { id: number }) => {
   }
   if (loading) {
     return (
-      <Skeleton className="h-[414px] p-6 w-full text-foreground/90 flex flex-col justify-center dark:bg-[#2424247c] bg-[#ffffffcb] rounded-lg dark:bg-opacity-50 bg-opacity-50 gap-4 text-lg "></Skeleton>
+      <Skeleton className="h-[414px] max-h-[284px] p-6 w-full text-foreground/90 flex flex-col justify-center dark:bg-[#2424247c] bg-[#ffffffcb] rounded-lg dark:bg-opacity-50 bg-opacity-50 gap-4 text-lg "></Skeleton>
     );
   }
   return (

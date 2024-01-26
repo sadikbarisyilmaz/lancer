@@ -17,7 +17,7 @@ export interface Client {
 }
 export interface ClientNote {
   id: number;
-  created_at: Date;
+  created_at: Date | string;
   user_id: number;
   content: string;
 }
