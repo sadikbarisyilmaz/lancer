@@ -27,6 +27,7 @@ import { Card } from "./ui/card";
 import { TrashIcon } from "lucide-react";
 import { DeleteAlert } from "./DeleteAlert";
 import { Skeleton } from "./ui/skeleton";
+import { format } from "date-fns";
 
 const formSchema = z.object({
   note: z.string().min(2),
@@ -40,7 +41,13 @@ export const TaskNotes = ({ id }: { id: number }) => {
   const getNotes = async () => {
     try {
       const taskNotes = await getTaskNotes(id);
-      setNotes(taskNotes);
+      const refactoredtaskNotes = taskNotes.map((note, i) => {
+        return {
+          ...note,
+          created_at: format(note.created_at, "EEEE - dd/MM/yyyy"),
+        };
+      });
+      setNotes(refactoredtaskNotes);
       setLoading(false);
     } catch (error) {
       console.log(error);
@@ -89,23 +96,29 @@ export const TaskNotes = ({ id }: { id: number }) => {
       <Skeleton className="h-[414px] p-6 w-full text-foreground/90 flex flex-col justify-center dark:bg-[#2424247c] bg-[#ffffffcb] rounded-lg dark:bg-opacity-50 bg-opacity-50 gap-4 text-lg "></Skeleton>
     );
   }
+
+  console.log(notes);
+
   return (
     <div>
       <Card className="flex flex-col max-h-[284px] xl:max-h-[484px] dark:bg-[#2424247c] bg-[#ffffffcb] min-h-[220px] dark:bg-opacity-40 bg-opacity-40 justify-between items-between gap-4 p-4">
-        <ul className="overflow-y-scroll border h-full p-4 rounded-md border-foreground/10">
+        <ul className="overflow-y-scroll  h-full p-4 rounded-md ">
           {notes.length !== 0 ? (
             notes.map((note, i) => {
               return (
                 <li
-                  className="py-1 flex justify-between items-center text-justify"
+                  className="flex flex-col text-justify border-l-8 bg-foreground/40"
                   key={i}
                 >
-                  - {note.content}
-                  <TrashIcon
-                    size={20}
-                    className="cursor-pointer hover:text-red-700 transition-colors "
-                    onClick={() => handleDelete(note.id)}
-                  />
+                  <span className="flex justify-between pt-3 pb-1 px-3 ">
+                    <p>{`${note.created_at}`}</p>
+                    <TrashIcon
+                      size={20}
+                      className="cursor-pointer hover:text-red-700 transition-colors "
+                      onClick={() => handleDelete(note.id)}
+                    />
+                  </span>
+                  <p className="px-3 ">{note.content}</p>
                 </li>
               );
             })

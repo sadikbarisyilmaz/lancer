@@ -49,7 +49,7 @@ export interface Task {
 }
 export interface TaskNote {
   id: number;
-  created_at: Date;
+  created_at: Date | string;
   task_id: number;
   content: string;
 }
