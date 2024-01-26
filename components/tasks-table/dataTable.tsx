@@ -24,11 +24,13 @@ import { useRouter } from "next/navigation";
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  rows: number;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  rows,
 }: DataTableProps<TData, TValue>) {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
 
@@ -39,7 +41,7 @@ export function DataTable<TData, TValue>({
     getPaginationRowModel: getPaginationRowModel(),
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
-    initialState: { pagination: { pageSize: 8, pageIndex: 0 } },
+    initialState: { pagination: { pageSize: rows, pageIndex: 0 } },
     state: {
       columnFilters,
     },
@@ -101,7 +103,7 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      {data.length > 8 && (
+      {data.length > rows && (
         <div className="flex justify-between gap-1">
           <div className="flex items-center py-2">
             <Input

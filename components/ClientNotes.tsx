@@ -22,7 +22,7 @@ import { getClientNotes } from "@/app/actions";
 import { ClientNote } from "@/lib/types";
 import { useEffect, useState } from "react";
 import { Card } from "./ui/card";
-import { TrashIcon } from "lucide-react";
+import { Calendar, TrashIcon } from "lucide-react";
 import { DeleteAlert } from "./DeleteAlert";
 import { Skeleton } from "./ui/skeleton";
 
@@ -90,20 +90,26 @@ export const ClientNotes = ({ id }: { id: number }) => {
   return (
     <div>
       <Card className="flex flex-col max-h-[284px] xl:max-h-[484px] dark:bg-[#2424247c] bg-[#ffffffcb] min-h-[220px] dark:bg-opacity-40 bg-opacity-40 justify-between items-between gap-4 p-4">
-        <ul className="overflow-y-scroll border h-full p-4 rounded-md border-foreground/10">
+        <ul className="overflow-y-scroll h-full py-2 grid gap-2 rounded-md ">
           {clientNotes.length !== 0 ? (
             clientNotes.map((note, i) => {
               return (
                 <li
-                  className="py-1 flex justify-between items-center text-justify"
+                  className="flex flex-col border-l-8  text-justify dark:border-black/60 dark:bg-foreground/10"
                   key={i}
                 >
-                  - {note.content}
-                  <TrashIcon
-                    size={20}
-                    className="cursor-pointer hover:text-red-700 transition-colors "
-                    onClick={() => handleDelete(note.id)}
-                  />
+                  <span className="flex justify-between pt-3 pb-1 px-3 ">
+                    <p className="flex gap-1 items-center">
+                      <Calendar size={18} />
+                      {`${note.created_at}`}
+                    </p>
+                    <TrashIcon
+                      size={18}
+                      className="cursor-pointer hover:text-red-700 transition-colors "
+                      onClick={() => handleDelete(note.id)}
+                    />
+                  </span>
+                  <p className="px-3 py-1">"{note.content}"</p>
                 </li>
               );
             })

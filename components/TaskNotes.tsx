@@ -24,7 +24,7 @@ import { useToast } from "./ui/use-toast";
 import { TaskNote } from "@/lib/types";
 import { useEffect, useState } from "react";
 import { Card } from "./ui/card";
-import { TrashIcon } from "lucide-react";
+import { Calendar, TrashIcon } from "lucide-react";
 import { DeleteAlert } from "./DeleteAlert";
 import { Skeleton } from "./ui/skeleton";
 import { format } from "date-fns";
@@ -54,6 +54,9 @@ export const TaskNotes = ({ id }: { id: number }) => {
     }
   };
 
+  // useEffect(() => {
+  //   getNotes();
+  // }, [notes]);
   useEffect(() => {
     getNotes();
   }, []);
@@ -81,8 +84,7 @@ export const TaskNotes = ({ id }: { id: number }) => {
         title: `Note created successfully !`,
       });
       if (data) {
-        const prev = [...notes, ...data];
-        setNotes(prev);
+        getNotes();
       }
     } catch (error) {
       toast({
@@ -97,28 +99,29 @@ export const TaskNotes = ({ id }: { id: number }) => {
     );
   }
 
-  console.log(notes);
-
   return (
     <div>
       <Card className="flex flex-col max-h-[284px] xl:max-h-[484px] dark:bg-[#2424247c] bg-[#ffffffcb] min-h-[220px] dark:bg-opacity-40 bg-opacity-40 justify-between items-between gap-4 p-4">
-        <ul className="overflow-y-scroll  h-full p-4 rounded-md ">
+        <ul className="overflow-y-scroll h-full py-2 grid gap-2 rounded-md ">
           {notes.length !== 0 ? (
             notes.map((note, i) => {
               return (
                 <li
-                  className="flex flex-col text-justify border-l-8 bg-foreground/40"
+                  className="flex flex-col border-l-8  text-justify dark:border-black/60 dark:bg-foreground/10"
                   key={i}
                 >
                   <span className="flex justify-between pt-3 pb-1 px-3 ">
-                    <p>{`${note.created_at}`}</p>
+                    <p className="flex gap-1 items-center">
+                      <Calendar size={18} />
+                      {`${note.created_at}`}
+                    </p>
                     <TrashIcon
-                      size={20}
+                      size={18}
                       className="cursor-pointer hover:text-red-700 transition-colors "
                       onClick={() => handleDelete(note.id)}
                     />
                   </span>
-                  <p className="px-3 ">{note.content}</p>
+                  <p className="px-3 py-1">"{note.content}"</p>
                 </li>
               );
             })

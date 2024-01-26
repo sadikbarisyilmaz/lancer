@@ -27,7 +27,7 @@ export const ClientDetails = ({ client }: Props) => {
         <ClientNotes id={client.id} />
       </div>
       <div className="w-full lg:py-0 py-2 flex flex-col gap-2 h-4/6 col-span-2">
-        <DataTable columns={columns} data={refactoredTasks} />
+        <DataTable rows={5} columns={columns} data={refactoredTasks} />
         {client && <CreateTaskForm clients={[client]} />}
       </div>
     </div>
