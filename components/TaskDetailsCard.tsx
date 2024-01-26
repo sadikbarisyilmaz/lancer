@@ -1,5 +1,5 @@
 import { Task } from "@/lib/types";
-import { Loader } from "./Loader";
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import { format } from "date-fns";
 import { Card, CardTitle } from "./ui/card";
@@ -59,6 +59,7 @@ export const TaskDetailsCard = ({ task }: Props) => {
       <Skeleton className="h-[414px] p-6 w-full text-foreground/90 flex flex-col justify-center dark:bg-[#2424247c] bg-[#ffffffcb] rounded-lg dark:bg-opacity-50 bg-opacity-50 gap-4 text-lg "></Skeleton>
     );
   }
+  console.log(task);
 
   return (
     <Card className="p-6 w-full text-foreground/90 flex flex-col justify-center dark:bg-[#2424247c] bg-[#ffffffcb]  dark:bg-opacity-50 bg-opacity-50 gap-4 text-lg ">
@@ -71,10 +72,15 @@ export const TaskDetailsCard = ({ task }: Props) => {
       <Separator color="#fbbf5d" className=" bg-foreground" />
       <div>
         <div className="p-1 gap-2 flex items-center">
-          <span className="text-opacity-60 text-indigo-500">
-            <User size={24} />
-          </span>
-          <p>{task.clients.name}</p>
+          <Link
+            className="flex gap-2"
+            href={`/home/clients/${[task.client_id]}`}
+          >
+            <span className="text-opacity-60 text-indigo-500">
+              <User size={24} />
+            </span>
+            <p>{task.clients.name}</p>
+          </Link>
         </div>
         <div className="p-1 gap-2 flex items-center">
           <span className="text-opacity-60 text-green-700">

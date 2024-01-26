@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 import { Loader } from "@/components/Loader";
+import { readUserSession } from "./actions";
 
 export default function Page() {
   const [url, setUrl] = useState<string>();
@@ -19,7 +20,7 @@ export default function Page() {
   const checkUser = async () => {
     const {
       data: { session },
-    } = await supabase.auth.getSession();
+    } = await readUserSession();
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event) => {
