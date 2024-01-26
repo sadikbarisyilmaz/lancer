@@ -2,6 +2,7 @@ import { Navbar } from "@/components/Navbar";
 import Link from "next/link";
 import { readUserSession } from "../actions";
 import { MobileNavbar } from "@/components/MobileNavbar";
+
 export default async function Layout({
   children,
 }: {

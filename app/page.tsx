@@ -22,7 +22,7 @@ export default function Page() {
   const checkUser = async () => {
     const {
       data: { session },
-    } = await readUserSession();
+    } = await supabase.auth.getSession();
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event) => {
