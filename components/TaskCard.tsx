@@ -47,12 +47,12 @@ export const TaskCard = ({ task }: Props) => {
           <div className="p-1 text-xs gap-2 flex items-center">
             <span
               className={`${
-                task.payment_status === "Paid"
+                task.payment_status === "Payment Done"
                   ? "text-green-400"
                   : "text-red-700"
               }`}
             >
-              {task.payment_status === "Paid" ? (
+              {task.payment_status === "Payment Done" ? (
                 <Check size={18} />
               ) : (
                 <X size={18} />

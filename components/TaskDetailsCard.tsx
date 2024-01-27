@@ -115,12 +115,12 @@ export const TaskDetailsCard = ({ task }: Props) => {
           >
             <span
               className={`${
-                task.payment_status === "Paid"
+                task.payment_status === "Payment Done"
                   ? "text-green-400"
                   : "text-red-700"
               }`}
             >
-              {task.payment_status === "Paid" ? (
+              {task.payment_status === "Payment Done" ? (
                 <Check size={24} />
               ) : (
                 <X size={24} />
@@ -133,7 +133,8 @@ export const TaskDetailsCard = ({ task }: Props) => {
             variant="outline"
             className="self-end bg-background/10"
           >
-            Mark as {`${task.payment_status === "Paid" ? "Not Paid" : "Paid"}`}
+            Mark as{" "}
+            {`${task.payment_status === "Payment Done" ? "Not Paid" : "Paid"}`}
           </Button>
         </div>
       </div>

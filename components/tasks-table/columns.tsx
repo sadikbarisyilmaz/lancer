@@ -75,12 +75,12 @@ export const columns: ColumnDef<Task>[] = [
         <div className="text-left gap-1 flex items-center font-medium">
           <span
             className={`${
-              row.getValue("payment_status") === "Paid"
+              row.getValue("payment_status") === "Payment Done"
                 ? "text-green-400"
                 : "text-red-700"
             }`}
           >
-            {row.getValue("payment_status") === "Paid" ? (
+            {row.getValue("payment_status") === "Payment Done" ? (
               <Check size={16} />
             ) : (
               <X size={16} />

@@ -335,7 +335,7 @@ export const updatePaymentStatus = async (
   TaskId: number | number[]
 ) => {
   const supabase = await createSupabaseServerClient();
-  const updatedStatus = status === "Paid" ? "Not Paid" : "Paid";
+  const updatedStatus = status === "Payment Done" ? "Not Paid" : "Payment Done";
 
   let { error } = await supabase
     .from("tasks")

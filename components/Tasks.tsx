@@ -23,7 +23,12 @@ export const Tasks = ({ tasks, clients }: Props) => {
 
   return (
     <>
-      <DataTable rows={8} columns={columns} data={refactoredTasks} />
+      <DataTable
+        isInClientDetailsPage={false}
+        rows={8}
+        columns={columns}
+        data={refactoredTasks}
+      />
       {clients.length > 0 ? (
         <span>
           <CreateTaskForm clients={clients} />

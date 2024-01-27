@@ -9,7 +9,12 @@ import {
   ColumnFiltersState,
   getFilteredRowModel,
 } from "@tanstack/react-table";
-
+import {
+  DropdownMenu,
+  DropdownMenuItem,
+  DropdownMenuContent,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import {
   Table,
   TableBody,
@@ -18,13 +23,14 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { ChevronDownIcon } from "lucide-react";
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   rows: number;
+  isInClientDetailsPage: boolean;
 }
 
 export function DataTable<TData, TValue>({
@@ -46,7 +52,10 @@ export function DataTable<TData, TValue>({
       columnFilters,
     },
   });
+
   const router = useRouter();
+
+  console.log(columnFilters);
 
   return (
     <>
@@ -106,20 +115,38 @@ export function DataTable<TData, TValue>({
       {data.length > rows && (
         <div className="flex justify-between gap-1">
           <div className="flex items-center py-2">
-            <Input
-              placeholder="Filter Clients..."
-              value={
-                (table.getColumn("client_name")?.getFilterValue() as string) ??
-                ""
-              }
-              onChange={(event) =>
-                table
-                  .getColumn("client_name")
-                  ?.setFilterValue(event.target.value)
-              }
-              className="max-w-sm "
-            />
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" className="ml-auto">
+                  Payment Status <ChevronDownIcon className="ml-2 h-4 w-4" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem
+                  onClick={(event) =>
+                    table.getColumn("payment_status")?.setFilterValue("")
+                  }
+                >
+                  Show All
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={(event) =>
+                    table.getColumn("payment_status")?.setFilterValue("done")
+                  }
+                >
+                  Payment Done
+                </DropdownMenuItem>
+                <DropdownMenuItem
+                  onClick={(event) =>
+                    table.getColumn("payment_status")?.setFilterValue("not")
+                  }
+                >
+                  Not Paid
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
           </div>
+
           <div className="flex items-center justify-end space-x-2 py-2">
             <Button
               variant="outline"

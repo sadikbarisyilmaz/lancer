@@ -20,7 +20,7 @@ export const ClientDetails = ({ client }: Props) => {
       set_date: format(task.set_date, "EEEE - dd/MM/yyyy"),
     };
   });
-
+  const clientOmmittedcolumns = columns.slice(1);
   return (
     <div className="w-full  justify-center lg:gap-2 grid grid-cols-1 lg:grid-cols-3">
       <div className="flex flex-col  gap-2 w-full">
@@ -29,10 +29,14 @@ export const ClientDetails = ({ client }: Props) => {
       </div>
       <div className="w-full lg:py-0 py-2 flex flex-col gap-2 h-4/6 col-span-2">
         <div className="dark:bg-[#2424247c] bg-[#ffffffcb] border p-4 rounded-md">
-          <DataTable rows={5} columns={columns} data={refactoredTasks} />
+          <DataTable
+            isInClientDetailsPage={true}
+            rows={5}
+            columns={clientOmmittedcolumns}
+            data={refactoredTasks}
+          />
           {client && <CreateTaskForm clients={[client]} />}
         </div>
-        <TotalDept tasks={refactoredTasks} />
       </div>
     </div>
   );
