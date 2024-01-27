@@ -56,13 +56,13 @@ export const TaskDetailsCard = ({ task }: Props) => {
 
   if (!task || !refactoredTask) {
     return (
-      <Skeleton className="h-[414px] p-6 w-full text-foreground/90 flex flex-col justify-center dark:bg-[#2424247c] bg-[#ffffffcb] rounded-lg dark:bg-opacity-50 bg-opacity-50 gap-4 text-lg "></Skeleton>
+      <Skeleton className="h-[414px] p-6 max-w-3/6 text-foreground/90 flex flex-col justify-center dark:bg-[#2424247c] bg-[#ffffffcb] rounded-lg dark:bg-opacity-50 bg-opacity-50 gap-4 text-lg "></Skeleton>
     );
   }
   console.log(task);
 
   return (
-    <Card className="p-6 w-full text-foreground/90 flex flex-col justify-center dark:bg-[#2424247c] bg-[#ffffffcb]  dark:bg-opacity-50 bg-opacity-50 gap-4 text-lg ">
+    <Card className="p-6 max-w-3/6 text-foreground/90 flex flex-col justify-center dark:bg-[#2424247c] bg-[#ffffffcb]  dark:bg-opacity-50 bg-opacity-50 gap-4 text-lg ">
       <span className="flex font-bold items-center gap-3 ">
         <span className=" text-opacity-100 text-orange-300">
           <Bookmark size={40} />
