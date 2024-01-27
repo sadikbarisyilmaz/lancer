@@ -6,7 +6,6 @@ import { DataTable } from "./tasks-table/dataTable";
 import { columns } from "./tasks-table/columns";
 import { CreateTaskForm } from "./forms/CreateTaskForm";
 import { format } from "date-fns";
-import { TotalDept } from "./TotalDept";
 
 interface Props {
   client: Client;
