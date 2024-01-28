@@ -6,7 +6,6 @@ import { Separator } from "./ui/separator";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { UserCardSkeleton } from "./UserCardSkeleton";
 import Link from "next/link";
-import { revalidatePath } from "next/cache";
 import { readUserSession } from "@/app/actions";
 
 export const UserCard = () => {
@@ -39,7 +38,7 @@ export const UserCard = () => {
 
   if (loading) {
     return (
-      <div className="py-1 h-[77px] flex flex-col items-center lg:items-left gap-6">
+      <div className="py-1 h-[146px] lg:h-[77px] flex flex-col items-center lg:items-left gap-6">
         <UserCardSkeleton />
         <Separator className="bg-foreground/10" />
       </div>
