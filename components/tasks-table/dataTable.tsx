@@ -117,38 +117,40 @@ export function DataTable<TData, TValue>({
         </Table>
       </div>
       {data.length > rows && (
-        <div className="flex justify-between gap-1">
-          <div className="flex items-center pb-2 gap-2">
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="outline" className="ml-auto">
-                  Payment Status <ChevronDownIcon className="ml-2 h-4 w-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem
-                  onClick={(event) =>
-                    table.getColumn("payment_status")?.setFilterValue("")
-                  }
-                >
-                  Show All
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  onClick={(event) =>
-                    table.getColumn("payment_status")?.setFilterValue("done")
-                  }
-                >
-                  Payment Done
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  onClick={(event) =>
-                    table.getColumn("payment_status")?.setFilterValue("not")
-                  }
-                >
-                  Not Paid
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+        <div className="flex flex-col sm:flex-row justify-between gap-1">
+          <div className="flex items-center order-2 sm:order-1 pb-2 gap-2">
+            <div>
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  <Button variant="outline" className="ml-auto">
+                    Payment <ChevronDownIcon className="ml-2 h-4 w-4" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem
+                    onClick={(event) =>
+                      table.getColumn("payment_status")?.setFilterValue("")
+                    }
+                  >
+                    Show All
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={(event) =>
+                      table.getColumn("payment_status")?.setFilterValue("done")
+                    }
+                  >
+                    Payment Done
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={(event) =>
+                      table.getColumn("payment_status")?.setFilterValue("not")
+                    }
+                  >
+                    Not Paid
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
             {!isInClientDetailsPage && (
               <div className="flex items-center">
                 <Input
@@ -168,8 +170,7 @@ export function DataTable<TData, TValue>({
               </div>
             )}
           </div>
-
-          <div className="flex items-center justify-end space-x-2 py-2">
+          <div className="flex order-1 sm:order-2 items-center sm:justify-end space-x-2 pb-2">
             <Button
               variant="outline"
               size="sm"

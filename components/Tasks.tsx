@@ -22,7 +22,7 @@ export const Tasks = ({ tasks, clients }: Props) => {
     <div className="flex flex-col dark:bg-[#2424247c] rounded-md bg-[#ffffffcb] p-4">
       <DataTable
         isInClientDetailsPage={false}
-        rows={8}
+        rows={7}
         columns={columns}
         data={refactoredTasks}
         clients={clients}

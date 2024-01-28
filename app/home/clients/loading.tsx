@@ -19,9 +19,6 @@ export default function Loading() {
               <Skeleton className="h-[48px]" />
             </div>
             <div className="border-b dark:bg-[#2424247c] bg-[#ffffffcb] border-background">
-              <Skeleton className="h-[48px]" />
-            </div>
-            <div className="border-b dark:bg-[#2424247c] bg-[#ffffffcb] border-background">
               <Skeleton className="h-[56px]" />
             </div>
             <div className="border-b dark:bg-[#2424247c] bg-[#ffffffcb] border-background">

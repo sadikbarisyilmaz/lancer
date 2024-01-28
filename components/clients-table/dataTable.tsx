@@ -39,7 +39,7 @@ export function DataTable<TData, TValue>({
     getPaginationRowModel: getPaginationRowModel(),
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
-    initialState: { pagination: { pageSize: 8, pageIndex: 0 } },
+    initialState: { pagination: { pageSize: 7, pageIndex: 0 } },
     state: {
       columnFilters,
     },
@@ -101,7 +101,7 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-      {data.length > 8 && (
+      {data.length > 7 && (
         <div className="flex justify-between gap-1">
           <div className="flex items-center pb-2">
             <Input
@@ -115,7 +115,7 @@ export function DataTable<TData, TValue>({
               className="max-w-sm "
             />
           </div>
-          <div className="flex items-center justify-end space-x-2 py-2">
+          <div className="flex items-center justify-end space-x-2 pb-2">
             <Button
               variant="outline"
               size="sm"
