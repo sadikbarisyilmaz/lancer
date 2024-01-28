@@ -29,6 +29,7 @@ import { AlertCircle, ChevronDownIcon } from "lucide-react";
 import { CreateTaskForm } from "../forms/CreateTaskForm";
 import { Client } from "@/lib/types";
 import Link from "next/link";
+import { Input } from "../ui/input";
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
@@ -42,6 +43,7 @@ export function DataTable<TData, TValue>({
   data,
   rows,
   clients,
+  isInClientDetailsPage,
 }: DataTableProps<TData, TValue>) {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const router = useRouter();
@@ -116,7 +118,7 @@ export function DataTable<TData, TValue>({
       </div>
       {data.length > rows && (
         <div className="flex justify-between gap-1">
-          <div className="flex items-center pb-2">
+          <div className="flex items-center pb-2 gap-2">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" className="ml-auto">
@@ -147,6 +149,24 @@ export function DataTable<TData, TValue>({
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
+            {!isInClientDetailsPage && (
+              <div className="flex items-center">
+                <Input
+                  placeholder="Filter Names..."
+                  value={
+                    (table
+                      .getColumn("client_name")
+                      ?.getFilterValue() as string) ?? ""
+                  }
+                  onChange={(event) =>
+                    table
+                      .getColumn("client_name")
+                      ?.setFilterValue(event.target.value)
+                  }
+                  className="max-w-sm "
+                />
+              </div>
+            )}
           </div>
 
           <div className="flex items-center justify-end space-x-2 py-2">
