@@ -119,6 +119,24 @@ export function DataTable<TData, TValue>({
       {data.length > rows && (
         <div className="flex flex-col sm:flex-row justify-between gap-1">
           <div className="flex items-center order-2 sm:order-1 pb-2 gap-2">
+            {!isInClientDetailsPage && (
+              <div className="flex items-center">
+                <Input
+                  placeholder="Filter Names..."
+                  value={
+                    (table
+                      .getColumn("client_name")
+                      ?.getFilterValue() as string) ?? ""
+                  }
+                  onChange={(event) =>
+                    table
+                      .getColumn("client_name")
+                      ?.setFilterValue(event.target.value)
+                  }
+                  className="max-w-sm "
+                />
+              </div>
+            )}
             <div>
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
@@ -151,24 +169,6 @@ export function DataTable<TData, TValue>({
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
-            {!isInClientDetailsPage && (
-              <div className="flex items-center">
-                <Input
-                  placeholder="Filter Names..."
-                  value={
-                    (table
-                      .getColumn("client_name")
-                      ?.getFilterValue() as string) ?? ""
-                  }
-                  onChange={(event) =>
-                    table
-                      .getColumn("client_name")
-                      ?.setFilterValue(event.target.value)
-                  }
-                  className="max-w-sm "
-                />
-              </div>
-            )}
           </div>
           <div className="flex order-1 sm:order-2 items-center sm:justify-end space-x-2 pb-2">
             <Button
