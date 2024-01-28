@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { useRouter } from "next/navigation";
 import { Loader } from "@/components/Loader";
-import { readUserSession } from "./actions";
+import { useTheme } from "next-themes";
 
 export default function Page() {
   const [url, setUrl] = useState<string>();
@@ -42,6 +42,7 @@ export default function Page() {
   };
 
   const supabase = createSupabaseBrowserClient();
+  const { theme } = useTheme();
 
   if (loading) {
     return (
@@ -70,7 +71,7 @@ export default function Page() {
             supabaseClient={supabase}
             appearance={{ theme: ThemeSupa }}
             providers={["google"]}
-            theme="dark"
+            theme={`${theme === "dark" ? "dark" : ""}`}
             view="magic_link"
           />
         </div>

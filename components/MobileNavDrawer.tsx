@@ -1,21 +1,9 @@
 "use client";
-
 import * as React from "react";
 import { Button } from "@/components/ui/button";
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer";
-import { Navbar } from "./Navbar";
+import { Drawer, DrawerContent, DrawerTrigger } from "@/components/ui/drawer";
 import { HamburgerMenuIcon } from "@radix-ui/react-icons";
 import { UserCard } from "./UserCard";
-import { NavMenu } from "./NavMenu";
 import { Footer } from "./Footer";
 import { MobileNavMenu } from "./MobileNavMenu";
 

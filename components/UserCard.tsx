@@ -36,7 +36,7 @@ export const UserCard = () => {
     setUser(null);
   };
 
-  if (loading) {
+  if (!user) {
     return (
       <div className="py-1 h-[146px] lg:h-[77px] flex flex-col items-center lg:items-left gap-6">
         <UserCardSkeleton />
@@ -44,6 +44,7 @@ export const UserCard = () => {
       </div>
     );
   }
+
   return (
     <div className="flex flex-col gap-4">
       <div className="lg:justify-start justify-center gap-3 flex lg:flex-row flex-col items-center text-center lg:text-left py-2">

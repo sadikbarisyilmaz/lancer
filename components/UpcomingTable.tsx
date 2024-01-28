@@ -4,7 +4,6 @@ import { Task } from "@/lib/types";
 import { addDays, format } from "date-fns";
 import { useEffect, useState } from "react";
 import Loading from "@/app/home/upcoming/loading-component";
-import { createRecurringTask } from "@/app/actions";
 import { createRecurringTasks } from "@/lib/helpers";
 
 interface Props {

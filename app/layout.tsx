@@ -5,15 +5,6 @@ import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/providers/themeProvider";
 import type { Metadata } from "next";
-// const defaultUrl = process.env.VERCEL_URL
-//   ? `https://${process.env.VERCEL_URL}`
-//   : "http://localhost:3000";
-
-// export const metadata = {
-//   metadataBase: new URL(defaultUrl),
-//   title: "Lancer",
-//   // description: "The fastest way to build apps with Next.js and Supabase",
-// };
 
 export const metadata: Metadata = {
   title: "Lancer",
@@ -26,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html suppressHydrationWarning lang="en">
-      <body className="lg:dark:bg-[url('../lib/assets/bg.svg')] lg:bg-[url('../lib/assets/bg-light.svg')] dark:bg-[url('../lib/assets/bg-mobile.svg')] bg-[url('../lib/assets/bg-light-mobile.svg')] text-foreground bg-cover  h-screen">
+      <body className="lg:dark:bg-[url('../lib/assets/bg.svg')] lg:bg-[url('../lib/assets/bg-light.svg')] dark:bg-[url('../lib/assets/bg-mobile.svg')] bg-[url('../lib/assets/bg-light-mobile.svg')] text-[#000000c5] dark:text-white bg-cover  h-screen">
         <main className="h-screen lg:flex-row flex-col flex">
           <ThemeProvider
             attribute="class"

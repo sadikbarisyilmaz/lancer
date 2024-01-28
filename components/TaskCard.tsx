@@ -16,7 +16,7 @@ export const TaskCard = ({ task }: Props) => {
       href={`/home/tasks/${[task.id]}`}
     >
       <Card className="px-3 py-4 w-full text-foreground/90 flex flex-col justify-center dark:bg-black bg-white dark:bg-opacity-50 bg-opacity-50 gap-3 text-md hover:-translate-y-1 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl max-w-sm">
-        <h6 className="flex text-sm font-bold items-center gap-1 ">
+        <h6 className="flex text-sm font-semibold items-center gap-1 ">
           <span className=" text-opacity-100 text-orange-300">
             <Bookmark size={24} />
           </span>
