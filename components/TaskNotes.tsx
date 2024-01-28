@@ -97,7 +97,7 @@ export const TaskNotes = ({ id }: { id: number }) => {
             notes.map((note, i) => {
               return (
                 <li
-                  className="flex flex-col border-l-8  text-justify dark:border-black/60 dark:bg-foreground/10"
+                  className="flex flex-col border-l-8  text-justify dark:border-black/60 dark:bg-foreground/10 border-black/50 bg-white shadow-sm"
                   key={i}
                 >
                   <span className="flex justify-between pt-3 pb-1 px-3 ">
