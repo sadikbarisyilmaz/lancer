@@ -26,8 +26,8 @@ export default function Page() {
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event) => {
-      if (event === "SIGNED_IN") {
-        console.log("SIGNED_IN");
+      if (event === "USER_UPDATED") {
+        console.log("USER UPDATED");
         router.push("/home/upcoming");
       }
     });
