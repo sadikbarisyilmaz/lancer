@@ -4,7 +4,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 export default function Loading() {
   // You can add any UI inside Loading, including a Skeleton.
   return (
-    <div>
+    <div className="flex flex-col">
       <Banner title="Clients" />
       <div className="p-6 xl:p-2 lg:w-full  flex flex-col gap-1 animate-fadeIn">
         <div className="xl:px-48 xl:pt-24 flex flex-col md:self-center md:w-full xl:scale-125">

@@ -118,76 +118,137 @@ export function DataTable<TData, TValue>({
       </div>
       {data.length > rows && (
         <div className="flex flex-col sm:flex-row justify-between gap-1">
-          <div className="flex items-center order-2 sm:order-1 pb-2 gap-2">
-            {!isInClientDetailsPage && (
-              <div className="flex items-center">
-                <Input
-                  placeholder="Filter Names..."
-                  value={
-                    (table
-                      .getColumn("client_name")
-                      ?.getFilterValue() as string) ?? ""
-                  }
-                  onChange={(event) =>
-                    table
-                      .getColumn("client_name")
-                      ?.setFilterValue(event.target.value)
-                  }
-                  className="max-w-sm "
-                />
+          {!isInClientDetailsPage ? (
+            <div className="flex w-full justify-between ">
+              <div className="flex flex-col sm:flex-row w-full sm:items-center pb-2 gap-2">
+                <div className="flex items-center">
+                  <Input
+                    placeholder="Filter Clients..."
+                    value={
+                      (table
+                        .getColumn("client_name")
+                        ?.getFilterValue() as string) ?? ""
+                    }
+                    onChange={(event) =>
+                      table
+                        .getColumn("client_name")
+                        ?.setFilterValue(event.target.value)
+                    }
+                    className="max-w-sm "
+                  />
+                </div>
+                <div className="">
+                  <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                      <Button variant="outline" className="ml-auto">
+                        Payment <ChevronDownIcon className="ml-2 h-4 w-4" />
+                      </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                      <DropdownMenuItem
+                        onClick={(event) =>
+                          table.getColumn("payment_status")?.setFilterValue("")
+                        }
+                      >
+                        Show All
+                      </DropdownMenuItem>
+                      <DropdownMenuItem
+                        onClick={(event) =>
+                          table
+                            .getColumn("payment_status")
+                            ?.setFilterValue("done")
+                        }
+                      >
+                        Payment Done
+                      </DropdownMenuItem>
+                      <DropdownMenuItem
+                        onClick={(event) =>
+                          table
+                            .getColumn("payment_status")
+                            ?.setFilterValue("not")
+                        }
+                      >
+                        Not Paid
+                      </DropdownMenuItem>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
+                </div>
               </div>
-            )}
-            <div>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="outline" className="ml-auto">
-                    Payment <ChevronDownIcon className="ml-2 h-4 w-4" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuItem
-                    onClick={(event) =>
-                      table.getColumn("payment_status")?.setFilterValue("")
-                    }
-                  >
-                    Show All
-                  </DropdownMenuItem>
-                  <DropdownMenuItem
-                    onClick={(event) =>
-                      table.getColumn("payment_status")?.setFilterValue("done")
-                    }
-                  >
-                    Payment Done
-                  </DropdownMenuItem>
-                  <DropdownMenuItem
-                    onClick={(event) =>
-                      table.getColumn("payment_status")?.setFilterValue("not")
-                    }
-                  >
-                    Not Paid
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+              <div className="flex w-full justify-end">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => table.previousPage()}
+                  disabled={!table.getCanPreviousPage()}
+                >
+                  Prev
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => table.nextPage()}
+                  disabled={!table.getCanNextPage()}
+                >
+                  Next
+                </Button>
+              </div>
             </div>
-          </div>
-          <div className="flex order-1 sm:order-2 items-center sm:justify-end space-x-2 pb-2">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => table.previousPage()}
-              disabled={!table.getCanPreviousPage()}
-            >
-              Prev
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => table.nextPage()}
-              disabled={!table.getCanNextPage()}
-            >
-              Next
-            </Button>
-          </div>
+          ) : (
+            <div className="flex w-full order-1 sm:order-2 items-center justify-between space-x-2 pb-2">
+              <div className="flex">
+                <DropdownMenu>
+                  <DropdownMenuTrigger asChild>
+                    <Button variant="outline" className="ml-auto">
+                      Payment <ChevronDownIcon className="ml-2 h-4 w-4" />
+                    </Button>
+                  </DropdownMenuTrigger>
+                  <DropdownMenuContent align="end">
+                    <DropdownMenuItem
+                      onClick={(event) =>
+                        table.getColumn("payment_status")?.setFilterValue("")
+                      }
+                    >
+                      Show All
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={(event) =>
+                        table
+                          .getColumn("payment_status")
+                          ?.setFilterValue("done")
+                      }
+                    >
+                      Payment Done
+                    </DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={(event) =>
+                        table.getColumn("payment_status")?.setFilterValue("not")
+                      }
+                    >
+                      Not Paid
+                    </DropdownMenuItem>
+                  </DropdownMenuContent>
+                </DropdownMenu>
+              </div>
+              <div className="flex">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => table.previousPage()}
+                  disabled={!table.getCanPreviousPage()}
+                >
+                  Prev
+                </Button>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => table.nextPage()}
+                  disabled={!table.getCanNextPage()}
+                >
+                  Next
+                </Button>
+              </div>
+            </div>
+          )}
         </div>
       )}
       {clients.length > 0 ? (
