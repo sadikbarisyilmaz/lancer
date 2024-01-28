@@ -21,6 +21,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { CreateClientForm } from "../forms/CreateClientForm";
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
@@ -44,11 +45,10 @@ export function DataTable<TData, TValue>({
     },
   });
   const router = useRouter();
-  console.log(columnFilters);
 
   return (
     <>
-      <div className="rounded-md border">
+      <div className="rounded-md border mb-2">
         <Table className="">
           <TableHeader className="sticky">
             {table.getHeaderGroups().map((headerGroup) => (
@@ -103,7 +103,7 @@ export function DataTable<TData, TValue>({
       </div>
       {data.length > 8 && (
         <div className="flex justify-between gap-1">
-          <div className="flex items-center py-2">
+          <div className="flex items-center pb-2">
             <Input
               placeholder="Filter Names..."
               value={
@@ -135,6 +135,7 @@ export function DataTable<TData, TValue>({
           </div>
         </div>
       )}
+      <CreateClientForm />
     </>
   );
 }

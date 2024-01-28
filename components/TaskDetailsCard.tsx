@@ -59,7 +59,6 @@ export const TaskDetailsCard = ({ task }: Props) => {
       <Skeleton className="h-[414px] p-6 max-w-3/6 text-foreground/90 flex flex-col justify-center dark:bg-[#2424247c] bg-[#ffffffcb] rounded-lg dark:bg-opacity-50 bg-opacity-50 gap-4 text-lg "></Skeleton>
     );
   }
-  console.log(task);
 
   return (
     <Card className="p-6 max-w-3/6 text-foreground/90 flex flex-col justify-center dark:bg-[#2424247c] bg-[#ffffffcb]  dark:bg-opacity-50 bg-opacity-50 gap-4 text-lg ">

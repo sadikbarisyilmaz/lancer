@@ -96,7 +96,7 @@ export const ClientNotes = ({ id }: { id: number }) => {
   }
   return (
     <div>
-      <Card className="flex flex-col max-h-[284px] xl:max-h-[484px] dark:bg-[#2424247c] bg-[#ffffffcb] min-h-[220px] dark:bg-opacity-40 bg-opacity-40 justify-between items-between gap-4 p-4">
+      <Card className="flex flex-col max-h-[384px] lg:max-h-[284px] xl:max-h-[484px] dark:bg-[#2424247c] bg-[#ffffffcb] min-h-[220px] dark:bg-opacity-40 bg-opacity-40 justify-between items-between gap-4 p-4">
         <ul className="overflow-y-scroll h-full py-2 grid gap-2 rounded-md ">
           {clientNotes.length !== 0 ? (
             clientNotes.map((note, i) => {

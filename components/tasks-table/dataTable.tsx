@@ -25,18 +25,23 @@ import {
 } from "@/components/ui/table";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { ChevronDownIcon } from "lucide-react";
+import { AlertCircle, ChevronDownIcon } from "lucide-react";
+import { CreateTaskForm } from "../forms/CreateTaskForm";
+import { Client } from "@/lib/types";
+import Link from "next/link";
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   rows: number;
   isInClientDetailsPage: boolean;
+  clients: Client[];
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
   rows,
+  clients,
 }: DataTableProps<TData, TValue>) {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const router = useRouter();
@@ -56,7 +61,7 @@ export function DataTable<TData, TValue>({
 
   return (
     <>
-      <div className="rounded-md border">
+      <div className="rounded-md border mb-2">
         <Table className="">
           <TableHeader className="sticky">
             {table.getHeaderGroups().map((headerGroup) => (
@@ -111,7 +116,7 @@ export function DataTable<TData, TValue>({
       </div>
       {data.length > rows && (
         <div className="flex justify-between gap-1">
-          <div className="flex items-center py-2">
+          <div className="flex items-center pb-2">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="outline" className="ml-auto">
@@ -162,6 +167,22 @@ export function DataTable<TData, TValue>({
               Next
             </Button>
           </div>
+        </div>
+      )}
+      {clients.length > 0 ? (
+        <span>
+          <CreateTaskForm clients={clients} />
+        </span>
+      ) : (
+        <div className="flex items-center py-3 gap-2">
+          <AlertCircle />
+          <p className="">
+            Please create a{" "}
+            <Link href={"/home/clients"} className="font-bold">
+              client
+            </Link>{" "}
+            before adding tasks.
+          </p>
         </div>
       )}
     </>

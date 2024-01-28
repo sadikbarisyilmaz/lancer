@@ -1,11 +1,8 @@
 "use client";
-import { CreateTaskForm } from "@/components/forms/CreateTaskForm";
 import { columns } from "@/components/tasks-table/columns";
 import { DataTable } from "@/components/tasks-table/dataTable";
 import { Client, Task } from "@/lib/types";
 import { format } from "date-fns";
-import { AlertCircle } from "lucide-react";
-import Link from "next/link";
 
 interface Props {
   tasks: Task[];
@@ -22,29 +19,14 @@ export const Tasks = ({ tasks, clients }: Props) => {
   });
 
   return (
-    <>
+    <div className="flex flex-col dark:bg-[#2424247c] rounded-md bg-[#ffffffcb] p-4">
       <DataTable
         isInClientDetailsPage={false}
         rows={8}
         columns={columns}
         data={refactoredTasks}
+        clients={clients}
       />
-      {clients.length > 0 ? (
-        <span>
-          <CreateTaskForm clients={clients} />
-        </span>
-      ) : (
-        <div className="flex items-center py-3 gap-2">
-          <AlertCircle />
-          <p className="">
-            Please create a{" "}
-            <Link href={"/home/clients"} className="font-bold">
-              client
-            </Link>{" "}
-            before adding tasks.
-          </p>
-        </div>
-      )}
-    </>
+    </div>
   );
 };
