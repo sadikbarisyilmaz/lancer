@@ -55,7 +55,9 @@ export const UserCard = () => {
               alt={user?.user_metadata.full_name}
             />
             <AvatarFallback>
-              {user?.user_metadata.full_name.charAt(0).toUpperCase()}
+              {user.user_metadata.full_name
+                ? user.user_metadata.full_name.charAt(0).toUpperCase()
+                : "LR"}
             </AvatarFallback>
           </Avatar>
         </Link>

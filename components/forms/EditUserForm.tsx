@@ -145,7 +145,9 @@ export const EditUserForm = () => {
               className="flex justify-center w-full"
             />
             <AvatarFallback>
-              {user?.user_metadata.full_name.charAt(0).toUpperCase()}
+              {user.user_metadata.full_name
+                ? user.user_metadata.full_name.charAt(0).toUpperCase()
+                : ""}
             </AvatarFallback>
           </Avatar>
         </div>

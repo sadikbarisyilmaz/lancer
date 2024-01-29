@@ -11,13 +11,19 @@ import { useTheme } from "next-themes";
 export default function Page() {
   const [url, setUrl] = useState<string>();
   const [loading, setloading] = useState(true);
+  const [loggedIn, setLoggedIn] = useState(false);
+  const router = useRouter();
+  const supabase = createSupabaseBrowserClient();
+  const { theme } = useTheme();
+
+  useEffect(() => {
+    setUrl(window.location.origin);
+  }, []);
 
   useEffect(() => {
     setUrl(window.location.origin);
     checkUser();
-  }, []);
-
-  const router = useRouter();
+  }, [loggedIn]);
 
   const checkUser = async () => {
     const {
@@ -26,8 +32,9 @@ export default function Page() {
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((event) => {
-      if (event === "USER_UPDATED") {
-        console.log("USER UPDATED");
+      if (event === "SIGNED_IN") {
+        console.log("SIGNED_IN");
+        setLoggedIn(true);
         router.push("/home/upcoming");
       }
     });
@@ -40,9 +47,6 @@ export default function Page() {
       setloading(false);
     }
   };
-
-  const supabase = createSupabaseBrowserClient();
-  const { theme } = useTheme();
 
   if (loading) {
     return (
