@@ -26,7 +26,7 @@ const formSchema = z.object({
   note: z.string().min(2),
 });
 
-export const TaskNotes = ({ id }: { id: number }) => {
+export const TaskNotes = ({ id }: { id: string }) => {
   const [notes, setNotes] = useState<TaskNote[]>([]);
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -58,7 +58,7 @@ export const TaskNotes = ({ id }: { id: number }) => {
     },
   });
 
-  const handleDelete = (noteId: number) => {
+  const handleDelete = (noteId: string) => {
     deleteTaskNote(noteId);
     toast({
       title: `Note deleted successfully !`,

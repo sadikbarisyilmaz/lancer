@@ -4,7 +4,6 @@ import { Client } from "@/lib/types";
 import { ClientNotes } from "./ClientNotes";
 import { DataTable } from "./tasks-table/dataTable";
 import { columns } from "./tasks-table/columns";
-import { CreateTaskForm } from "./forms/CreateTaskForm";
 import { format } from "date-fns";
 
 interface Props {

@@ -31,7 +31,7 @@ const formSchema = z.object({
   note: z.string().min(2),
 });
 
-export const ClientNotes = ({ id }: { id: number }) => {
+export const ClientNotes = ({ id }: { id: string }) => {
   const [clientNotes, setClientNotes] = useState<ClientNote[]>([]);
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(true);
@@ -64,7 +64,7 @@ export const ClientNotes = ({ id }: { id: number }) => {
     },
   });
 
-  const handleDelete = (noteId: number) => {
+  const handleDelete = (noteId: string) => {
     deleteClientNote(noteId);
     toast({
       title: `Note deleted successfully !`,
