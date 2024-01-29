@@ -14,7 +14,6 @@ import {
 } from "@/app/actions";
 import { useToast } from "../ui/use-toast";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import Loading from "@/app/home/account/loading-component";
 import { Loader } from "../Loader";
 
 export const EditUserForm = () => {
