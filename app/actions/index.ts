@@ -162,7 +162,7 @@ export const deleteClient = async (clientId: string | string[]) => {
     console.log("error", error);
   }
 };
-export const getClientNotes = async (clientId: number | number[]) => {
+export const getClientNotes = async (clientId: string | string[]) => {
   const supabase = await createSupabaseServerClient();
 
   let { data: notesList, error } = await supabase
@@ -179,7 +179,7 @@ export const getClientNotes = async (clientId: number | number[]) => {
 };
 export const createNewClientNote = async (
   formData: { note: string },
-  clientId: number | number[]
+  clientId: string | string[]
 ) => {
   const supabase = await createSupabaseServerClient();
   const { data, error } = await supabase
@@ -199,7 +199,7 @@ export const createNewClientNote = async (
 };
 export const editClient = async (
   client: EditClientFormData,
-  ClientId: number | number[]
+  ClientId: string | string[]
 ) => {
   const supabase = await createSupabaseServerClient();
   let { error } = await supabase
@@ -219,7 +219,7 @@ export const editClient = async (
     revalidatePath("/home/clients");
   }
 };
-export const deleteClientNote = async (clientNoteId: number | number[]) => {
+export const deleteClientNote = async (clientNoteId: string | string[]) => {
   const supabase = await createSupabaseServerClient();
   let { error } = await supabase
     .from("client-notes")
@@ -246,7 +246,7 @@ export const getTasks = async () => {
   }
   return { tasks };
 };
-export const getTask = async (taskId: number | number[]) => {
+export const getTask = async (taskId: string | string[]) => {
   const supabase = await createSupabaseServerClient();
   let { data: tasksList, error } = await supabase
     .from("tasks")
@@ -276,7 +276,7 @@ export const createNewTask = async (formData: TaskFormData) => {
       title: formData.title,
       about: formData.about,
       fee: Number(formData.fee),
-      client_id: Number(formData.client_id),
+      client_id: formData.client_id,
       user_id: user?.id,
       frequency: formData.frequency,
     })
@@ -304,7 +304,7 @@ export const createRecurringTask = async (task: Task) => {
       title: task.title,
       about: task.about,
       fee: Number(task.fee),
-      client_id: Number(task.client_id),
+      client_id: task.client_id,
       user_id: user?.id,
       frequency: task.frequency,
     })
@@ -318,7 +318,7 @@ export const createRecurringTask = async (task: Task) => {
     revalidatePath("/home/tasks");
   }
 };
-export const deleteTasks = async (TaskId: number | number[]) => {
+export const deleteTasks = async (TaskId: string | string[]) => {
   const supabase = await createSupabaseServerClient();
   let { error } = await supabase.from("tasks").delete().eq("id", TaskId);
   console.log(TaskId);
@@ -332,7 +332,7 @@ export const deleteTasks = async (TaskId: number | number[]) => {
 };
 export const updatePaymentStatus = async (
   status: string,
-  TaskId: number | number[]
+  TaskId: string | string[]
 ) => {
   const supabase = await createSupabaseServerClient();
   const updatedStatus = status === "Payment Done" ? "Not Paid" : "Payment Done";
@@ -351,7 +351,7 @@ export const updatePaymentStatus = async (
 };
 export const editTask = async (
   task: EditTaskFormData,
-  TaskId: number | number[]
+  TaskId: string | string[]
 ) => {
   const supabase = await createSupabaseServerClient();
   let { error } = await supabase
@@ -404,7 +404,7 @@ export const getWeeklyTasks = async () => {
   }
   return { tasks };
 };
-export const getTaskNotes = async (taskId: number | number[]) => {
+export const getTaskNotes = async (taskId: string | string[]) => {
   const supabase = await createSupabaseServerClient();
 
   let { data: notesList, error } = await supabase
@@ -419,7 +419,7 @@ export const getTaskNotes = async (taskId: number | number[]) => {
   }
   return notes;
 };
-export const deleteTaskNote = async (taskNoteId: number | number[]) => {
+export const deleteTaskNote = async (taskNoteId: string | string[]) => {
   const supabase = await createSupabaseServerClient();
   let { error } = await supabase
     .from("task-notes")
@@ -432,7 +432,7 @@ export const deleteTaskNote = async (taskNoteId: number | number[]) => {
 };
 export const createNewTaskNote = async (
   formData: { note: string },
-  taskId: number | number[]
+  taskId: string | string[]
 ) => {
   const supabase = await createSupabaseServerClient();
   const { data, error } = await supabase

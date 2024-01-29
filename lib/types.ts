@@ -6,7 +6,7 @@ export interface UserDetails {
   avatar_url?: string;
 }
 export interface Client {
-  id: number;
+  id: string;
   created_at: Date;
   user_id: string;
   name: string;
@@ -16,7 +16,7 @@ export interface Client {
   phone: number;
 }
 export interface ClientNote {
-  id: number;
+  id: string;
   created_at: Date | string;
   user_id: number;
   content: string;
@@ -34,7 +34,7 @@ export interface EditClientFormData {
   phone: string;
 }
 export interface Task {
-  id: number;
+  id: string;
   created_at: Date;
   set_date: Date | string;
   set_time: string;
@@ -48,7 +48,7 @@ export interface Task {
   frequency: string;
 }
 export interface TaskNote {
-  id: number;
+  id: string;
   created_at: Date | string;
   task_id: number;
   content: string;

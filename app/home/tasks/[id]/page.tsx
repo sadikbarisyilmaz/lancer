@@ -3,7 +3,7 @@ import { Banner } from "@/components/Banner";
 import { TaskDetails } from "@/components/TaskDetails";
 
 export default async function Page({ params }: { params: { id: string } }) {
-  const { ...task } = await getTask(Number(params.id));
+  const { ...task } = await getTask(params.id);
 
   return (
     <div className="overflow-y-scroll lg:overflow-hidden h-full">
