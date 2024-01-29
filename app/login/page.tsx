@@ -17,7 +17,7 @@ export default function Page() {
 
   useEffect(() => {
     if (window.location.origin !== "http://localhost:3000") {
-      setUrl("http://lancer-app.vercel.app/");
+      setUrl("https://lancer-app.vercel.app");
     }
     setUrl(window.location.origin);
     console.log(window.location.origin);
