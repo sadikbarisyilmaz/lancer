@@ -7,7 +7,7 @@ export default async function Page() {
   } = await readUserSession();
 
   if (session === null) {
-    // redirect("/login");
+    redirect("/login");
   } else {
     redirect("/home/upcoming");
   }
