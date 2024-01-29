@@ -22,9 +22,9 @@ export default function Page() {
       setUrl(window.location.origin);
     }
 
+    console.log(window.location.origin);
     checkUser();
   }, []);
-  console.log(window.location.origin);
 
   const checkUser = async () => {
     const {
