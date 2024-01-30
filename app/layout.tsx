@@ -1,14 +1,11 @@
-import { GeistSans } from "geist/font/sans";
-import { Inter as FontSans } from "next/font/google";
 import "./globals.css";
-import { cn } from "@/lib/utils";
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/providers/themeProvider";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Lancer",
-  description: "...",
+  description: "Professional freelancer's customer management system",
 };
 export default function RootLayout({
   children,

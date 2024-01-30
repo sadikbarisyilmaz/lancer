@@ -16,13 +16,7 @@ export default function Page() {
   const { theme } = useTheme();
 
   useEffect(() => {
-    // if (window.location.origin !== "http://localhost:3000") {
-    //   setUrl("https://lancer-app.vercel.app");
-    // } else {
-    // }
     setUrl(window.location.origin);
-
-    console.log(window.location.origin);
     checkUser();
   }, []);
 

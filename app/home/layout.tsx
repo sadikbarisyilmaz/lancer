@@ -1,7 +1,7 @@
 import { Navbar } from "@/components/Navbar";
-import Link from "next/link";
 import { readUserSession } from "../actions";
 import { MobileNavbar } from "@/components/MobileNavbar";
+import Link from "next/link";
 
 export default async function Layout({
   children,

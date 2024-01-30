@@ -1,6 +1,11 @@
 "use client";
 import Link from "next/link";
 import { Button } from "./ui/button";
+
+interface Props {
+  setOpen: React.Dispatch<React.SetStateAction<boolean>> | undefined;
+}
+
 const links = [
   {
     title: "Upcoming",
@@ -15,9 +20,7 @@ const links = [
     href: "/home/tasks",
   },
 ];
-interface Props {
-  setOpen: React.Dispatch<React.SetStateAction<boolean>> | undefined;
-}
+
 export const MobileNavMenu = ({ setOpen }: Props) => {
   const mobileCheck = () => {
     if (setOpen !== undefined) {

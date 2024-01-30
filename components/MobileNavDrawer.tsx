@@ -9,11 +9,13 @@ import { MobileNavMenu } from "./MobileNavMenu";
 
 export function MobileNavDrawer() {
   const [open, setOpen] = React.useState(false);
+
   const mobileCheck = () => {
     if (setOpen !== undefined) {
       setOpen(false);
     }
   };
+
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>

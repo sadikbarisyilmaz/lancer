@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { useToast } from "../ui/use-toast";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { CalendarIcon } from "lucide-react";
 import { PopoverContent, PopoverTrigger } from "../ui/popover";
 import { Popover } from "../ui/popover";
