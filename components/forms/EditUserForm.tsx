@@ -138,7 +138,7 @@ export const EditUserForm = () => {
 
   return (
     <div className="dark:bg-[#2424247c]/60 p-8 items-center gap-10 justify-center text-lg flex flex-wrap w-full md:w-fit h-fit rounded-lg animate-fadeIn">
-      <div className="flex flex-wrap lg:flex-nowrap items-center gap-2  justify-center">
+      <div className="flex flex-wrap lg:flex-nowrap items-center gap-2 justify-center">
         <div className="flex flex-col  w-full gap-2 sm:p-4">
           <div className="flex flex-col h-full text-center justify-center gap-6 pb-6">
             <div className="flex w-full justify-center">
@@ -245,60 +245,58 @@ export const EditUserForm = () => {
           </div>
         </div>
         <Separator className="my-4 bg-foreground/10 lg:hidden" />
-        <div className="flex flex-col gap-2 sm:p-4 w-full">
-          {user.user_metadata.iss !== "https://accounts.google.com" && (
-            <>
-              <div className="flex flex-col gap-4  ">
-                <h2 className="sm:text-2xl">Change Profile Picture</h2>
-                <Separator className=" bg-foreground/10" />
-                <form
-                  onSubmit={handlePicture}
-                  className="flex flex-col gap-2 w-full animate-fadeIn "
-                >
-                  <Input
-                    onChange={(e) => {
-                      setPicture(e.target.value);
-                      setFile(e.target.files);
-                    }}
-                    value={picture}
-                    required
-                    type="file"
-                  />
+        {user.user_metadata.iss !== "https://accounts.google.com" && (
+          <div className="flex flex-col gap-2 sm:p-4 w-full">
+            <div className="flex flex-col gap-4  ">
+              <h2 className="sm:text-2xl">Change Profile Picture</h2>
+              <Separator className=" bg-foreground/10" />
+              <form
+                onSubmit={handlePicture}
+                className="flex flex-col gap-2 w-full animate-fadeIn "
+              >
+                <Input
+                  onChange={(e) => {
+                    setPicture(e.target.value);
+                    setFile(e.target.files);
+                  }}
+                  value={picture}
+                  required
+                  type="file"
+                />
 
-                  <Button type="submit" variant="ghost">
-                    Save
-                  </Button>
-                </form>
-              </div>
-              <div className="flex flex-col gap-4 ">
-                <h2 className="sm:text-2xl">Change Password</h2>
-                <Separator className=" bg-foreground/10" />
-                <Label htmlFor="name">Password</Label>
-                <form
-                  onSubmit={handlePassword}
-                  className="flex flex-col gap-2 w-full animate-fadeIn "
-                >
-                  <Input
-                    onChange={(e) => setPassword(e.target.value)}
-                    value={password}
-                    type="password"
-                    required
-                  />
-                  <Label htmlFor="name">Rewrite Password</Label>
-                  <Input
-                    onChange={(e) => setPasswordCheck(e.target.value)}
-                    value={passwordCheck}
-                    type="password"
-                    required
-                  />
-                  <Button type="submit" variant="ghost">
-                    Save
-                  </Button>
-                </form>
-              </div>
-            </>
-          )}
-        </div>
+                <Button type="submit" variant="ghost">
+                  Save
+                </Button>
+              </form>
+            </div>
+            <div className="flex flex-col gap-4 ">
+              <h2 className="sm:text-2xl">Change Password</h2>
+              <Separator className=" bg-foreground/10" />
+              <Label htmlFor="name">Password</Label>
+              <form
+                onSubmit={handlePassword}
+                className="flex flex-col gap-2 w-full animate-fadeIn "
+              >
+                <Input
+                  onChange={(e) => setPassword(e.target.value)}
+                  value={password}
+                  type="password"
+                  required
+                />
+                <Label htmlFor="name">Rewrite Password</Label>
+                <Input
+                  onChange={(e) => setPasswordCheck(e.target.value)}
+                  value={passwordCheck}
+                  type="password"
+                  required
+                />
+                <Button type="submit" variant="ghost">
+                  Save
+                </Button>
+              </form>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
