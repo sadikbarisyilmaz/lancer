@@ -138,7 +138,13 @@ export const EditUserForm = () => {
 
   return (
     <div className="dark:bg-[#2424247c]/60 p-8 items-center gap-10 justify-center text-lg flex flex-wrap w-full md:w-fit h-fit rounded-lg animate-fadeIn">
-      <div className="flex flex-wrap lg:flex-nowrap items-center gap-2 justify-center">
+      <div
+        className={`grid grid-cols-1 ${
+          user.user_metadata.iss === "https://accounts.google.com"
+            ? ""
+            : "lg:grid-cols-2"
+        }   items-center gap-2 justify-center`}
+      >
         <div className="flex flex-col  w-full gap-2 sm:p-4">
           <div className="flex flex-col h-full text-center justify-center gap-6 pb-6">
             <div className="flex w-full justify-center">
