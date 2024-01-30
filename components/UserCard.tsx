@@ -33,6 +33,7 @@ export const UserCard = () => {
     setloading(true);
     await supabase.auth.signOut();
     router.push("/");
+    router.refresh();
     setUser(null);
   };
 

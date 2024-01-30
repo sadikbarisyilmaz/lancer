@@ -14,7 +14,6 @@ export const createRecurringTasks = (formattedWeeklyTasks: Task[]) => {
         new Date(task.set_date) > addDays(new Date(), 6) &&
         new Date(task.set_date) < addDays(new Date(), 13)
     );
-  console.log(nextWeekTasks);
 
   const twoWeeksLaterTasks = formattedWeeklyTasks
     ?.filter((task) => task.frequency !== "Once")
