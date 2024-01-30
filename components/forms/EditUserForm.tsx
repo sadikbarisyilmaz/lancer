@@ -78,7 +78,6 @@ export const EditUserForm = () => {
       } = await readUserSession();
       if (session) {
         setUser(session.user);
-        // setloading(false);
       }
     };
     getUser();
@@ -134,93 +133,120 @@ export const EditUserForm = () => {
   }
 
   return (
-    <div className="dark:bg-[#2424247c]/60 p-10 gap-10 text-lg grid lg:grid-cols-2 w-full md:w-fit h-fit rounded-lg animate-fadeIn">
-      <div className="flex flex-col h-full text-center justify-center gap-6  pb-2">
-        <div className="flex w-full justify-center">
-          <Avatar className="lg:w-36 w-16 lg:h-36 h-16 flex flex-col self-center">
-            <AvatarImage
-              src={user.user_metadata.avatar_url}
-              alt={user.user_metadata.full_name}
-              className="flex justify-center w-full"
-            />
-            <AvatarFallback>
-              {user.user_metadata.full_name
-                ? user.user_metadata.full_name.charAt(0).toUpperCase()
-                : ""}
-            </AvatarFallback>
-          </Avatar>
-        </div>
-        <h2 className="text-3xl">{user.user_metadata.full_name}</h2>
-      </div>
-      <div className="grid gap-2">
-        <h3 className="sm:text-2xl">Edit User Info</h3>
-        <Separator className=" bg-foreground/10" />
-        <div className="flex gap-4 min-w-96 md:w-96 items-center">
-          <Label htmlFor="name" className="min-w-[42px]">
-            Name:
-          </Label>
-          <span className="flex items-center justify-between w-full">
-            {!activeForm.name ? (
-              <p className="animate-fadeIn">{user.user_metadata.full_name}</p>
-            ) : (
-              <form onSubmit={handleName} className="flex animate-fadeIn ">
-                <Input
-                  onChange={(e) => setName(e.target.value)}
-                  value={name}
-                  type="text"
-                  required
+    <div className="dark:bg-[#2424247c]/60 p-8 items-center gap-10 justify-center text-lg flex flex-wrap w-full md:w-fit h-fit rounded-lg animate-fadeIn">
+      <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-2  justify-center">
+        <div className="flex flex-col gap-2 sm:p-4">
+          <div className="flex flex-col h-full text-center justify-center gap-6 pb-6">
+            <div className="flex w-full justify-center">
+              <Avatar className="lg:w-36 w-16 md:w-24 lg:h-36 h-16 md:h-24 flex flex-col self-center">
+                <AvatarImage
+                  src={user.user_metadata.avatar_url}
+                  alt={user.user_metadata.full_name}
+                  className="flex justify-center w-full"
                 />
-                <Button type="submit" variant="ghost">
-                  Save
-                </Button>
-              </form>
-            )}
-            <Button
-              onClick={(e) => activateForm(e)}
-              data-label="name"
-              variant="ghost"
-              size="icon"
-            >
-              <Pencil className="w-full" size={18} />
-            </Button>
-          </span>
+                <AvatarFallback>
+                  {user.user_metadata.full_name
+                    ? user.user_metadata.full_name.charAt(0).toUpperCase()
+                    : ""}
+                </AvatarFallback>
+              </Avatar>
+            </div>
+            <h2 className="text-3xl">{user.user_metadata.full_name}</h2>
+          </div>
+          <h3 className="sm:text-2xl">Edit User Info</h3>
+          <Separator className=" bg-foreground/10" />
+          <div className="flex flex-col sm:flex-row gap-2 sm:items-center ">
+            <span className="flex justify-between items-center">
+              <Label htmlFor="name">Name:</Label>
+              <Button
+                onClick={(e) => activateForm(e)}
+                data-label="name"
+                variant="ghost"
+                size="icon"
+                className="flex sm:hidden"
+              >
+                <Pencil className="w-full" size={18} />
+              </Button>
+            </span>
+            <span className="flex items-center justify-between w-full">
+              {!activeForm.name ? (
+                <span className="animate-fadeIn break-words">
+                  {user.user_metadata.full_name}
+                </span>
+              ) : (
+                <form onSubmit={handleName} className="flex animate-fadeIn ">
+                  <Input
+                    onChange={(e) => setName(e.target.value)}
+                    value={name}
+                    type="text"
+                    required
+                  />
+                  <Button type="submit" variant="ghost">
+                    Save
+                  </Button>
+                </form>
+              )}
+              <Button
+                onClick={(e) => activateForm(e)}
+                data-label="name"
+                variant="ghost"
+                size="icon"
+                className="hidden sm:flex"
+              >
+                <Pencil className="w-full" size={18} />
+              </Button>
+            </span>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-2 sm:items-center ">
+            <span className="flex justify-between items-center">
+              <Label htmlFor="email">Email:</Label>
+              <Button
+                onClick={(e) => activateForm(e)}
+                data-label="email"
+                variant="ghost"
+                size="icon"
+                className="flex sm:hidden"
+              >
+                <Pencil className="w-full" size={18} />
+              </Button>
+            </span>
+            <span className="flex items-center justify-between w-full">
+              {!activeForm.email ? (
+                <span className="animate-fadeIn break-words min-w-[100px] sm:min-w-none">
+                  {user.email}
+                </span>
+              ) : (
+                <form onSubmit={handleEmail} className="flex animate-fadeIn ">
+                  <Input
+                    onChange={(e) => setEmail(e.target.value)}
+                    value={email}
+                    type="email"
+                    required
+                  />
+                  <Button type="submit" variant="ghost">
+                    Save
+                  </Button>
+                </form>
+              )}
+              <Button
+                onClick={(e) => activateForm(e)}
+                data-label="email"
+                variant="ghost"
+                size="icon"
+                className="hidden sm:flex"
+              >
+                <Pencil className="w-full" size={18} />
+              </Button>
+            </span>
+          </div>
         </div>
-        <div className="flex gap-4  items-center">
-          <Label htmlFor="email" className="min-w-[42px]">
-            Email:
-          </Label>
-          <span className="flex items-center justify-between w-full">
-            {!activeForm.email ? (
-              <p className="animate-fadeIn">{user.email}</p>
-            ) : (
-              <form onSubmit={handleEmail} className="flex animate-fadeIn ">
-                <Input
-                  onChange={(e) => setEmail(e.target.value)}
-                  value={email}
-                  type="email"
-                  required
-                />
-                <Button type="submit" variant="ghost">
-                  Save
-                </Button>
-              </form>
-            )}
-            <Button
-              onClick={(e) => activateForm(e)}
-              data-label="email"
-              variant="ghost"
-              size="icon"
-            >
-              <Pencil className="w-full" size={18} />
-            </Button>
-          </span>
-        </div>
-        {user.user_metadata.iss !== "https://accounts.google.com" && (
-          <>
-            <Separator className=" bg-foreground/10" />
-            <div className="flex flex-col gap-4 min-w-96 md:w-96 ">
-              <h2 className="sm:text-2xl">Change Profile Picture</h2>
-              <span className="flex items-center justify-between w-full">
+        <Separator className="my-4 bg-foreground/10 lg:hidden" />
+        <div className="flex flex-col gap-2 sm:p-4 w-full">
+          {user.user_metadata.iss !== "https://accounts.google.com" && (
+            <>
+              <div className="flex flex-col gap-4  ">
+                <h2 className="sm:text-2xl">Change Profile Picture</h2>
+                <Separator className=" bg-foreground/10" />
                 <form
                   onSubmit={handlePicture}
                   className="flex flex-col gap-2 w-full animate-fadeIn "
@@ -239,13 +265,11 @@ export const EditUserForm = () => {
                     Save
                   </Button>
                 </form>
-              </span>
-            </div>
-            <Separator className=" bg-foreground/10" />
-            <div className="flex flex-col gap-4 min-w-96 md:w-96 ">
-              <h2 className="sm:text-2xl">Change Password</h2>
-              <Label htmlFor="name">Password</Label>
-              <span className="flex items-center justify-between w-full">
+              </div>
+              <div className="flex flex-col gap-4 ">
+                <h2 className="sm:text-2xl">Change Password</h2>
+                <Separator className=" bg-foreground/10" />
+                <Label htmlFor="name">Password</Label>
                 <form
                   onSubmit={handlePassword}
                   className="flex flex-col gap-2 w-full animate-fadeIn "
@@ -267,10 +291,10 @@ export const EditUserForm = () => {
                     Save
                   </Button>
                 </form>
-              </span>
-            </div>
-          </>
-        )}
+              </div>
+            </>
+          )}
+        </div>
       </div>
     </div>
   );
