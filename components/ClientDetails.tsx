@@ -35,6 +35,7 @@ export const ClientDetails = ({ client, clients }: Props) => {
             rows={5}
             columns={clientOmmittedcolumns}
             data={refactoredTasks}
+            client={client}
           />
         </div>
       </div>

@@ -22,12 +22,14 @@ export const EditUserForm = () => {
     email: false,
     password: false,
   });
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [picture, setPicture] = useState("");
   const [file, setFile] = useState<any>(undefined);
   const [password, setPassword] = useState("");
   const [passwordCheck, setPasswordCheck] = useState("");
+
   const [user, setUser] = useState<any>(null);
 
   const { toast } = useToast();
@@ -71,15 +73,15 @@ export const EditUserForm = () => {
     }
   };
 
+  const getUser = async () => {
+    const {
+      data: { session },
+    } = await readUserSession();
+    if (session) {
+      setUser(session.user);
+    }
+  };
   useEffect(() => {
-    const getUser = async () => {
-      const {
-        data: { session },
-      } = await readUserSession();
-      if (session) {
-        setUser(session.user);
-      }
-    };
     getUser();
   }, []);
 
@@ -94,6 +96,7 @@ export const EditUserForm = () => {
     e.preventDefault();
     updateUserFullName(name);
     setActiveForm({ ...activeForm, name: false });
+    getUser();
     toast({
       title: `- Name changed successfully !`,
     });
@@ -116,6 +119,8 @@ export const EditUserForm = () => {
     const formData = new FormData();
     formData.append("img", file[0]);
     uploadUserImage(formData);
+    getUser();
+
     toast({
       title: `- Profile Picture set successfully !`,
     });
@@ -123,6 +128,7 @@ export const EditUserForm = () => {
   const handleEmail = (e: React.SyntheticEvent<EventTarget>) => {
     e.preventDefault();
     updateUserEmail(email);
+    getUser();
     toast({
       title: `- A comfirmation mail sent to your current mail adress !`,
     });

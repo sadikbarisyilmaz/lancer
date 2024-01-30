@@ -26,6 +26,7 @@ export const Tasks = ({ tasks, clients }: Props) => {
         columns={columns}
         data={refactoredTasks}
         clients={clients}
+        client={null}
       />
     </div>
   );

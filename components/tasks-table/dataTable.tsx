@@ -37,6 +37,7 @@ interface DataTableProps<TData, TValue> {
   rows: number;
   isInClientDetailsPage: boolean;
   clients: Client[];
+  client: Client | null;
 }
 
 export function DataTable<TData, TValue>({
@@ -44,6 +45,7 @@ export function DataTable<TData, TValue>({
   data,
   rows,
   clients,
+  client,
   isInClientDetailsPage,
 }: DataTableProps<TData, TValue>) {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -258,9 +260,15 @@ export function DataTable<TData, TValue>({
         </div>
       )}
       {clients.length > 0 ? (
-        <span>
-          <CreateTaskForm clients={clients} />
-        </span>
+        <>
+          {isInClientDetailsPage ? (
+            <span>{client && <CreateTaskForm clients={[client]} />}</span>
+          ) : (
+            <span>
+              <CreateTaskForm clients={clients} />
+            </span>
+          )}
+        </>
       ) : (
         <div className="flex items-center py-3 gap-2">
           <AlertCircle />
