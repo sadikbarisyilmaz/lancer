@@ -60,4 +60,18 @@ export const columns: ColumnDef<Client>[] = [
       );
     },
   },
+  {
+    accessorKey: "id",
+    header: () => (
+      <div className="gap-2 flex items-center">
+        <span className=" text-opacity-60 text-amber-400 ">
+          <Phone size={18} />
+        </span>
+        <p>Phone</p>
+      </div>
+    ),
+    cell: ({ row }) => {
+      return <div className="text-left font-medium">{row.getValue("id")}</div>;
+    },
+  },
 ];

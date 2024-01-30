@@ -8,6 +8,7 @@ import {
   getPaginationRowModel,
   ColumnFiltersState,
   getFilteredRowModel,
+  VisibilityState,
 } from "@tanstack/react-table";
 import {
   DropdownMenu,
@@ -46,6 +47,9 @@ export function DataTable<TData, TValue>({
   isInClientDetailsPage,
 }: DataTableProps<TData, TValue>) {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({
+    id: false,
+  });
   const router = useRouter();
 
   const table = useReactTable({
@@ -57,6 +61,7 @@ export function DataTable<TData, TValue>({
     getFilteredRowModel: getFilteredRowModel(),
     initialState: { pagination: { pageSize: rows, pageIndex: 0 } },
     state: {
+      columnVisibility,
       columnFilters,
     },
   });
@@ -90,8 +95,9 @@ export function DataTable<TData, TValue>({
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
                   className="cursor-pointer"
-                  // @ts-ignore
-                  onClick={() => router.push(`/home/tasks/${data[i].id}`)}
+                  onClick={() =>
+                    router.push(`/home/clients/${row.getValue("id")}`)
+                  }
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>

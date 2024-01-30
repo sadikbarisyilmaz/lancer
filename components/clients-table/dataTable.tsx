@@ -8,6 +8,7 @@ import {
   getPaginationRowModel,
   ColumnFiltersState,
   getFilteredRowModel,
+  VisibilityState,
 } from "@tanstack/react-table";
 
 import {
@@ -22,6 +23,7 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { CreateClientForm } from "../forms/CreateClientForm";
+
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
@@ -32,6 +34,9 @@ export function DataTable<TData, TValue>({
   data,
 }: DataTableProps<TData, TValue>) {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({
+    id: false,
+  });
   const table = useReactTable({
     data,
     columns,
@@ -40,7 +45,9 @@ export function DataTable<TData, TValue>({
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
     initialState: { pagination: { pageSize: 7, pageIndex: 0 } },
+    onColumnVisibilityChange: setColumnVisibility,
     state: {
+      columnVisibility,
       columnFilters,
     },
   });
@@ -74,14 +81,13 @@ export function DataTable<TData, TValue>({
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
+                  onClick={() =>
+                    router.push(`/home/clients/${row.getValue("id")}`)
+                  }
                   className="cursor-pointer"
                 >
                   {row.getVisibleCells().map((cell) => (
-                    <TableCell
-                      // @ts-ignore
-                      onClick={() => router.push(`/home/clients/${data[i].id}`)}
-                      key={cell.id}
-                    >
+                    <TableCell key={cell.id}>
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()

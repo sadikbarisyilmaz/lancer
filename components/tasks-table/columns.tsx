@@ -139,4 +139,18 @@ export const columns: ColumnDef<Task>[] = [
       );
     },
   },
+  {
+    accessorKey: "id",
+    header: () => (
+      <div className="gap-2 flex items-center">
+        <span className="text-opacity-60 text-sky-700">
+          <Repeat2 size={18} />
+        </span>
+        <p>id</p>
+      </div>
+    ),
+    cell: ({ row }) => {
+      return <div className="text-left font-medium">{row.getValue("id")}</div>;
+    },
+  },
 ];
