@@ -5,26 +5,26 @@ import { createRecurringTask } from "@/app/actions";
 export const createRecurringTasks = (formattedWeeklyTasks: Task[]) => {
   const recurringTasksThisWeek = formattedWeeklyTasks
     ?.filter((task) => task.frequency !== "Once")
-    .filter((task) => new Date(task.set_date) < addDays(new Date(), 7));
+    .filter((task) => new Date(task.set_date) < addDays(new Date(), 6));
 
   const nextWeekTasks = formattedWeeklyTasks
     ?.filter((task) => task.frequency !== "Once")
     .filter(
       (task) =>
-        new Date(task.set_date) > addDays(new Date(), 7) &&
-        new Date(task.set_date) < addDays(new Date(), 14)
+        new Date(task.set_date) > addDays(new Date(), 6) &&
+        new Date(task.set_date) < addDays(new Date(), 13)
     );
-  // console.log(nextWeekTasks);
+  console.log(nextWeekTasks);
+
   const twoWeeksLaterTasks = formattedWeeklyTasks
     ?.filter((task) => task.frequency !== "Once")
     .filter(
       (task) =>
-        new Date(task.set_date) > addDays(new Date(), 14) &&
-        new Date(task.set_date) < addDays(new Date(), 21)
+        new Date(task.set_date) > addDays(new Date(), 13) &&
+        new Date(task.set_date) < addDays(new Date(), 20)
     );
 
   recurringTasksThisWeek?.forEach((recurringTask) => {
-    // console.log("runs");
     if (recurringTask.frequency === "Weekly") {
       const isCreated = nextWeekTasks?.some((nextWeekTask) => {
         if (
@@ -37,7 +37,6 @@ export const createRecurringTasks = (formattedWeeklyTasks: Task[]) => {
           );
         }
       });
-      // console.log(isCreated);
       if (!isCreated) {
         const newTask = {
           ...recurringTask,
@@ -57,7 +56,6 @@ export const createRecurringTasks = (formattedWeeklyTasks: Task[]) => {
           );
         }
       });
-      // console.log("twoweekslatercreated: ", isCreated);
       if (!isCreated) {
         const newTask = {
           ...recurringTask,

@@ -98,7 +98,7 @@ export function DataTable<TData, TValue>({
                   data-state={row.getIsSelected() && "selected"}
                   className="cursor-pointer"
                   onClick={() =>
-                    router.push(`/home/clients/${row.getValue("id")}`)
+                    router.push(`/home/tasks/${row.getValue("id")}`)
                   }
                 >
                   {row.getVisibleCells().map((cell) => (
