@@ -22,7 +22,15 @@ Lancer, a CRM / task manager for freelancers where users can keep track of their
 - If you choose "weekly" or "biweekly" frequency options on tasks creation, same task will be created next week (or two weeks later) aat the same day and same time, upon visiting "Upcoming" page. 
 - On "Upcoming" page, you can see all the tasks for next 6 days and go to their details by clicking the cards.
   
-## Preview
+### Stack
+
+- Next.js 14
+- Typescript
+- Supabase
+- Shadcn UI
+- Tailwind
+  
+### Preview
 
 ![Lancer](https://github.com/sadikbarisyilmaz/lancer/assets/89347761/2740ac81-44fd-4122-a96b-66ff8a080f33)
 ![Screenshot_1](https://github.com/sadikbarisyilmaz/lancer/assets/89347761/1b002bf6-ebf1-4536-b0e9-57825b6f4ef0)
