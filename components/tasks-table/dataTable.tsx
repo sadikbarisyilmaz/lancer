@@ -98,7 +98,7 @@ export function DataTable<TData, TValue>({
                   data-state={row.getIsSelected() && "selected"}
                   className="cursor-pointer"
                   onClick={() =>
-                    router.push(`/home/tasks/${row.getValue("id")}`)
+                    router.push(`/dashboard/tasks/${row.getValue("id")}`)
                   }
                 >
                   {row.getVisibleCells().map((cell) => (
@@ -274,7 +274,7 @@ export function DataTable<TData, TValue>({
           <AlertCircle />
           <p className="">
             Please create a{" "}
-            <Link href={"/home/clients"} className="font-bold">
+            <Link href={"/dashboard/clients"} className="font-bold">
               client
             </Link>{" "}
             before adding tasks.

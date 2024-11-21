@@ -49,7 +49,7 @@ export const UserCard = () => {
   return (
     <div className="flex flex-col gap-4">
       <div className="lg:justify-start justify-center gap-3 flex lg:flex-row flex-col items-center text-center lg:text-left py-2">
-        <Link href="/home/account">
+        <Link href="/dashboard/account">
           <Avatar className="lg:w-11 w-16 lg:h-11 h-16 ">
             <AvatarImage
               src={user?.user_metadata.picture}

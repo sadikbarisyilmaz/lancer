@@ -13,7 +13,7 @@ export const TaskCard = ({ task }: Props) => {
   return (
     <Link
       className="w-full flex justify-center"
-      href={`/home/tasks/${[task.id]}`}
+      href={`/dashboard/tasks/${[task.id]}`}
     >
       <Card className="px-3 py-4 w-full text-foreground/90 flex flex-col justify-center dark:bg-black bg-white dark:bg-opacity-50 bg-opacity-50 gap-3 text-md hover:-translate-y-1 transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl max-w-sm">
         <h6 className="flex text-sm font-semibold items-center gap-1 ">

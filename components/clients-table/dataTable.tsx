@@ -82,7 +82,7 @@ export function DataTable<TData, TValue>({
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
                   onClick={() =>
-                    router.push(`/home/clients/${row.getValue("id")}`)
+                    router.push(`/dashboard/clients/${row.getValue("id")}`)
                   }
                   className="cursor-pointer"
                 >

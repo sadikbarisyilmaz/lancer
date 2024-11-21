@@ -3,7 +3,7 @@ import { TaskCard } from "@/components/TaskCard";
 import { Task } from "@/lib/types";
 import { addDays, format } from "date-fns";
 import { useEffect, useState } from "react";
-import Loading from "@/app/home/upcoming/loading-component";
+import Loading from "@/app/dashboard/upcoming/loading-component";
 import { createRecurringTasks } from "@/lib/helpers";
 
 interface Props {
