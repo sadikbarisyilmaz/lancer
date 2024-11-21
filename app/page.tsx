@@ -1,58 +1,10 @@
-"use client";
-import { Auth } from "@supabase/auth-ui-react";
-import { ThemeSupa } from "@supabase/auth-ui-shared";
 import { Card } from "@/components/ui/card";
-import { useEffect, useState } from "react";
-import { createSupabaseBrowserClient } from "@/lib/supabase/client";
-import { useRouter } from "next/navigation";
-import { Loader } from "@/components/Loader";
-import { useTheme } from "next-themes";
+import { LoginForm } from "@/components/forms/LoginForm";
 
 export default function Page() {
-  const [loading, setloading] = useState(true);
-  const router = useRouter();
-  const supabase = createSupabaseBrowserClient();
-  const { theme } = useTheme();
-  const URL = process.env.NEXT_PUBLIC_SUPABASE_REDIRECT_URL;
-
-  useEffect(() => {
-    checkUser();
-  }, []);
-
-  const checkUser = async () => {
-    const {
-      data: { session },
-    } = await supabase.auth.getSession();
-
-    if (session && session.user.user_metadata.full_name === undefined) {
-      router.push("/dashboard/account");
-    } else if (session) {
-      router.push("/dashboard/upcoming");
-    } else {
-      setloading(false);
-    }
-
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((event) => {
-      if (event === "SIGNED_IN") {
-        console.log("SIGNED_IN");
-        subscription.unsubscribe();
-        router.push("/dashboard/upcoming");
-      }
-    });
-  };
-
-  if (loading) {
-    return (
-      <div className="h-screen w-full flex items-center justify-center">
-        <Loader />
-      </div>
-    );
-  }
   return (
     <div className="h-screen w-full flex items-center justify-center p-6 animate-fadeIn">
-      <Card className="grid grid-cols-1 lg:grid-cols-3 gap-2 dark:bg-black bg-white dark:bg-opacity-40 bg-opacity-40 p-8 shadow-md dark:shadow-slate-700">
+      <Card className="grid grid-cols-1 lg:grid-cols-3 gap-2 dark:bg-black bg-white dark:bg-opacity-40 bg-opacity-40 p-8 shadow-md dark:shadow-slate-700 max-w-[842px] min-h-[377px]">
         <div className="col-span-2 text-center flex flex-col items-center justify-center">
           <h1 className="scroll-m-20 drop-shadow-2xl px-4 py-8 text-4xl font-extrabold  lg:text-5xl">
             Welcome to Lancer !
@@ -65,14 +17,7 @@ export default function Page() {
           </p>
         </div>
         <div className="p-4">
-          <Auth
-            redirectTo={`${URL}/auth/callback`}
-            supabaseClient={supabase}
-            appearance={{ theme: ThemeSupa }}
-            providers={["google"]}
-            theme={`${theme === "dark" ? "dark" : ""}`}
-            view="magic_link"
-          />
+          <LoginForm />
         </div>
       </Card>
     </div>
