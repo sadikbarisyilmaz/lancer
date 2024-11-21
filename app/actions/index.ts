@@ -59,7 +59,7 @@ export const updateUserFullName = async (newFullName: string) => {
     console.log(error);
   } else {
     console.log("update fullname successful");
-    revalidatePath("/home/account");
+    revalidatePath("/dashboard/account");
   }
 
   return { data };
@@ -135,7 +135,7 @@ export const createNewClient = async (formData: ClientFormData) => {
     console.log(error);
   } else {
     console.log("delete client successful");
-    revalidatePath("/home/clients");
+    revalidatePath("/dashboard/clients");
   }
 };
 export const getClient = async (clientId: string | string[]) => {
@@ -216,7 +216,7 @@ export const editClient = async (
     console.log("error", error);
   } else {
     console.log("Client updated successfully");
-    revalidatePath("/home/clients");
+    revalidatePath("/dashboard/clients");
   }
 };
 export const deleteClientNote = async (clientNoteId: string | string[]) => {
@@ -287,7 +287,7 @@ export const createNewTask = async (formData: TaskFormData) => {
     console.log(error);
   } else {
     console.log("create task successful");
-    revalidatePath("/home/tasks");
+    revalidatePath("/dashboard/tasks");
   }
 };
 export const createRecurringTask = async (task: Task) => {
@@ -315,7 +315,7 @@ export const createRecurringTask = async (task: Task) => {
     console.log(error);
   } else {
     console.log("create task successful");
-    revalidatePath("/home/tasks");
+    revalidatePath("/dashboard/tasks");
   }
 };
 export const deleteTasks = async (TaskId: string | string[]) => {
@@ -327,7 +327,7 @@ export const deleteTasks = async (TaskId: string | string[]) => {
     console.log("error", error);
   } else {
     console.log("task deleted successfully");
-    revalidatePath("/home/tasks");
+    revalidatePath("/dashboard/tasks");
   }
 };
 export const updatePaymentStatus = async (
@@ -346,7 +346,7 @@ export const updatePaymentStatus = async (
     console.log("error", error);
   } else {
     console.log("payment status updated successfully");
-    revalidatePath("/home/tasks");
+    revalidatePath("/dashboard/tasks");
   }
 };
 export const editTask = async (
@@ -370,7 +370,7 @@ export const editTask = async (
     console.log("error", error);
   } else {
     console.log("Task updated successfully");
-    revalidatePath("/home/tasks");
+    revalidatePath("/dashboard/tasks");
   }
 };
 export const getWeeklyTasks = async () => {

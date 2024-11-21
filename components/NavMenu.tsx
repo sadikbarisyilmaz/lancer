@@ -3,15 +3,15 @@ import { Button } from "./ui/button";
 const links = [
   {
     title: "Upcoming",
-    href: "/home/upcoming",
+    href: "/dashboard/upcoming",
   },
   {
     title: "Clients",
-    href: "/home/clients",
+    href: "/dashboard/clients",
   },
   {
     title: "Tasks",
-    href: "/home/tasks",
+    href: "/dashboard/tasks",
   },
 ];
 

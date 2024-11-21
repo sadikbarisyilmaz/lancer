@@ -19,7 +19,7 @@ export function ClientCard({ client }: { client: Client }) {
     toast({
       title: `Client "${client.name}" deleted successfully !`,
     });
-    router.push("/home/clients");
+    router.push("/dashboard/clients");
   };
 
   return (

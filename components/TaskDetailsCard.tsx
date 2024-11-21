@@ -35,7 +35,7 @@ export const TaskDetailsCard = ({ task }: Props) => {
     toast({
       title: `Task deleted successfully !`,
     });
-    router.push("/home/tasks");
+    router.push("/dashboard/tasks");
   };
   useEffect(() => {
     const newTask = {
@@ -73,7 +73,7 @@ export const TaskDetailsCard = ({ task }: Props) => {
         <div className="p-1 gap-2 flex items-center">
           <Link
             className="flex gap-2"
-            href={`/home/clients/${[task.client_id]}`}
+            href={`/dashboard/clients/${[task.client_id]}`}
           >
             <span className="text-opacity-60 text-indigo-500">
               <User size={24} />
