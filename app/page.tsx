@@ -9,14 +9,13 @@ import { Loader } from "@/components/Loader";
 import { useTheme } from "next-themes";
 
 export default function Page() {
-  const [url, setUrl] = useState<string>();
   const [loading, setloading] = useState(true);
   const router = useRouter();
   const supabase = createSupabaseBrowserClient();
   const { theme } = useTheme();
+  const URL = process.env.NEXT_PUBLIC_SUPABASE_REDIRECT_URL;
 
   useEffect(() => {
-    setUrl(window.location.origin);
     checkUser();
   }, []);
 
@@ -67,7 +66,7 @@ export default function Page() {
         </div>
         <div className="p-4">
           <Auth
-            redirectTo={`${url}/auth/callback`}
+            redirectTo={`${URL}/auth/callback`}
             supabaseClient={supabase}
             appearance={{ theme: ThemeSupa }}
             providers={["google"]}
