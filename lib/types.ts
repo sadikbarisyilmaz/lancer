@@ -47,6 +47,20 @@ export interface Task {
   clients: Client;
   frequency: string;
 }
+export interface Weekly {
+  id: string;
+  created_at: Date;
+  user_id: string;
+  client_id: string;
+  week_day: string;
+  set_time: string;
+  title: string;
+  about: string;
+  fee: number;
+  payment_status: string;
+  clients: Client;
+}
+
 export interface TaskNote {
   id: string;
   created_at: Date | string;
