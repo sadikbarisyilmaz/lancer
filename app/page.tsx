@@ -16,9 +16,7 @@ export default function Page() {
             Please Login
           </p>
         </div>
-        <div className="p-4">
-          <LoginForm />
-        </div>
+        <div className="p-4">{/* <LoginForm /> */}</div>
       </Card>
     </div>
   );
