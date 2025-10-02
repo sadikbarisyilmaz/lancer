@@ -6,7 +6,7 @@ export const Navbar = async () => {
   return (
     <nav className=" w-48 h-screen hidden lg:flex flex-col border-r border-r-foreground/10 p-4 gap-6">
       <div className="w-full max-w-4xl h-fit flex flex-col justify-between text-sm">
-        <UserCard />
+        {/* <UserCard /> */}
       </div>
       <div>
         <NavMenu />

@@ -1,9 +1,9 @@
-export interface UserDetails {
+export interface User {
   id: string;
-  first_name: string;
-  last_name: string;
-  full_name?: string;
+  email: string;
+  full_name: string;
   avatar_url?: string;
+  hashedPassword: string;
 }
 export interface Client {
   id: string;

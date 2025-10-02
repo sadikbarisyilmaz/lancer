@@ -1,0 +1,102 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String  @id @default(auto()) @map("_id") @db.ObjectId
+  email          String  @unique
+  full_name      String
+  avatar_url     String?
+  hashedPassword String
+
+  // Relations
+  clients     Client[]
+  tasks       Task[]
+  weeklies    Weekly[]
+  clientNotes ClientNote[]
+}
+
+model Client {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  created_at DateTime @default(now())
+  user_id    String   @db.ObjectId
+  name       String
+  type       String
+  email      String
+  phone      Int
+
+  // Relations
+  user   User         @relation(fields: [user_id], references: [id])
+  tasks  Task[]
+  notes  ClientNote[]
+  Weekly Weekly[]
+}
+
+model Task {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  created_at     DateTime @default(now())
+  set_date       DateTime
+  set_time       String
+  user_id        String   @db.ObjectId
+  client_id      String   @db.ObjectId
+  title          String
+  about          String
+  fee            Float
+  payment_status String
+  frequency      String
+
+  // Relations
+  user    User       @relation(fields: [user_id], references: [id])
+  clients Client     @relation(fields: [client_id], references: [id])
+  notes   TaskNote[]
+}
+
+model Weekly {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  created_at     DateTime @default(now())
+  user_id        String   @db.ObjectId
+  client_id      String   @db.ObjectId
+  week_day       String
+  set_time       String
+  title          String
+  about          String
+  fee            Float
+  payment_status String
+
+  // Relations
+  user    User   @relation(fields: [user_id], references: [id])
+  clients Client @relation(fields: [client_id], references: [id])
+}
+
+model ClientNote {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  created_at DateTime @default(now())
+  user_id    String   @db.ObjectId
+  content    String
+  client_id  String?  @db.ObjectId
+
+  // Relations
+  user   User    @relation(fields: [user_id], references: [id])
+  client Client? @relation(fields: [client_id], references: [id])
+}
+
+model TaskNote {
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  created_at DateTime @default(now())
+  task_id    String   @db.ObjectId
+  content    String
+
+  // Relations
+  task Task @relation(fields: [task_id], references: [id])
+}
