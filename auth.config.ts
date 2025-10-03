@@ -1,15 +1,6 @@
 import { NextAuthConfig } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
 import bcrypt from "bcryptjs";
-import { connectToDatabase } from "./lib/mongoose";
-import { getUserModel } from "./lib/models/User";
-
-const getUser = async (email: string) => {
-  await connectToDatabase();
-  const User = await getUserModel();
-  const user = (await User.findOne({ email }).lean()) as any;
-  return user ? { ...user, id: user._id?.toString?.() } : null;
-};
 
 export default {
   providers: [
@@ -29,16 +20,23 @@ export default {
         }
 
         const { email, password } = credentials;
-        const user = await getUser(email);
+        const baseUrl =
+          process.env.NEXTAUTH_URL ||
+          process.env.NEXT_PUBLIC_APP_URL ||
+          "http://localhost:3000";
 
-        const isPasswordValid = await bcrypt.compare(
-          password,
-          user?.hashedPassword as string
-        );
+        const res = await fetch(`${baseUrl}/api/user`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email }),
+          cache: "no-store",
+        });
 
-        if (!isPasswordValid) {
-          throw new Error("Invalid password");
+        if (!res.ok) {
+          throw new Error("User not found.");
         }
+
+        const user = await res.json();
 
         return {
           id: user.id,
