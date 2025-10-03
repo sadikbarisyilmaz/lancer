@@ -25,13 +25,13 @@ export default {
           process.env.NEXT_PUBLIC_APP_URL ||
           "http://localhost:3000";
 
-        const res = await fetch(`${baseUrl}/api/user`, {
+        const res = await fetch(`${baseUrl}/api/auth`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ email }),
           cache: "no-store",
         });
-
+        // console.log("res", res);
         if (!res.ok) {
           throw new Error("User not found.");
         }
