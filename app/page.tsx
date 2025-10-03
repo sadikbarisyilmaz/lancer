@@ -2,8 +2,9 @@ import { Card } from "@/components/ui/card";
 import { LoginForm } from "@/components/forms/LoginForm";
 import SignUpForm from "@/components/forms/signup-form";
 import SignInForm from "@/components/forms/signin-form";
+import { auth } from "@/auth";
 
-export default function Page() {
+export default async function Page() {
   return (
     <div className="h-screen w-full flex items-center justify-center p-6 animate-fadeIn">
       <Card className="grid grid-cols-1 lg:grid-cols-3 gap-2 dark:bg-black bg-white dark:bg-opacity-40 bg-opacity-40 p-8 shadow-md dark:shadow-slate-700 max-w-[842px] min-h-[377px]">

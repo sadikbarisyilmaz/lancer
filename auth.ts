@@ -1,12 +1,13 @@
 import NextAuth from "next-auth";
-import { PrismaClient } from "@prisma/client";
-import { PrismaAdapter } from "@auth/prisma-adapter";
+import Credentials from "next-auth/providers/credentials";
+import bcrypt from "bcrypt";
+import type { NextAuthConfig } from "next-auth";
+import { MongoDBAdapter } from "@auth/mongodb-adapter";
+import client from "./lib/db";
+import { getUser } from "./app/actions";
 import authConfig from "./auth.config";
 
-const prisma = new PrismaClient();
-
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  adapter: PrismaAdapter(prisma),
   ...authConfig,
   session: {
     strategy: "jwt",
@@ -17,12 +18,16 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     signOut: "/",
   },
   callbacks: {
-    jwt({ token, user }: { token: any; user: any }) {
+    jwt({ token, user }) {
       if (user) {
         // User is available during sign-in
         token.id = user.id;
       }
       return token;
+    },
+    session({ session, token }) {
+      session.user.id = (token as any).id as string;
+      return session;
     },
   },
 });

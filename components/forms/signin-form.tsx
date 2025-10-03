@@ -54,9 +54,9 @@ const SignInForm = () => {
         description: "- Redirecting to Dashboard",
       });
       setIsSubmitting(false);
-      // setTimeout(() => {
-      //   router.push(`/dashboard`);
-      // }, 500);
+      setTimeout(() => {
+        router.push(`/testing`);
+      }, 500);
     }
   };
 
