@@ -1,7 +1,15 @@
 import { NextAuthConfig } from "next-auth";
 import Credentials from "next-auth/providers/credentials";
-import { getUser } from "./app/actions";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
+import { connectToDatabase } from "./lib/mongoose";
+import { getUserModel } from "./lib/models/User";
+
+const getUser = async (email: string) => {
+  await connectToDatabase();
+  const User = await getUserModel();
+  const user = (await User.findOne({ email }).lean()) as any;
+  return user ? { ...user, id: user._id?.toString?.() } : null;
+};
 
 export default {
   providers: [

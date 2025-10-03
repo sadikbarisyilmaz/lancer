@@ -19,8 +19,18 @@ import { getTaskModel } from "@/lib/models/Task";
 import { getWeeklyModel } from "@/lib/models/Weekly";
 import { getClientNoteModel } from "@/lib/models/ClientNote";
 import { getTaskNoteModel } from "@/lib/models/TaskNote";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { auth } from "@/auth";
+
+async function getCurrentUserId() {
+  const session = await auth();
+  const email = session?.user?.email;
+  if (!email) return null;
+  await connectToDatabase();
+  const User = await getUserModel();
+  const user = (await User.findOne({ email }).lean()) as any;
+  return user?._id?.toString() ?? null;
+}
 
 export const createNewUser = async (
   email: string,
@@ -34,12 +44,12 @@ export const createNewUser = async (
   return JSON.parse(JSON.stringify(user));
 };
 
-export const getUser = async (email: string) => {
-  await connectToDatabase();
-  const User = await getUserModel();
-  const user = (await User.findOne({ email }).lean()) as any;
-  return user ? { ...user, id: user._id?.toString?.() } : null;
-};
+// export const getUser = async (email: string) => {
+//   await connectToDatabase();
+//   const User = await getUserModel();
+//   const user = (await User.findOne({ email }).lean()) as any;
+//   return user ? { ...user, id: user._id?.toString?.() } : null;
+// };
 
 // User profile updates (examples using Prisma)
 export const updateUserEmail = async (newEmail: string) => {

@@ -55,7 +55,7 @@ const SignInForm = () => {
       });
       setIsSubmitting(false);
       setTimeout(() => {
-        router.push(`/testing`);
+        router.push(`/dashboard/upcoming`);
       }, 500);
     }
   };

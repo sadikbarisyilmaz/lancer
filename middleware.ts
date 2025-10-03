@@ -1,15 +1,18 @@
-import { NextRequest } from "next/server";
-import authConfig from "./auth.config";
-import NextAuth from "next-auth";
+import { NextRequest, NextResponse } from "next/server";
+import { auth } from "@/auth";
 
-// Use only one of the two middleware options below
-// 1. Use middleware directly
-// export const { auth: middleware } = NextAuth(authConfig);
-
-// 2. Wrapped middleware option
-const { auth } = NextAuth(authConfig);
 export default auth(async function middleware(req: NextRequest) {
-  // Your custom middleware logic goes here
+  const { pathname } = req.nextUrl;
+
+  // Check if user is authenticated
+  const session = await auth();
+
+  // If accessing dashboard routes without authentication, redirect to sign-in
+  if (pathname.startsWith("/dashboard") && !session) {
+    return NextResponse.redirect(new URL("/", req.url));
+  }
+
+  return NextResponse.next();
 });
 
 export const config = {
