@@ -1,7 +1,15 @@
 import NextAuth, { DefaultSession } from "next-auth";
 
+export interface ServerSession {
+  user:
+    | ({
+        id: string;
+      } & DefaultSession["user"])
+    | undefined;
+}
+
 declare module "next-auth" {
-  interface Session {
+  export interface Session {
     user: {
       id: string;
     } & DefaultSession["user"];

@@ -21,15 +21,9 @@ import { getClientNoteModel } from "@/lib/models/ClientNote";
 import { getTaskNoteModel } from "@/lib/models/TaskNote";
 import bcrypt from "bcryptjs";
 import { auth } from "@/auth";
-
-async function getCurrentUserId() {
-  const session = await auth();
-  const email = session?.user?.email;
-  if (!email) return null;
-  await connectToDatabase();
-  const User = await getUserModel();
-  const user = (await User.findOne({ email }).lean()) as any;
-  return user?._id?.toString() ?? null;
+interface UpdateUserData {
+  email?: string;
+  full_name?: string;
 }
 
 export const createNewUser = async (
@@ -44,26 +38,26 @@ export const createNewUser = async (
   return JSON.parse(JSON.stringify(user));
 };
 
-// export const getUser = async (email: string) => {
-//   await connectToDatabase();
-//   const User = await getUserModel();
-//   const user = (await User.findOne({ email }).lean()) as any;
-//   return user ? { ...user, id: user._id?.toString?.() } : null;
-// };
-
-// User profile updates (examples using Prisma)
-export const updateUserEmail = async (newEmail: string) => {
+export const updateUser = async (data: UpdateUserData) => {
   const session = await auth();
   const userId = session?.user.id;
   if (!userId) throw new Error("Unauthorized");
 
+  // Ensure at least one field to update
+  if (!data.email && !data.full_name)
+    throw new Error("No fields provided for update");
+
   await connectToDatabase();
   const User = await getUserModel();
+
   const user = await User.findByIdAndUpdate(
     userId,
-    { email: newEmail },
+    { ...data },
     { new: true }
   ).lean();
+  console.log(data);
+
+  revalidatePath("/api/auth");
   return { data: JSON.parse(JSON.stringify(user)) };
 };
 
@@ -80,22 +74,6 @@ export const updateUserPassword = async (newPassword: string) => {
     { hashedPassword },
     { new: true }
   ).lean();
-  return { data: JSON.parse(JSON.stringify(user)) };
-};
-
-export const updateUserFullName = async (newFullName: string) => {
-  const session = await auth();
-  const userId = session?.user.id;
-  if (!userId) throw new Error("Unauthorized");
-
-  await connectToDatabase();
-  const User = await getUserModel();
-  const user = await User.findByIdAndUpdate(
-    userId,
-    { full_name: newFullName },
-    { new: true }
-  ).lean();
-  revalidatePath("/dashboard/account");
   return { data: JSON.parse(JSON.stringify(user)) };
 };
 

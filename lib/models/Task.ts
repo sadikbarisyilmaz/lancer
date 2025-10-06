@@ -9,7 +9,7 @@ const TaskSchema = new Schema(
     user_id: { type: Schema.Types.ObjectId, ref: "User", required: true },
     client_id: { type: Schema.Types.ObjectId, ref: "Client", required: true },
     title: { type: String, required: true },
-    about: { type: String, required: true },
+    about: { type: String, required: false },
     fee: { type: Number, required: true },
     payment_status: { type: String, required: true },
     frequency: { type: String, required: true },

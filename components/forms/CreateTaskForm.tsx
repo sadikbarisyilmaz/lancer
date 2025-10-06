@@ -69,6 +69,7 @@ export const CreateTaskForm = ({ clients }: Props) => {
   });
   const frequencyArr = ["Once", "Biweekly", "Weekly"];
   function onSubmit(values: z.infer<typeof formSchema>) {
+    console.log(values);
     try {
       createNewTask(values);
       toast({
@@ -82,6 +83,7 @@ export const CreateTaskForm = ({ clients }: Props) => {
       });
     }
   }
+  console.log(clients);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -116,7 +118,7 @@ export const CreateTaskForm = ({ clients }: Props) => {
                         <SelectContent>
                           {clients?.map((client, i) => {
                             return (
-                              <SelectItem key={i} value={client.id.toString()}>
+                              <SelectItem key={i} value={client._id}>
                                 {client.name}
                               </SelectItem>
                             );

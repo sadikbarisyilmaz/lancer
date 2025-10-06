@@ -6,7 +6,7 @@ export interface User {
   hashedPassword: string;
 }
 export interface Client {
-  id: string;
+  _id: string;
   created_at: Date;
   user_id: string;
   name: string;
