@@ -11,7 +11,6 @@ export interface Client {
   user_id: string;
   name: string;
   type: string;
-  tasks: Task[];
   email: string;
   phone: number;
 }
