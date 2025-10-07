@@ -40,7 +40,6 @@ export const updateUser = async (data: {
   const session = await auth();
   const userId = session?.user.id;
   if (!userId) throw new Error("Unauthorized");
-  console.log("updateuser:", data);
 
   try {
     const user = await prisma.user.update({

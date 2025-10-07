@@ -35,7 +35,6 @@ import { updateUserPassword } from "@/app/actions";
 export const EditUserPasswordForm = ({ user }: ServerSession) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
-  // console.log(user);
 
   const form = useForm({
     resolver: zodResolver(formSchema),

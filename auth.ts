@@ -9,7 +9,11 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   //   signIn: "/",
   // },
   callbacks: {
-    jwt({ token, user }) {
+    jwt({ token, user, trigger, session }) {
+      if (trigger === "update") {
+        token.email = session.email;
+        token.name = session.name;
+      }
       if (user) {
         // User is available during sign-in
         token.id = user.id;

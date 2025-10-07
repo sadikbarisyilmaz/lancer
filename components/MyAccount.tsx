@@ -10,7 +10,7 @@ import { EditUserPasswordForm } from "./forms/EditUserPasswordForm";
 // import { EditUserPasswordForm } from "./forms/EditUserPasswordForm";
 
 function MyAccount() {
-  const { data: session } = useSession();
+  const { data: session, update } = useSession();
 
   if (!session) {
     return (
@@ -53,7 +53,7 @@ function MyAccount() {
           </div>
         </div>
         <div className="flex w-full gap-6 flex-wrap">
-          <EditUserForm user={session?.user} />
+          <EditUserForm user={session?.user} update={update} />
           <EditUserPasswordForm user={session?.user} />
         </div>
       </div>

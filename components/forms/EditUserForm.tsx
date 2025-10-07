@@ -19,7 +19,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useToast } from "../ui/use-toast";
-import { ServerSession } from "@/types/next-auth";
 import { updateUser } from "@/app/actions";
 import { EditUserFormData } from "@/lib/types";
 
@@ -28,7 +27,7 @@ const formSchema = z.object({
   email: z.string().email("Please enter a valid email."),
 });
 
-export const EditUserForm = ({ user }: ServerSession) => {
+export const EditUserForm = ({ user, update }: any) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [dropzoneWidth, setDropzoneWidth] = useState(400); // Default width
 
@@ -66,10 +65,11 @@ export const EditUserForm = ({ user }: ServerSession) => {
   const onSubmit = async (values: EditUserFormData) => {
     setIsSubmitting(true);
     try {
-      const result = await updateUser(values);
+      await updateUser(values);
       // if (file) {
       //   handlePicture();
       // }
+      await update({ name: values.full_name, email: values.email });
       setIsSubmitting(false);
       toast({
         title: "Update Successful !",
