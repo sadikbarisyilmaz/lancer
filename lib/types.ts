@@ -47,7 +47,6 @@ export interface Task {
   about: string;
   fee: number;
   payment_status: string;
-  clients: Client;
   frequency: string;
 }
 export interface Weekly {
@@ -61,7 +60,6 @@ export interface Weekly {
   about: string;
   fee: number;
   payment_status: string;
-  clients: Client;
 }
 
 export interface TaskNote {
