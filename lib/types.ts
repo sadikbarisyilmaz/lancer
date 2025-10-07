@@ -31,7 +31,7 @@ export interface Client {
 export interface Task {
   id: string;
   created_at: Date;
-  set_date: Date;
+  set_date: Date | String;
   set_time: string;
   user_id: string;
   client_id: string;
@@ -109,7 +109,7 @@ export interface EditUserFormData {
   email: string;
 }
 export interface TaskFormData {
-  set_date: Date;
+  set_date: Date | String;
   set_time: string;
   title: string;
   about: string;

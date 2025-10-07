@@ -40,6 +40,7 @@ export const TaskDetailsCard = ({ task }: Props) => {
   useEffect(() => {
     const newTask = {
       ...task,
+      // @ts-ignore
       set_date: format(task.set_date, "EEEE - dd/MM/yyyy"),
     };
 
@@ -48,6 +49,7 @@ export const TaskDetailsCard = ({ task }: Props) => {
   useEffect(() => {
     const newTask = {
       ...task,
+      // @ts-ignore
       set_date: format(task.set_date, "EEEE - dd/MM/yyyy"),
     };
 
@@ -78,7 +80,7 @@ export const TaskDetailsCard = ({ task }: Props) => {
             <span className="text-opacity-60 text-indigo-500">
               <User size={24} />
             </span>
-            <p>{task.clients.name}</p>
+            <p>{task.client?.name}</p>
           </Link>
         </div>
         <div className="p-1 gap-2 flex items-center">

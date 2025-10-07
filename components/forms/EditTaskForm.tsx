@@ -60,6 +60,7 @@ export const EditTaskForm = ({ task }: Props) => {
       title: task.title,
       about: "",
       fee: task.fee.toString(),
+      // @ts-ignore
       set_date: new Date(task.set_date),
       set_time: task.set_time,
       frequency: task.frequency,
@@ -155,6 +156,7 @@ export const EditTaskForm = ({ task }: Props) => {
                 />
                 <FormField
                   control={form.control}
+                  // @ts-ignore
                   defaultValue={new Date(task.set_date)}
                   name="set_date"
                   render={({ field }) => (

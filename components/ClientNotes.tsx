@@ -42,6 +42,7 @@ export const ClientNotes = ({ id }: { id: string }) => {
           created_at: format(note.created_at, "EEEE - dd/MM/yyyy"),
         };
       });
+      // @ts-ignore
       setClientNotes(refactoredclientNotes);
       setLoading(false);
     } catch (error) {

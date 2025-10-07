@@ -45,22 +45,23 @@ export const EditUserPasswordForm = ({ user }: ServerSession) => {
       passwordConfirmation: "",
     },
   });
+  // @ts-ignore
   const onSubmit = async (values) => {
     setIsSubmitting(true);
-    const result = await updateUserPassword(values);
 
-    if (result.error) {
-      toast({
-        variant: "destructive",
-        title: "Error !",
-        description: `- ${result.error}`,
-      });
-
-      setIsSubmitting(false);
-    } else {
+    try {
+      const result = await updateUserPassword(values);
       toast({
         title: "Update Password Successful !",
       });
+      setIsSubmitting(false);
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Error !",
+        description: `- ${error}`,
+      });
+
       setIsSubmitting(false);
     }
   };

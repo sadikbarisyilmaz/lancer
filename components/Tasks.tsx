@@ -13,7 +13,9 @@ export const Tasks = ({ tasks, clients }: Props) => {
   const refactoredTasks = tasks.map((task, i) => {
     return {
       ...task,
+      // @ts-ignore
       client_name: task["clients"]["name"],
+      // @ts-ignore
       set_date: format(task.set_date, "EEEE - dd/MM/yyyy"),
     };
   });

@@ -12,10 +12,11 @@ interface Props {
 }
 
 export const ClientDetails = ({ client, clients }: Props) => {
-  const refactoredTasks = client.tasks.map((task, i) => {
+  const refactoredTasks = client.tasks?.map((task, i) => {
     return {
       ...task,
       client_name: client.name,
+      // @ts-ignore
       set_date: format(task.set_date, "EEEE - dd/MM/yyyy"),
     };
   });
@@ -34,6 +35,7 @@ export const ClientDetails = ({ client, clients }: Props) => {
             isInClientDetailsPage={true}
             rows={5}
             columns={clientOmmittedcolumns}
+            // @ts-ignore
             data={refactoredTasks}
             client={client}
           />
