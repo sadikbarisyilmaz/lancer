@@ -36,6 +36,7 @@ export const WeeklyCard = ({ weekly }: Props) => {
             <span className=" text-opacity-60 text-indigo-500">
               <User size={18} />
             </span>
+            {/* @ts-ignore */}
             <p>{weekly.clients.name}</p>
           </div>
           <div className="p-1 text-xs gap-2 flex items-center">

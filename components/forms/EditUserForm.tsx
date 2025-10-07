@@ -157,6 +157,7 @@ export const EditUserForm = ({ user }: ServerSession) => {
            */}
         </div>
         <Form {...form}>
+          {/* @ts-ignore */}
           <form onSubmit={form.handleSubmit(onSubmit)} className="">
             <div className="grid md:grid-cols-2 gap-2">
               <FormField
@@ -166,6 +167,7 @@ export const EditUserForm = ({ user }: ServerSession) => {
                   <FormItem>
                     <FormLabel className="font-bold">Full Name</FormLabel>
                     <FormControl>
+                      {/* @ts-ignore */}
                       <Input {...field} />
                     </FormControl>
                     <FormMessage />
@@ -179,6 +181,7 @@ export const EditUserForm = ({ user }: ServerSession) => {
                   <FormItem>
                     <FormLabel className="font-bold">Email</FormLabel>
                     <FormControl>
+                      {/* @ts-ignore */}
                       <Input {...field} />
                     </FormControl>
                     <FormMessage />

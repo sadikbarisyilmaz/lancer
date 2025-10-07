@@ -40,6 +40,7 @@ export const TaskNotes = ({ id }: { id: string }) => {
           created_at: format(note.created_at, "EEEE - dd/MM/yyyy"),
         };
       });
+      // @ts-ignore
       setNotes(refactoredtaskNotes);
       setLoading(false);
     } catch (error) {

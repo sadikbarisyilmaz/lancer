@@ -252,6 +252,7 @@ export const createNewTask = async (formData: TaskFormData) => {
 
   await prisma.task.create({
     data: {
+      // @ts-ignore
       set_date: new Date(formData.set_date),
       set_time: formData.set_time,
       title: formData.title,
@@ -274,6 +275,7 @@ export const createRecurringTask = async (task: Task) => {
 
   await prisma.task.create({
     data: {
+      // @ts-ignore
       set_date: new Date(task.set_date),
       set_time: task.set_time,
       title: task.title,

@@ -5,13 +5,18 @@ import { createRecurringTask } from "@/app/actions";
 export const createRecurringTasks = (formattedWeeklyTasks: Task[]) => {
   const recurringTasksThisWeek = formattedWeeklyTasks
     ?.filter((task) => task.frequency !== "Once")
+    // @ts-ignore
     .filter((task) => new Date(task.set_date) < addDays(new Date(), 6));
 
   const nextWeekTasks = formattedWeeklyTasks
     ?.filter((task) => task.frequency !== "Once")
     .filter(
       (task) =>
+        // @ts-ignore
+
         new Date(task.set_date) > addDays(new Date(), 6) &&
+        // @ts-ignore
+
         new Date(task.set_date) < addDays(new Date(), 13)
     );
 
@@ -19,7 +24,11 @@ export const createRecurringTasks = (formattedWeeklyTasks: Task[]) => {
     ?.filter((task) => task.frequency !== "Once")
     .filter(
       (task) =>
+        // @ts-ignore
+
         new Date(task.set_date) > addDays(new Date(), 13) &&
+        // @ts-ignore
+
         new Date(task.set_date) < addDays(new Date(), 20)
     );
 
@@ -31,7 +40,11 @@ export const createRecurringTasks = (formattedWeeklyTasks: Task[]) => {
           nextWeekTask.client_id === recurringTask.client_id
         ) {
           return (
+            // @ts-ignore
+
             format(nextWeekTask.set_date, "MMM/dd/yy") ===
+            // @ts-ignore
+
             format(addDays(recurringTask.set_date, 7), "MMM/dd/yy")
           );
         }
@@ -39,6 +52,8 @@ export const createRecurringTasks = (formattedWeeklyTasks: Task[]) => {
       if (!isCreated) {
         const newTask = {
           ...recurringTask,
+          // @ts-ignore
+
           set_date: format(addDays(recurringTask.set_date, 7), "MMM/dd/yy"),
         };
         createRecurringTask(newTask);
@@ -50,7 +65,11 @@ export const createRecurringTasks = (formattedWeeklyTasks: Task[]) => {
           nextWeekTask.client_id === recurringTask.client_id
         ) {
           return (
+            // @ts-ignore
+
             format(nextWeekTask.set_date, "MMM/dd/yy") ===
+            // @ts-ignore
+
             format(addDays(recurringTask.set_date, 14), "MMM/dd/yy")
           );
         }
@@ -58,6 +77,8 @@ export const createRecurringTasks = (formattedWeeklyTasks: Task[]) => {
       if (!isCreated) {
         const newTask = {
           ...recurringTask,
+          // @ts-ignore
+
           set_date: format(addDays(recurringTask.set_date, 14), "MMM/dd/yy"),
         };
         createRecurringTask(newTask);

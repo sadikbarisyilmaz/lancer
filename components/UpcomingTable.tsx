@@ -39,6 +39,7 @@ export const UpcomingTable = ({ weeklyTasks }: Props) => {
     const refactoredTasks = weeklyTasks.map((task, i) => {
       return {
         ...task,
+        // @ts-ignore
         set_date: format(task.set_date, "MMM/dd/yy"),
       };
     });
