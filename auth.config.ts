@@ -20,10 +20,7 @@ export default {
         }
 
         const { email, password } = credentials;
-        const baseUrl =
-          process.env.NEXTAUTH_URL ||
-          process.env.NEXT_PUBLIC_APP_URL ||
-          "http://localhost:3000";
+        const baseUrl = process.env.NEXT_PUBLIC_URL;
 
         const res = await fetch(`${baseUrl}/api/auth`, {
           method: "POST",
