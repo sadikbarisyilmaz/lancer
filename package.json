@@ -32,8 +32,6 @@
     "geist": "^1.0.0",
     "lucide-react": "^0.302.0",
     "luxon": "^3.4.4",
-    "mongodb": "^6.20.0",
-    "mongoose": "^8.19.0",
     "next": "latest",
     "next-auth": "^5.0.0-beta.29",
     "next-themes": "^0.2.1",

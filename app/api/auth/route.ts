@@ -1,12 +1,12 @@
-import { getUserModel } from "@/lib/models/User";
-import { connectToDatabase } from "@/lib/mongoose";
 import { NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
 
-const getUser = async (email: string) => {
-  await connectToDatabase();
-  const User = await getUserModel();
-  const user = (await User.findOne({ email }).lean()) as any;
-  return user ? { ...user, id: user._id?.toString?.() } : null;
+export const getUser = async (email: string) => {
+  const user = await prisma.user.findUnique({
+    where: { email },
+  });
+
+  return user ?? null;
 };
 
 export async function POST(request: Request) {

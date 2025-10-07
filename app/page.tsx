@@ -1,5 +1,4 @@
 import { Card } from "@/components/ui/card";
-import { LoginForm } from "@/components/forms/LoginForm";
 import SignUpForm from "@/components/forms/signup-form";
 import SignInForm from "@/components/forms/signin-form";
 import { auth } from "@/auth";

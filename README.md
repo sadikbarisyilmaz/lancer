@@ -6,7 +6,8 @@ Lancer, a CRM / task manager for freelancers where users can keep track of their
 
 When the user creates a weekly or biweekly task, Lancer takes care of creating the same task next week or two weeks later, same day and hour. Users are also able to add notes to each client or task, so no detail is lost. On the “Upcoming” page where users can easily see the next six days tasks.
 
-- Social login with Google
+<!-- - Social login with Google -->
+
 - Sign up via mail,
 - Authentication and authorization with Auth.js
 - Mobile friendly, responsive design
@@ -26,6 +27,7 @@ When the user creates a weekly or biweekly task, Lancer takes care of creating t
 - Next.js 14
 - Typescript
 - MongoDB
+- Prisma ORM
 - Shadcn UI
 - Tailwind
 
