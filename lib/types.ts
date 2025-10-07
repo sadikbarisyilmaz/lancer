@@ -85,3 +85,43 @@ export interface TaskNote {
   // Relations
   task: Task;
 }
+
+export interface ClientNote {
+  id: string;
+  created_at: Date;
+  user_id: string;
+  content: string;
+}
+export interface ClientFormData {
+  name: string;
+  type: string;
+  email: string;
+  phone: string;
+}
+export interface EditClientFormData {
+  name: string;
+  type: string;
+  email: string;
+  phone: string;
+}
+export interface EditUserFormData {
+  full_name: string;
+  email: string;
+}
+export interface TaskFormData {
+  set_date: Date;
+  set_time: string;
+  title: string;
+  about: string;
+  fee: string;
+  client_id: string;
+  frequency: string;
+}
+export interface EditTaskFormData {
+  set_date: Date | string;
+  set_time: string;
+  title: string;
+  about: string;
+  fee: string;
+  frequency: string;
+}
