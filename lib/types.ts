@@ -22,10 +22,10 @@ export interface Client {
   phone: number;
 
   // Relations
-  user: User;
-  tasks: Task[];
-  notes: ClientNote[];
-  weeklies: Weekly[];
+  user?: User;
+  tasks?: Task[];
+  notes?: ClientNote[];
+  weeklies?: Weekly[];
 }
 
 export interface Task {
@@ -42,9 +42,9 @@ export interface Task {
   frequency: string;
 
   // Relations
-  user: User;
-  client: Client; // singular
-  notes: TaskNote[];
+  user?: User;
+  client?: Client; // singular
+  notes?: TaskNote[];
 }
 
 export interface Weekly {
