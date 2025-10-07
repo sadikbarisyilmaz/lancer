@@ -33,6 +33,10 @@ export interface EditClientFormData {
   email: string;
   phone: string;
 }
+export interface EditUserFormData {
+  full_name: string;
+  email: string;
+}
 export interface Task {
   id: string;
   created_at: Date;

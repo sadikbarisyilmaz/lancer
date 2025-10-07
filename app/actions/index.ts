@@ -40,15 +40,19 @@ export const updateUser = async (data: {
   const session = await auth();
   const userId = session?.user.id;
   if (!userId) throw new Error("Unauthorized");
-  if (!data.email && !data.full_name) throw new Error("No fields provided");
+  console.log("updateuser:", data);
 
-  const user = await prisma.user.update({
-    where: { id: userId },
-    data,
-  });
-
-  revalidatePath("/api/auth");
-  return { data: user };
+  try {
+    const user = await prisma.user.update({
+      where: { id: userId },
+      data: { email: data.email, full_name: data.full_name },
+    });
+    revalidatePath("/dashboard/account");
+    return { data: user };
+  } catch (error) {
+    console.log(error);
+    return error;
+  }
 };
 
 export const updateUserPassword = async (newPassword: string) => {
@@ -134,6 +138,26 @@ export const deleteClient = async (clientId: string | string[]) => {
 
   await prisma.client.delete({
     where: { id },
+  });
+
+  revalidatePath("/dashboard/clients");
+};
+
+export const editClient = async (
+  client: EditClientFormData,
+  clientId: string | string[]
+) => {
+  const id = Array.isArray(clientId) ? clientId[0] : clientId;
+  const phone = parseInt(client.phone);
+  // Optional: you can validate `data` here before updating
+  await prisma.client.update({
+    where: { id },
+    data: {
+      name: client.name,
+      email: client.email,
+      type: client.type,
+      phone: phone,
+    },
   });
 
   revalidatePath("/dashboard/clients");

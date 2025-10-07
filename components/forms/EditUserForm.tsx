@@ -18,16 +18,15 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-
-const formSchema = z.object({
-  name: z.string().min(3, "Member name must be at least 3 characters."),
-  email: z.string().email("Please enter a valid email."),
-});
-
-// import { updateUser, updateUserImage } from "@/actions/userActions";
 import { useToast } from "../ui/use-toast";
 import { ServerSession } from "@/types/next-auth";
 import { updateUser } from "@/app/actions";
+import { EditUserFormData } from "@/lib/types";
+
+const formSchema = z.object({
+  full_name: z.string().min(3, "Member name must be at least 3 characters."),
+  email: z.string().email("Please enter a valid email."),
+});
 
 export const EditUserForm = ({ user }: ServerSession) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -40,7 +39,7 @@ export const EditUserForm = ({ user }: ServerSession) => {
   const form = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: user?.name,
+      full_name: user?.name,
       email: user?.email,
     },
   });
@@ -64,25 +63,23 @@ export const EditUserForm = ({ user }: ServerSession) => {
   //   return () => window.removeEventListener("resize", updateDropzoneWidth);
   // }, []);
 
-  const onSubmit = async (values: FormData) => {
+  const onSubmit = async (values: EditUserFormData) => {
     setIsSubmitting(true);
-    const result = await updateUser(values);
-    // if (file) {
-    //   handlePicture();
-    // }
-    if (result.error) {
-      toast({
-        variant: "destructive",
-        title: "Error !",
-        description: `- ${result.error}`,
-      });
-
+    try {
+      const result = await updateUser(values);
+      // if (file) {
+      //   handlePicture();
+      // }
       setIsSubmitting(false);
-    } else {
       toast({
         title: "Update Successful !",
       });
-      setIsSubmitting(false);
+    } catch (error) {
+      toast({
+        variant: "destructive",
+        title: "Error !",
+        description: `- ${error}`,
+      });
     }
   };
 
@@ -164,7 +161,7 @@ export const EditUserForm = ({ user }: ServerSession) => {
             <div className="grid md:grid-cols-2 gap-2">
               <FormField
                 control={form.control}
-                name="name"
+                name="full_name"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel className="font-bold">Full Name</FormLabel>

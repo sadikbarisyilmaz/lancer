@@ -30,6 +30,7 @@ import { Calendar } from "../ui/calendar";
 import {
   Select,
   SelectContent,
+  SelectGroup,
   SelectItem,
   SelectTrigger,
   SelectValue,
@@ -116,13 +117,21 @@ export const CreateTaskForm = ({ clients }: Props) => {
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          {clients?.map((client, i) => {
-                            return (
-                              <SelectItem key={i} value={client._id}>
-                                {client.name}
-                              </SelectItem>
-                            );
-                          })}
+                          <SelectGroup>
+                            {clients?.map((client, i) => {
+                              console.log(client);
+
+                              return (
+                                <SelectItem
+                                  key={client.name}
+                                  // @ts-ignore
+                                  value={client.id}
+                                >
+                                  {client.name}
+                                </SelectItem>
+                              );
+                            })}
+                          </SelectGroup>
                         </SelectContent>
                       </Select>
                       <FormMessage />

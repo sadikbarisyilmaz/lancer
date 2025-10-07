@@ -1,5 +1,5 @@
 "use client";
-import { editClient } from "@/app/actions";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
@@ -22,6 +22,7 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "../ui/use-toast";
 import { useState } from "react";
 import { Client } from "@/lib/types";
+import { editClient } from "@/app/actions";
 
 const formSchema = z.object({
   name: z.string().min(2).max(30),
@@ -56,6 +57,7 @@ export const EditClientForm = ({ client }: Props) => {
   function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       console.log(values);
+      // @ts-ignore
       editClient(values, client.id);
       toast({
         title: `Client edited successfully !`,
