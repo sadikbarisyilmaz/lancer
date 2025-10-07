@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
-export const getUser = async (email: string) => {
+const getUser = async (email: string) => {
   const user = await prisma.user.findUnique({
     where: { email },
   });
