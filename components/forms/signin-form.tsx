@@ -125,7 +125,7 @@ const SignInForm = () => {
                 Submit
               </Button>
             ) : (
-              <Button className="w-full mt-4" disabled>
+              <Button className="w-full mt-4 bg-slate-200" disabled>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
                 Please wait
               </Button>
