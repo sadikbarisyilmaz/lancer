@@ -14,14 +14,14 @@ function MyAccount() {
 
   if (!session) {
     return (
-      <div className="flex w-full justify-center mt-10">
+      <div className="flex w-full justify-center items-center mt-10 h-5/6">
         <Loader />
       </div>
     );
   }
 
   return (
-    <div className="h-screen w-full flex flex-col gap-4 justify-start items-center md:items-start pb-28 p-6 animate-fadeIn overflow-y-scroll no-scrollbar">
+    <div className="h-fit w-full flex flex-col gap-4 justify-start items-center md:items-start pb-28 p-6 animate-fadeIn overflow-y-scroll no-scrollbar">
       <div className="flex flex-col gap-4 w-full max-w-5xl">
         <div className="flex flex-col sm:flex-row gap-6 w-full">
           <div className="flex sm:flex-row justify-center md:justify-start min-w-fit">

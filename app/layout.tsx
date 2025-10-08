@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Lancer",
   description: "Professional freelancer's customer management system",
 };
+
 export default function RootLayout({
   children,
 }: {
@@ -15,8 +16,8 @@ export default function RootLayout({
 }) {
   return (
     <html suppressHydrationWarning={true} lang="en">
-      <body className="lg:dark:bg-[url('../lib/assets/bg.svg')] lg:bg-[url('../lib/assets/bg-light.svg')] dark:bg-[url('../lib/assets/bg-mobile.svg')] bg-[url('../lib/assets/bg-light-mobile.svg')] text-[#000000c5] dark:text-white bg-cover  h-screen">
-        <main className="h-screen lg:flex-row flex-col flex">
+      <body className="lg:dark:bg-[url('../lib/assets/bg.svg')] lg:bg-[url('../lib/assets/bg-light.svg')] dark:bg-[url('../lib/assets/bg-mobile.svg')] bg-[url('../lib/assets/bg-light-mobile.svg')] text-[#000000c5] dark:text-white bg-cover min-h-[100dvh]">
+        <main className="min-h-[100dvh] lg:flex-row flex-col flex">
           <SessionProvider>
             <ThemeProvider
               attribute="class"

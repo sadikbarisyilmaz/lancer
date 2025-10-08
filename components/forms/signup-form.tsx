@@ -74,9 +74,9 @@ const SignUpForm = () => {
 
   return (
     <div className="flex flex-col gap-4 w-full max-w-xl p-4">
-      <h2 className="text-5xl font-semibold">Login</h2>
+      <h2 className="text-4xl font-semibold">Create an Account</h2>
       <Separator />
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 mt-2">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="">
             <div className="grid  gap-2">
@@ -89,7 +89,9 @@ const SignUpForm = () => {
                     <FormControl>
                       <Input placeholder="full name" {...field} type="text" />
                     </FormControl>
-                    <FormMessage />
+                    <div className="h-6">
+                      <FormMessage />
+                    </div>
                   </FormItem>
                 )}
               />
@@ -106,7 +108,9 @@ const SignUpForm = () => {
                         type="email"
                       />
                     </FormControl>
-                    <FormMessage />
+                    <div className="h-6">
+                      <FormMessage />
+                    </div>
                   </FormItem>
                 )}
               />
@@ -123,7 +127,9 @@ const SignUpForm = () => {
                         type="password"
                       />
                     </FormControl>
-                    <FormMessage />
+                    <div className="h-6">
+                      <FormMessage />
+                    </div>
                   </FormItem>
                 )}
               />
@@ -140,13 +146,19 @@ const SignUpForm = () => {
                         type="password"
                       />
                     </FormControl>
-                    <FormMessage />
+                    <div className="h-6">
+                      <FormMessage />
+                    </div>
                   </FormItem>
                 )}
               />
             </div>
             {!isLoading ? (
-              <Button className="w-full mt-4" type="submit">
+              <Button
+                className="w-full mt-4"
+                variant={"secondary"}
+                type="submit"
+              >
                 Submit
               </Button>
             ) : (

@@ -120,7 +120,11 @@ export const EditUserPasswordForm = ({ user }: ServerSession) => {
               />
             </div>
             {!isSubmitting ? (
-              <Button className="w-full mt-2" type="submit">
+              <Button
+                className="w-full mt-2"
+                variant={"secondary"}
+                type="submit"
+              >
                 Submit
               </Button>
             ) : (

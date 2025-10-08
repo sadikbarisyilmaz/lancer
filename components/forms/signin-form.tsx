@@ -18,6 +18,7 @@ import { z } from "zod";
 import { Separator } from "../ui/separator";
 import { Input } from "../ui/input";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const SignInForm = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -69,13 +70,13 @@ const SignInForm = () => {
   });
 
   return (
-    <div className="flex flex-col gap-4 w-full max-w-xl p-4">
+    <div className="flex flex-col gap-4 w-full max-w-xl min-w-max p-4">
       <h2 className="text-5xl font-semibold">Login</h2>
       <Separator />
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-2 w-60 mt-2">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onSubmit)} className="">
-            <div className="grid  gap-2">
+            <div className="grid gap-2">
               <FormField
                 control={form.control}
                 name="email"
@@ -89,7 +90,9 @@ const SignInForm = () => {
                         type="email"
                       />
                     </FormControl>
-                    <FormMessage />
+                    <div className="h-6">
+                      <FormMessage />
+                    </div>
                   </FormItem>
                 )}
               />
@@ -106,13 +109,19 @@ const SignInForm = () => {
                         type="password"
                       />
                     </FormControl>
-                    <FormMessage />
+                    <div className="h-6">
+                      <FormMessage />
+                    </div>
                   </FormItem>
                 )}
               />
             </div>
             {!isSubmitting ? (
-              <Button className="w-full mt-4" type="submit">
+              <Button
+                className="w-full mt-6"
+                variant={"secondary"}
+                type="submit"
+              >
                 Submit
               </Button>
             ) : (
@@ -121,6 +130,15 @@ const SignInForm = () => {
                 Please wait
               </Button>
             )}
+            <div className="mt-4 flex gap-1">
+              <p className="text-xs">Don&#39;t have an accoun?</p>{" "}
+              <Link
+                href="/"
+                className=" w-fit text-xs font-bold hover:text-primary/90 transition-colors"
+              >
+                Sign Up
+              </Link>
+            </div>
           </form>
         </Form>
       </div>

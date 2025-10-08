@@ -190,7 +190,11 @@ export const EditUserForm = ({ user, update }: any) => {
               />
             </div>
             {!isSubmitting ? (
-              <Button className="w-full mt-2" type="submit">
+              <Button
+                className="w-full mt-2"
+                variant={"secondary"}
+                type="submit"
+              >
                 Submit
               </Button>
             ) : (
