@@ -25,7 +25,7 @@ export default {
         const res = await fetch(`${baseUrl}/api/auth`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email }),
+          body: JSON.stringify({ email,password }),
           cache: "no-store",
         });
         // console.log("res", res);
